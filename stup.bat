@@ -1,3 +1,4 @@
-# Instala Composer y NPM
-composer install
-npm install
+@echo on
+call composer install
+call npm install
+

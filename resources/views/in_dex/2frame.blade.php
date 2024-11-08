@@ -1,4 +1,4 @@
-<div class="h-screen w-full bg-cover bg-center relative  " style="background-image: url('{{ asset('images/index_img/1frame/back.webp') }}');"> 
+<div class="h-screen w-full bg-cover bg-center relative  " style="background-image: url('{{ asset('images/index_img/2frame/back.webp') }}');"> 
         <div class="w-full h-full bg-gradient-to-t from-teal-100 via-transparent to-gray-100 flex flex-wrap">
             <div class="w-1/2  h-full max-xl:w-full max-xl:h-1/2 flex justify-center items-center ">
                 <div class="relative h-3/4 w-3/4 ">

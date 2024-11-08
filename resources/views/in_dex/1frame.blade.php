@@ -1,4 +1,4 @@
-<div class="h-screen w-full bg-cover bg-center relative " style="background-image: url('{{ asset('images/imagen1.webp') }}');"> 
+<div class="h-screen w-full bg-cover bg-center relative " style="background-image: url('{{ asset('images/index_img/1frame/back.webp') }}');"> 
         <div class="w-full h-full bg-gradient-to-r from-teal-100 via-transparent to-teal-800">
             @include('constantes.header')
             <div class="flex h-[80%]  flex-wrap ">

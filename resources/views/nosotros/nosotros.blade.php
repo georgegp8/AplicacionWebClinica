@@ -1,6 +1,6 @@
 @include('constantes.head')
 <body>
-    <div class="h-[500px]  w-full bg-cover bg-end relative" style="background-image: url('{{ asset('images/1frameNosotros/back.jpg') }}');">
+    <div class="h-[500px]  w-full bg-cover bg-end relative" style="background-image: url('{{ asset('images/Nosotros/frame/back.webp') }}');">
         <!-- Gradiente en el fondo -->
         <div class="absolute inset-0 bg-gradient-to-r from-black/50 to-black/20 pointer-events-none"></div>
     
@@ -20,13 +20,13 @@
     <!-- segunda parte -->
     <div class="h-[500px] w-full  flex items-center">
         <!-- primero -->
-        <div class="w-[35%] h-full bg-center bg-cover" style="background-image: url('{{ asset('images/1frameNosotros/img1.jpg') }}');">
+        <div class="w-[35%] h-full bg-center bg-cover" style="background-image: url('{{ asset('images/Nosotros/frame/img1.webp') }}');">
         </div>
         <!-- segundo -->
         <div class="bg-gradient-to-t from-teal-300 to-teal-600 pointer-events-none w-[20%] h-full flex items-center justify-center">
             <div class=" text-white flex flex-col gap-y-3">
                 <div class="w-full flex justify-center">
-                    <img class="h-40 w-40" src="{{ asset('images/1frameNosotros/img2.jpg') }}" alt="">
+                    <img class="h-40 w-40" src="{{ asset('images/Nosotros/frame/img2.webp') }}" alt="">
                 </div>
                 <div class="flex  justify-center">
                         <div class="text-5xl font-semibold  timer" data-from="0" data-to="100" data-speed="1500" data-refresh-interval="50">100</div>
@@ -122,7 +122,7 @@
 
     <!-- cuarta parte -->
     <div class="h-[500px] w-full  flex">
-        <div class="w-1/2 h-full bg-cover bg-center" style="background-image: url('{{ asset('images/1frameNosotros/img3.jpg') }}');">
+        <div class="w-1/2 h-full bg-cover bg-center" style="background-image: url('{{ asset('images/Nosotros/frame/img3.webp') }}');">
             
         </div>
         <div class="w-1/2 flex justify-center items-center">
@@ -141,7 +141,7 @@
 
 
     <!-- quinta parte -->
-    <div class="h-[600px]  w-full bg-cover bg-end relative flex justify-center items-center" style="background-image: url('{{ asset('images/1frameNosotros/img4.jpg') }}');">
+    <div class="h-[600px]  w-full bg-cover bg-end relative flex justify-center items-center" style="background-image: url('{{ asset('images/Nosotros/frame/img4.webp') }}');">
         <div class="absolute inset-0 bg-gradient-to-r from-black/50 to-black/20 pointer-events-none"></div>
         <div class="relative z-20 w-[500px] flex flex-col justify-center items-center gap-y-4">
             <h2 class="text-white text-5xl leading-none">La mejor experiencia</h2>
@@ -152,7 +152,7 @@
     
     <!-- sexta parte -->
     <div class="h-[600px]  w-full bg-cover bg-end relative flex justify-center items-center">
-        <div class="w-[50%] h-full bg-center bg-cover" style="background-image: url('{{ asset('images/1frameNosotros/img5.jpg') }}');">
+        <div class="w-[50%] h-full bg-center bg-cover" style="background-image: url('{{ asset('images/Nosotros/frame/img5.webp') }}');">
         </div>
         <iframe class="w-1/2 h-full"  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1913.4575151552729!2d-71.51982214662705!3d-16.429141236524984!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91424b23fcffffff%3A0xf3a2f908ae973204!2sTecsup!5e0!3m2!1ses-419!2spe!4v1730813567712!5m2!1ses-419!2spe"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>        
     </div>

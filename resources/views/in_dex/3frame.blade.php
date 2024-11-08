@@ -19,7 +19,7 @@
             <div class="w-[50%] h-full flex justify-center items-center ">
                 <div class="w-[450px] h-[450px]   rounded-full flex justify-center items-end bg-teal-100 bg-opacity-75">
                     <div class="w-[370px] h-[370px]  rounded-full  bg-teal-200 bg-opacity-50 flex justify-center items-end ">
-                        <img src="{{ asset('images/2frame/docimg.webp') }}"  class=" w-[300px]" alt="">
+                        <img src="{{ asset('images/index_img/3frame/docimg.webp') }}"  class=" w-[300px]" alt="">
                     </div>
                 </div>
 

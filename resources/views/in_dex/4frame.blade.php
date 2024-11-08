@@ -8,7 +8,7 @@
 
                 <div class="w-[320px] ">
                     <div class="w-full flex justify-center">
-                        <img src="{{ asset('images/4frame/img1.jpg') }}" class="w-[200px] h-[200px]" alt="">
+                        <img src="{{ asset('images/index_img/4frame/img1.webp') }}" class="w-[200px] h-[200px]" alt="">
                     </div>
                     <div class="w-full  p-4">
                         <p class="text-[20px] text-center">Rinoplastia</p>
@@ -18,7 +18,7 @@
 
                 <div class="w-[320px] ">
                     <div class="w-full flex justify-center">
-                        <img src="{{ asset('images/4frame/img2.jpg') }}" class="w-[200px] h-[200px]" alt="">
+                        <img src="{{ asset('images/index_img/4frame/img2.webp') }}" class="w-[200px] h-[200px]" alt="">
                     </div>
                     <div class="w-full  p-4">
                         <p class="text-[20px] text-center">Blefaroplastía</p>
@@ -38,7 +38,7 @@
 
                 <div class="w-[320px] ">
                     <div class="w-full flex justify-center">
-                        <img src="{{ asset('images/4frame/img3.jpg') }}" class="w-[200px] h-[200px]" alt="">
+                        <img src="{{ asset('images/index_img/4frame/img3.webp') }}" class="w-[200px] h-[200px]" alt="">
                     </div>
                     <div class="w-full  p-4">
                         <p class="text-[20px] text-center">Lifting Láser</p>

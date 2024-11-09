@@ -5,7 +5,7 @@
         flex justify-center flex-wrap items-center 
         gap-x-10  max-xl:h-96  
         max-sm:h-[700px]  max-sm:gap-y-7  max-xl:py-[30px]"  
-        style="background-image: url('{{ asset('images/footerimg.png') }}');">
+        style="background-image: url('{{ asset('images/constantes/footer_img.webp') }}');">
 
             <!-- Bloque TecCita - Contactos  -->
             <div class="

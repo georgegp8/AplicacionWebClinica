@@ -1,7 +1,7 @@
 @include('constantes.head')
 <body>
     
-<div class="h-screen w-full bg-cover bg-center relative " style="background-image: url('{{ asset('images/1frameReservas/back.jpg') }}');"> 
+<div class="h-screen w-full bg-cover bg-center relative " style="background-image: url('{{ asset('images/reservas/1frame/back.webp') }}');"> 
         <div class="w-full h-full bg-gradient-to-r from-teal-100 via-transparent to-teal-800">
             @include('constantes.header')
             <div class="flex h-[80%] w- flex-wrap border border-black justify-center items-center">

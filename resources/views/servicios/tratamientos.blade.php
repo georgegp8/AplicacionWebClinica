@@ -2,7 +2,7 @@
 <body>
     
 
-<div class="h-[500px]  w-full bg-cover bg-center relative" style="background-image: url('{{ asset('images/1frameTratamientos/back.jpg') }}');">
+<div class="h-[500px]  w-full bg-cover bg-center relative" style="background-image: url('{{ asset('images/servicios/tratamientos/back.webp') }}');">
     <!-- Gradiente en el fondo -->
     <div class="absolute inset-0 bg-gradient-to-r from-black/50 to-black/20 pointer-events-none"></div>
 
@@ -29,13 +29,13 @@
                 <h2 class="text-3xl">{{ $tratamiento->nombre }}</h2>
                 <p>{{ $tratamiento->descripcion_larga }}</p>
             </div>
-            <div class="w-1/2 h-full bg-cover bg-center" style="background-image: url('{{ asset('images/1frameTratamientos/'. $tratamiento->imagen) }}');">
+            <div class="w-1/2 h-full bg-cover bg-center" style="background-image: url('{{ asset('images/servicios/tratamientos/'. $tratamiento->imagen) }}');">
             </div>
         </div>
     @else
         <!-- Estructura de Div 2 -->
         <div class="h-[400px]  flex justify-between">
-            <div class="w-1/2 h-full bg-cover bg-center" style="background-image: url('{{ asset('images/1frameTratamientos/'. $tratamiento->imagen) }}');">
+            <div class="w-1/2 h-full bg-cover bg-center" style="background-image: url('{{ asset('images/servicios/tratamientos/'. $tratamiento->imagen) }}');">
             </div>
             <div class="w-1/2 flex justify-center px-20 flex-col items-end gap-3">
                 <h2 class="text-3xl ">{{ $tratamiento->nombre }}</h2>

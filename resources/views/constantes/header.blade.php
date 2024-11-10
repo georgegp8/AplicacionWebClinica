@@ -50,7 +50,7 @@
                         </ul>
                     </li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="">RESULTADOS</a></li>
-                    <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/index/reservas">RESERVAS</a></li>
+                    <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/index/reserva">RESERVAS</a></li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/nosotros">NOSOTROS</a></li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="">SISTEMA</a></li>
                 </div>
@@ -109,7 +109,7 @@
 
 
                     <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="">RESULTADOS</a></li>
-                    <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="/index/reservas">RESERVAS</a></li>
+                    <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="/index/reserva">RESERVAS</a></li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="/nosotros">NOSOTROS</a></li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="">SISTEMA</a></li>
 

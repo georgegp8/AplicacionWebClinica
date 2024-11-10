@@ -30,9 +30,15 @@ Route::get('/servicios/tratamientos', [ServiciosController::class, 'viewServicie
 Route::get('/nosotros', function () {
     return view('nosotros.nosotros');
 });
-Route::resource('/index/reservas', ReservasController::class);
+Route::resource('/index/reserva', ReservasController::class);
 
 Route::get('/map', function () {
     return view('map');
+});
+Route::get('/reserva/pago', function () {
+    return view('reservas.pago');
+});
+Route::get('/reserva/cita', function () {
+    return view('reservas.cita');
 });
 require __DIR__.'/auth.php';

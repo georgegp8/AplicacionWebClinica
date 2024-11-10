@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,3 +36,16 @@ Route::get('/map', function () {
     return view('map');
 });
 require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/* Rutas Backend */
+/* Rutas para el admin */
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index')
+->middleware('auth');
+
+/* Rutas para el usuario */
+Route::get('/admin/usuarios', [App\Http\Controllers\UsuarioController::class, 'index'])->name('admin.usuarios.index')
+->middleware('auth');

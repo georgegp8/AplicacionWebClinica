@@ -24,4 +24,5 @@ export default defineConfig({
             '/app': 'http://localhost',  // Configurar proxy si es necesario
         }
     }
+    
 });

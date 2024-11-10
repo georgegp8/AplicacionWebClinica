@@ -139,4 +139,14 @@
     .hide-animation {
         animation: hideAnimation 0.5s ease forwards;
     }
+    .loader svg path {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+    }
+
+    /* Estilos para el loader */
+
+    /* Estilos para el loader */
+
+
 }

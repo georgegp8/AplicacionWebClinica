@@ -61,10 +61,10 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
          <!-- octavo frame -->
          @include('in_dex.8frame')
          
-         
-     
-     
          @include('constantes.footer')
+        
+     
+     
 
 
     </div>

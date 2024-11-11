@@ -83,10 +83,10 @@
             x-transition:leave="transition ease-in duration-0" 
             x-transition:leave-start="opacity-100 translate-y-0"
             x-transition:leave-end="opacity-0 -translate-y-4"
-            class="relative"
+            class="relative z-40"
         >
             <ul class="max-xl:w-11/12 flex justify-end max-sm:w-[95.9%]" x-data="{ isSubMenuOpen: false }">
-                <div class="w-[255px] h-[300px] content-around flex pl-4 flex-wrap bg-white max-sm:w-[200px] bg-opacity-70 backdrop-blur-md">
+                <div class="w-[255px] h-[300px] content-around flex pl-4 flex-wrap bg-white max-sm:w-[200px] backdrop-blur-md">
                     <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="/">INICIO</a></li>
 
                     <!-- Al cambiar el evento click por hover -->

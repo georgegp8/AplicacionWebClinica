@@ -48,7 +48,7 @@
                 
                 <!-- Imagen y Nombre -->
                 <div class="flex flex-col items-center space-y-4 ">
-                    <img :src="testimonials[currentIndex].image" alt="" class="w-40 h-40 rounded-full object-cover  bg-center">
+                    <img :src="testimonials[currentIndex].image" loading="lazy" alt="" class="w-40 h-40 rounded-full object-cover  bg-center">
                     <p class="font-bold text-xl text-gray-600 leading-none" x-text="testimonials[currentIndex].name"></p>
                     <p class="text-teal-700 tracking-widest leading-none" x-text="testimonials[currentIndex].profession"></p>
                 </div>

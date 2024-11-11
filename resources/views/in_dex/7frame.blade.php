@@ -69,7 +69,7 @@
                         x-transition:leave="transition ease-in duration-0" 
                         x-transition:leave-start="opacity-100 translate-y-0"
                         x-transition:leave-end="opacity-0 -translate-y-4"
-                    class="w-full h-[450px]"  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1913.4575151552729!2d-71.51982214662705!3d-16.429141236524984!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91424b23fcffffff%3A0xf3a2f908ae973204!2sTecsup!5e0!3m2!1ses-419!2spe!4v1730813567712!5m2!1ses-419!2spe"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    class="w-full h-[450px]" loading="lazy"  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1913.4575151552729!2d-71.51982214662705!3d-16.429141236524984!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91424b23fcffffff%3A0xf3a2f908ae973204!2sTecsup!5e0!3m2!1ses-419!2spe!4v1730813567712!5m2!1ses-419!2spe"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             
             <!-- Pregunta 4 -->

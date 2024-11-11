@@ -2,22 +2,15 @@
 <body>
 
 <div x-data="{ loading: true, content: false }" 
-     x-init="$nextTick(() => {
-        // Primero ejecutamos la animación del SVG
-        gsap.to('svg path', {
-            strokeDashoffset: 0,
-            duration: 1,
-            ease: 'power1.inOut',
-            stagger: 0.3,
-            onComplete: () => {
-                loading = false;
-                // Después de que termina la animación, mostramos el contenido
-                setTimeout(() => {
-                    content = true;
-                }, 100);
-            }
-        });
-    })"> 
+x-init="setTimeout(() => { loading = false; content = true; }, 1000); 
+              $nextTick(() => {
+                  gsap.to('svg path', {
+                      strokeDashoffset: 0,
+                      duration: 1,
+                      ease: 'power1.inOut',
+                      stagger: 0.3
+                  });
+              })"> 
     <div  
         x-show="loading"  
         class="loader fixed inset-0 flex justify-center items-center bg-teal-700/80 z-50"  
@@ -39,7 +32,8 @@
          class="content">
 
         <!-- contenido -->
-        <div class=" w-full bg-cover bg-center relative " style="background-image: url('{{ asset('images/reservas/1frame/back.webp') }}');"> 
+        <div class=" w-full bg-cover bg-center relative lazyload" 
+        data-bg="url('{{ asset('images/reservas/1frame/back.webp') }}')"> 
             <div class="w-full h-full bg-gradient-to-r from-teal-100 via-transparent to-teal-800">
                 @include('constantes.header')
                 <div class="w-full h-[100px] flex justify-center items-center text-white gap-x-10">
@@ -58,5 +52,15 @@
 
     </div>
 </div>
+<!-- Cargar librería LazyLoad optimizada -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async defer></script>
+<script>
+    document.addEventListener('lazybeforeunveil', function(e){
+        const bg = e.target.getAttribute('data-bg');
+        if(bg){
+            e.target.style.backgroundImage = bg;
+        }
+    });
+</script>
 </body>
 </html>

@@ -2,22 +2,15 @@
 <body>
 
 <div x-data="{ loading: true, content: false }" 
-     x-init="$nextTick(() => {
-        // Primero ejecutamos la animación del SVG
-        gsap.to('svg path', {
-            strokeDashoffset: 0,
-            duration: 1,
-            ease: 'power1.inOut',
-            stagger: 0.3,
-            onComplete: () => {
-                loading = false;
-                // Después de que termina la animación, mostramos el contenido
-                setTimeout(() => {
-                    content = true;
-                }, 100);
-            }
-        });
-    })"> 
+x-init="setTimeout(() => { loading = false; content = true; }, 1000); 
+              $nextTick(() => {
+                  gsap.to('svg path', {
+                      strokeDashoffset: 0,
+                      duration: 1,
+                      ease: 'power1.inOut',
+                      stagger: 0.3
+                  });
+              })"> 
     <div  
         x-show="loading"  
         class="loader fixed inset-0 flex justify-center items-center bg-teal-700/80 z-50"  
@@ -83,6 +76,12 @@
 
 
     <script>
+      document.addEventListener('lazybeforeunveil', function(e){
+        const bg = e.target.getAttribute('data-bg');
+        if(bg){
+            e.target.style.backgroundImage = bg;
+        }
+    });
   // Función principal del contador
   (function ($) {
     $.fn.countTo = function (options) {

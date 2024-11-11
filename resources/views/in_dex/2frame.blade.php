@@ -1,10 +1,11 @@
-<div class="h-screen w-full bg-cover bg-center relative  " style="background-image: url('{{ asset('images/index_img/2frame/back.webp') }}');"> 
+<div class="h-screen w-full bg-cover bg-center relative  lazyload" 
+data-bg="url('{{ asset('images/index_img/2frame/back.webp') }}')"> 
         <div class="w-full h-full bg-gradient-to-t from-teal-100 via-transparent to-gray-100 flex flex-wrap">
             <div class="w-1/2  h-full max-xl:w-full max-xl:h-1/2 flex justify-center items-center ">
                 <div class="relative h-3/4 w-3/4 ">
-                    <img src="{{ asset('images/index_img/2frame/img1.webp') }}" alt="" class="absolute top-0 left-0  w-[350px] object-cover ">
-                    <img src="{{ asset('images/index_img/2frame/img3.webp') }}" alt="" class="absolute top-[40px] right-0  object-cover">
-                    <img src="{{ asset('images/index_img/2frame/img2.webp') }}" alt="" class="absolute left-[50px] bottom-0 w-[400px]   object-cover">
+                    <img src="{{ asset('images/index_img/2frame/img1.webp') }}" loading="lazy" alt="" class="absolute top-0 left-0  w-[350px] object-cover ">
+                    <img src="{{ asset('images/index_img/2frame/img3.webp') }}" loading="lazy" alt="" class="absolute top-[40px] right-0  object-cover">
+                    <img src="{{ asset('images/index_img/2frame/img2.webp') }}" loading="lazy" alt="" class="absolute left-[50px] bottom-0 w-[400px]   object-cover">
                 </div>
             </div>
             <div class="w-1/2  h-full max-xl:w-full max-xl:h-1/2 flex justify-center items-center ">

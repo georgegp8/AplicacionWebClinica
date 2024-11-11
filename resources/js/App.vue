@@ -53,12 +53,12 @@
         </div>
 
         <!-- carta imagen -->
-        <div class="  max-md:hidden">
+        <div class="  max-xl:hidden">
           <div class="card-item" :class="{ '-active': isCardFlipped }">
             <div class="card-item__side -front">
               <div class="card-item__focus" :class="{ '-active': focusElementStyle }" :style="focusElementStyle" ref="focusElement"></div>
               <div class="card-item__cover">
-                <img :src="`https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/${currentCardBackground}.jpeg`" class="card-item__bg">
+                <img  :src="`https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/${currentCardBackground}.jpeg`" class="card-item__bg " loading="lazy">
               </div>
               
               <div class="card-item__wrapper">
@@ -178,7 +178,15 @@
     </div>
   </template>
   
+  
+
   <script>
+  document.addEventListener('lazybeforeunveil', function(e){
+        const bg = e.target.getAttribute('data-bg');
+        if(bg){
+            e.target.style.backgroundImage = bg;
+        }
+    });
   export default {
     name: 'CreditCardForm',
     data() {

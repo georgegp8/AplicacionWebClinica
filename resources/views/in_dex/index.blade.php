@@ -37,18 +37,14 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
          <!-- segundo frame -->
          @include('in_dex.2frame')
          
-         
          <!-- tercer frame -->
          @include('in_dex.3frame')
-         
      
          <!-- cuarto frame -->
          @include('in_dex.4frame')
-         
      
          <!-- quinto frame -->
          @include('in_dex.5frame')
-         
      
          <!-- sexto frame -->
          @include('in_dex.6frame')
@@ -60,8 +56,11 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
      
          <!-- octavo frame -->
          @include('in_dex.8frame')
-         
+
          @include('constantes.footer')
+
+         
+
         
      
      

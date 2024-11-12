@@ -1,10 +1,10 @@
-<div class="h-screen w-full bg-white opacity-100 relative flex justify-center items-center ">
-        <div class="w-[80%] h-[85%] ">
+<div class="h-screen w-full bg-white opacity-100 relative flex justify-center items-center max-xl:h-auto max-xl:items-start max-xl:py-10">
+        <div class="w-[80%] h-[85%] max-xl:w-full max-xl:h-auto">
             <div class="w-full ">
                     <p class="text-[30px] font-mono text-center  leading-none text-teal-500">Medicina Estética</p>
-                    <p class="text-2xl  tracking-widest text-center">Procedimientos más solicitados</p>
+                    <p class="text-2xl  tracking-widest text-center max-sm:text-xl">Procedimientos más solicitados</p>
             </div>
-            <div class="flex  justify-evenly h-[80%] mt-4">
+            <div class="flex  justify-evenly h-[80%] mt-4 flex-wrap gap-y-5">
 
                 <div class="w-[320px] ">
                     <div class="w-full flex justify-center">
@@ -60,7 +60,7 @@
             </div>
             <div class="w-full flex justify-center">
                 <div class=" bg-teal-600 w-40 h-10 flex justify-center items-center hover:bg-teal-500 hover:cursor-pointer ease-in delay-100 duration-75   text-lg max-md:text-[17px]  max-md:w-[150px] text-white ">
-                    <a href="" class=" text-[14px]">Saber Mas</a>
+                    <a href="/servicios/cirugias" class=" text-[14px]">Saber Mas</a>
                 </div>
             </div>
         </div>

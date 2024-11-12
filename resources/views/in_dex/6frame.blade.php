@@ -1,4 +1,4 @@
-<div class="h-screen w-full bg-white opacity-100 relative flex justify-center items-center ">
+<div class="h-screen w-full bg-white opacity-100 relative flex justify-center items-center  py-10">
         <div x-data="{
                 currentIndex: 0,
                 isVisible: true,
@@ -28,7 +28,8 @@
                 }
             }"
             x-init="startCarousel"
-            class="flex flex-col space-y-4 px-10 text-center mx-auto transition-all duration-500 ease-in-out  w-[80%] h-[90%]">
+            class="flex flex-col  px-10 text-center mx-auto transition-all duration-500 ease-in-out  w-[80%] h-[90%]  
+            items-center justify-center max-md:justify-start max-sm:h-auto">
 
             <!-- Título -->
             <h2 class="text-3xl font-bold text-teal-700  ">Testimonios</h2>
@@ -41,13 +42,13 @@
                 x-transition:enter="transition ease-out duration-500 transform opacity-0 translate-y-8"
                 x-transition:enter-start="opacity-0 transform translate-y-8"
                 x-transition:enter-end="opacity-100 transform translate-y-0"
-                class="w-full  ">
+                class="w-full   h-auto max-md:mt-3">
 
                 <!-- Texto del Testimonio -->
-                <p class="text-lg text-gray-700 italic h-40 content-center px-10" x-text="testimonials[currentIndex].text"></p>
+                <p class="text-lg text-gray-700 italic h-40 max-md:h-auto content-center px-10 max-md:px-0" x-text="testimonials[currentIndex].text"></p>
                 
                 <!-- Imagen y Nombre -->
-                <div class="flex flex-col items-center space-y-4 ">
+                <div class="flex flex-col items-center space-y-4  max-xl:mt-4">
                     <img :src="testimonials[currentIndex].image" loading="lazy" alt="" class="w-40 h-40 rounded-full object-cover  bg-center">
                     <p class="font-bold text-xl text-gray-600 leading-none" x-text="testimonials[currentIndex].name"></p>
                     <p class="text-teal-700 tracking-widest leading-none" x-text="testimonials[currentIndex].profession"></p>
@@ -55,7 +56,7 @@
             </div>
             
             <!-- Puntos de navegación con animación de desvanecimiento al seleccionar -->
-            <div class="flex space-x-2 w-full justify-center ">
+            <div class="flex space-x-2 w-full justify-center mt-5">
                 <template x-for="(testimonial, index) in testimonials" :key="index">
                     <button 
                         @click="prepareNextTestimonial(index)" 
@@ -65,7 +66,7 @@
                 </template>
             </div>
 
-            <div class="w-full flex justify-center p-5">
+            <div class="w-full flex justify-center p-5 ">
                 <div class="bg-teal-300 w-40 h-10 flex justify-center items-center hover:bg-teal-200 ease-in delay-100 duration-75 text-lg max-md:text-[17px] max-md:w-[150px] text-black rounded-2xl">
                     <a href="" class="text-[14px]">Ver Todos</a>
                 </div>

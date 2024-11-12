@@ -36,9 +36,9 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
         data-bg="url('{{ asset('images/reservas/1frame/back.webp') }}')"> 
             <div class="w-full h-full bg-gradient-to-r from-teal-100 via-transparent to-teal-800">
                 @include('constantes.header')
-                <div class="w-full h-[100px] flex justify-center items-center text-white gap-x-10">
-                    <a href="/reserva/cita" class="text-5xl leading-none  font-light">RESERVAS</a>
-                    <a href="/reserva/pago" class="text-5xl leading-none  font-light">PAGOS</a>
+                <div class="w-full h-[100px] flex justify-center items-center text-white gap-x-10 max-sm:h-[70px] max-sm:items-end">
+                    <a href="/reserva/cita" class="text-5xl leading-none  max-sm:text-4xl">RESERVAS</a>
+                    <a href="/reserva/pago" class="text-5xl leading-none  max-sm:text-4xl">PAGOS</a>
                 </div>
                 <div class="flex justify-center items-center  p-10">
                     @yield('content')

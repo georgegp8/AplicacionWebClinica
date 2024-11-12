@@ -54,30 +54,23 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
 
         <div class="w-full flex flex-col space-y-4 my-4">
             @foreach ($tratamientos as $index => $tratamiento)
-
-                @if ($index % 2 === 0)
-                    <!-- Estructura de Div 1 -->
-                    <div class="h-[400px] flex justify-between">
-                        <div class="w-1/2 flex justify-center px-20 flex-col items-start gap-3">
-                            <h2 class="text-3xl">{{ $tratamiento->nombre }}</h2>
-                            <p>{{ $tratamiento->descripcion_larga }}</p>
+                <div class="h-[400px] flex justify-between max-md:relative">
+                    @if ($index % 2 === 0)
+                        <div class="w-1/2 flex justify-center px-20 flex-col items-start gap-3  max-md:w-full max-md:relative max-md:z-20 max-md:items-center ">
+                            <h2 class="text-3xl max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center">{{ $tratamiento->nombre }}</h2>
+                            <p class=" max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center max-md:w-[400px]">{{ $tratamiento->descripcion_larga }}</p>
                         </div>
-                        <div class="w-1/2 h-full bg-cover bg-center lazyload" 
+                    @endif
+                    <div class="w-1/2 h-full bg-cover bg-center lazyload max-md:absolute max-md:w-full" 
                         data-bg="url('{{ asset('images/servicios/tratamientos/'. $tratamiento->imagen) }}')">
-                        </div>
                     </div>
-                @else
-                    <!-- Estructura de Div 2 -->
-                    <div class="h-[400px] flex justify-between">
-                        <div class="w-1/2 h-full bg-cover bg-center lazyload" 
-                        data-bg="url('{{ asset('images/servicios/tratamientos/'. $tratamiento->imagen) }}')">
+                    @if ($index % 2 !== 0)
+                        <div class="w-1/2 flex justify-center px-20 flex-col items-end gap-3 max-md:w-full max-md:relative max-md:items-center">
+                            <h2 class="text-3xl max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center">{{ $tratamiento->nombre }}</h2>
+                            <p class="text-end max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center max-md:w-[400px]">{{ $tratamiento->descripcion_larga }}</p>
                         </div>
-                        <div class="w-1/2 flex justify-center px-20 flex-col items-end gap-3">
-                            <h2 class="text-3xl">{{ $tratamiento->nombre }}</h2>
-                            <p class="text-end">{{ $tratamiento->descripcion_larga }}</p>
-                        </div>
-                    </div>
-                @endif
+                    @endif
+                </div>
             @endforeach
         </div>
 

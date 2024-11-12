@@ -33,7 +33,7 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
          x-transition:enter-end="opacity-100" 
          class="content">
 
-         <div class="h-[500px]  w-full bg-cover bg-end relative lazyload" 
+         <div class="h-[500px]  w-full bg-cover bg-end relative lazyload max-md:bg-center" 
          data-bg="url('{{ asset('images/Nosotros/frame/back.webp') }}')">
             <!-- Gradiente en el fondo -->
             <div class="absolute inset-0 bg-gradient-to-r from-black/50 to-black/20 pointer-events-none"></div>
@@ -45,20 +45,21 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
         
             <!-- Contenido centrado en primer plano -->
             <div class="relative z-10 flex w-full h-[300px] justify-center items-center ">
-                <p class="text-white text-5xl ">
+                <p class="text-white text-5xl max-md:text-4xl">
                     Nosotros
                 </p>
             </div>
         </div>
 
         <!-- segunda parte -->
-        <div class="h-[500px] w-full  flex items-center">
+        <div class="h-[500px] w-full  flex items-center max-xl:h-auto max-md:flex-wrap">
             <!-- primero -->
-            <div class="w-[35%] h-full bg-center bg-cover lazyload" 
+            <div class="w-[35%] h-full bg-center bg-cover lazyload max-xl:hidden" 
             data-bg="url('{{ asset('images/Nosotros/frame/img1.webp') }}')">
             </div>
             <!-- segundo -->
-            <div class="bg-gradient-to-t from-teal-300 to-teal-600 pointer-events-none w-[20%] h-full flex items-center justify-center">
+            <div class="bg-gradient-to-t from-teal-300 to-teal-600 pointer-events-none w-[20%] h-full flex items-center justify-center max-xl:w-[45%] 
+            max-md:order-2 max-md:w-full  max-xl:h-[500px] max-md:h-[400px]">
                 <div class=" text-white flex flex-col gap-y-3">
                     <div class="w-full flex justify-center">
                         <img class="h-40 w-40" loading="lazy" src="{{ asset('images/Nosotros/frame/img2.webp') }}" alt="">
@@ -73,7 +74,7 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
                 </div>
             </div>
             <!-- tercero -->
-            <div class="w-[45%] h-full flex flex-col justify-center items-center px-10">
+            <div class="w-[45%] h-full flex flex-col justify-center items-center px-10 max-xl:w-[55%] max-xl:justify-start max-md:w-full max-md:py-10">
                 <div class=" flex flex-col gap-y-5">
 
                     <div class="w-full flex flex-col gap-y-3">
@@ -110,7 +111,7 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
 
 
         <!-- tercera parte -->
-        <div class="h-[500px] w-full  flex items-center justify-evenly gap-x-3">
+        <div class="h-[500px] w-full  flex items-center justify-evenly gap-x-3 max-xl:h-auto max-xl:items-start max-md:flex-wrap max-xl:py-10 max-md:gap-y-10">
             <div class="w-[400px] h-3/4  px-10 "> 
                 <div class="w-full flex justify-center">
                     <div class="rounded-full w-5 h-5 bg-teal-700"></div>
@@ -156,13 +157,13 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
         </div>
 
         <!-- cuarta parte -->
-        <div class="h-[500px] w-full  flex">
-            <div class="w-1/2 h-full bg-cover bg-center lazyload" 
+        <div class="h-[500px] w-full  flex max-md:relative">
+            <div class="w-1/2 h-full bg-cover bg-center lazyload max-xl:absolute max-xl:w-full max-sm:bg-end" 
             data-bg="url('{{ asset('images/Nosotros/frame/img3.webp') }}')">
                 
             </div>
-            <div class="w-1/2 flex justify-center items-center">
-                <div class="w-[500px] flex flex-col gap-y-5">
+            <div class="w-1/2 flex justify-center items-center max-xl:relative max-xl:z-20 max-xl:w-full">
+                <div class="w-[500px] flex flex-col gap-y-5 max-xl:backdrop-blur-2xl max-xl:p-10 max-xl:w-[600px] max-xl:bg-teal-300/20 max-xl:bg-opacity-40 max-sm:px-5">
                     <div>
                         <h2 class="text-2xl  text-teal-600">MISIÓN</h2>
                         <p>Brindar servicios médicos de calidad a quienes necesitan una atención rápida y asesoría completa, comprendiendo sus necesidades y aspiraciones de vivir una digna y con oportunidades.</p>
@@ -180,7 +181,7 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
         <div class="h-[600px]  w-full bg-cover bg-end relative flex justify-center items-center" style="background-image: url('{{ asset('images/Nosotros/frame/img4.webp') }}');">
             <div class="absolute inset-0 bg-gradient-to-r from-black/50 to-black/20 pointer-events-none"></div>
             <div class="relative z-20 w-[500px] flex flex-col justify-center items-center gap-y-4">
-                <h2 class="text-white text-5xl leading-none">La mejor experiencia</h2>
+                <h2 class="text-white text-5xl leading-none max-sm:text-center">La mejor experiencia</h2>
                 <span class="text-white">☆☆☆☆☆☆</span>
                 <p class="text-white text-center w-[400px] text-xl mt-2">Nuestra clínica se dedica a ofrecer la mejor experiencia posible a nuestros clientes. Con tratamientos de última generación y un equipo de expertos, garantizamos resultados excepcionales.</p>
             </div>
@@ -188,10 +189,10 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
     
         <!-- sexta parte -->
         <div class="h-[600px]  w-full bg-cover bg-end relative flex justify-center items-center">
-            <div class="w-[50%] h-full bg-center bg-cover lazyload" 
+            <div class="w-[50%] h-full bg-center bg-cover lazyload max-md:hidden" 
             data-bg="url('{{ asset('images/Nosotros/frame/img5.webp') }}')">
             </div>
-            <iframe class="w-1/2 h-full" loading="lazy"  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1913.4575151552729!2d-71.51982214662705!3d-16.429141236524984!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91424b23fcffffff%3A0xf3a2f908ae973204!2sTecsup!5e0!3m2!1ses-419!2spe!4v1730813567712!5m2!1ses-419!2spe"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>        
+            <iframe class="w-1/2 h-full max-md:w-full" loading="lazy"  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1913.4575151552729!2d-71.51982214662705!3d-16.429141236524984!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91424b23fcffffff%3A0xf3a2f908ae973204!2sTecsup!5e0!3m2!1ses-419!2spe!4v1730813567712!5m2!1ses-419!2spe"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>        
         </div>
 
 

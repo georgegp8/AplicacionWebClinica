@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper " id="app">
-      <div class=" max-xl:w-[570px] m-auto w-[100%]   flex flex-wrap justify-center items-center  bg-white  p-10 rounded-xl gap-x-10">
+      <div class=" max-xl:w-[570px] m-auto w-[100%]   flex flex-wrap justify-center items-center  bg-white  p-10 rounded-xl gap-x-10 max-md:w-[500px] max-sm:w-[450px] max-sm:p-5">
         
          <!-- form -->
         <div class="_inner ">

@@ -1,8 +1,8 @@
 @extends('reservas.reservas')
 @section('content')
     <div class="w-full max-w-2xl bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-center text-2xl font-semibold text-teal-600">Solicitar una cita</h2>
-        <p class="text-center text-gray-600 mt-2">
+        <h2 class="text-center text-2xl font-semibold text-teal-600 max-md:text-xl">Solicitar una cita</h2>
+        <p class="text-center text-gray-600 mt-2 max-md:text-[13px]">
             Para poder registrar tus datos y solicitar una cita online necesitas llenar el siguiente formulario. Te enviaremos el costo e información necesaria para completar el proceso a tu email.
         </p>
         
@@ -10,9 +10,9 @@
         <form method="POST" action="" class="mt-4 space-y-4">
             @csrf
 
-            <div class="flex space-x-4">
-                <input type="text" name="nombres" placeholder="Nombres" class="w-1/2 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200">
-                <input type="text" name="apellidos" placeholder="Apellidos" class="w-1/2 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200">
+            <div class="flex space-x-4 max-md:flex-wrap max-md:space-x-0 max-md:space-y-4">
+                <input type="text" name="nombres" placeholder="Nombres" class="w-1/2 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200 max-md:w-full max-md:py-3 max-md:border">
+                <input type="text" name="apellidos" placeholder="Apellidos" class="w-1/2 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200 max-md:w-full">
             </div>
 
             <input type="email" name="email" placeholder="Email" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200">

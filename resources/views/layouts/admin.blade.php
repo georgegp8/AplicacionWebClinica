@@ -80,16 +80,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="#" class="nav-link active">
-				<i class="nav-icon fas bi bi-people-fill"></i>
-              <p>
-                Usuarios
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
+
+        {{--         Navegación Usuarios       --}} 
+        <li class="nav-item">
+          <a href="#" class="nav-link active">
+            <i class="nav-icon fas bi bi-people-fill"></i>
+            <p>
+              Usuarios
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{url('admin/usuarios/create')}}" class="nav-link active">
@@ -104,15 +104,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
             </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link" style="background-color: #a9200e">
-				<i class="nav-icon fas bi bi-door-closed"></i>
+        </li>
+
+        {{--         Navegación Secretarias       --}} 
+        <li class="nav-item">
+          <a href="#" class="nav-link active">
+            <i class="nav-icon fas bi bi-person-circle"></i>
+            <p>
+              Secretarias
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('admin/secretarias/create')}}" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Creación de secretarias</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('admin/secretarias')}}" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Listado de secretarias</p>
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link" style="background-color: #a9200e">
+				    <i class="nav-icon fas bi bi-door-closed"></i>
               <p>
                 Cerrar sesión
               </p>
-            </a>
-          </li>
+          </a>
+        </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

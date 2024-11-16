@@ -78,24 +78,73 @@ class SecretariaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Secretaria $secretaria)
+    public function edit($id)
     {
-        //
+        $secretaria = Secretaria::with('user')->findOrFail($id);
+        return view('admin.secretarias.edit',compact('secretaria'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Secretaria $secretaria)
+    public function update(Request $request, $id)
     {
-        //
+        $secretaria = Secretaria::find($id);
+
+        //$usuario = User::find($id);
+        $request->validate([
+            'nombres'=>'required',
+            'apellidos'=>'required',
+            'dni'=>'required|unique:secretarias,dni,'.$secretaria->id,
+            'celular'=>'required',
+            'fecha_nacimiento'=>'required',
+            'direccion'=> 'required',
+            'email'=>'required|max:250|unique:users,email,'.$secretaria->user->id,
+            'password'=>'nullable|max:250|confirmed'
+        ]);
+
+        $secretaria->nombres = $request->nombres;
+        $secretaria->apellidos = $request->apellidos;
+        $secretaria->dni = $request->dni;
+        $secretaria->celular = $request->celular;
+        $secretaria->fecha_nacimiento = $request->fecha_nacimiento;
+        $secretaria->direccion = $request->direccion;
+        $secretaria->direccion = $request->direccion;
+        $secretaria->save();
+
+        $usuario = User::find($secretaria->user->id);
+        $usuario->name = $request->nombres;
+        $usuario->email = $request->email;
+        if ($request->filled('password')) {
+            $usuario->password = Hash::make($request['password']);
+        }
+        $usuario->save();
+
+        return redirect()->route('admin.secretarias.index')
+        ->with('mensaje','Se actualizó a la secretaria de forma correcta ')
+        ->with('icono','success');
     }
 
+    public function confirmDelete($id){
+        $secretaria = Secretaria::with('user')->findOrFail($id);
+        return view('admin.secretarias.delete',compact('secretaria'));
+    }
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Secretaria $secretaria)
+    public function destroy($id)
     {
-        //
+        $secretaria = Secretaria::find($id);
+        
+        //Eliminar al usuario asociado
+        $user = $secretaria->user;
+        $user->delete();
+
+        //Eliminar a la secretaria
+        $secretaria->delete();
+
+        return redirect()->route('admin.secretarias.index')
+        ->with('mensaje','Se eliminó a la secretaria de forma correcta ')
+        ->with('icono','success');
     }
 }

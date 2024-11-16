@@ -12,7 +12,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form action="{{ url('admin/usuarios/create') }}" method="POST">
+                    <form action="{{ url('admin/secretarias/create') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-md-3">
@@ -33,20 +33,20 @@
                                     @enderror
                                 </div>
                             </div>
-							<div class="col-md-3">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="celular">Celular</label><b>*</b>
-                                    <input type="number" value="{{ old('celular') }}" name="celular" class="form-control" required>
-                                    @error('celular')
+                                    <label for="dni">DNI</label><b>*</b>
+                                    <input type="number" value="{{ old('dni') }}" name="dni" class="form-control" required>
+                                    @error('dni')
                                         <small style="color:red">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
 							<div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="dni">DNI</label><b>*</b>
-                                    <input type="number" value="{{ old('dni') }}" name="dni" class="form-control" required>
-                                    @error('dni')
+                                    <label for="celular">Celular</label><b>*</b>
+                                    <input type="number" value="{{ old('celular') }}" name="celular" class="form-control" required>
+                                    @error('celular')
                                         <small style="color:red">{{ $message }}</small>
                                     @enderror
                                 </div>
@@ -107,7 +107,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <a href="{{ url('admin/usuarios') }}" class="btn btn-secondary">Cancelar</a>
+                                    <a href="{{ url('admin/secretarias') }}" class="btn btn-secondary">Cancelar</a>
                                     <button type="submit" class="btn btn-primary">Registrar nuevo</button>
                                 </div>
                             </div>

@@ -10,13 +10,13 @@
     open: false
 }">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 bg-white border-b border-gray-200">
+        <div class=" overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 border-b border-gray-200">
                 <!-- Botón para mostrar/ocultar el formulario -->
                 <div class="mb-4">
                     <button @click="showForm = !showForm; buttonText = showForm ? 'Cancelar' : 'Hacer Testimonio'" 
                         class="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded shadow-sm transition-transform transform hover:scale-105">
-                        <span x-text="buttonText"></span>
+                        <span x-text="buttonText" class="text-2xl"></span>
                     </button>
                 </div>
 
@@ -27,16 +27,16 @@
 
                         <!-- Nombre -->
                         <div class="mb-4">
-                            <label for="name" class="block font-medium text-sm text-gray-700">Nombre</label>
-                            <input type="text" id="name" name="nombre" class="border-gray-300 focus:border-teal-500 focus:ring-teal-500 rounded-md shadow-sm w-full" required>
+                            <label for="name" class="block font-medium text-xl text-gray-700 ">Nombre</label>
+                            <input type="text" id="name" name="nombre" class="border-gray-300 focus:border-teal-500 focus:ring-teal-500 rounded-md shadow-sm w-full mt-4 h-[50px] text-lg" required>
                         </div>
 
                         <!-- Servicio -->
                         <div class="mb-4">
-                            <label for="service" class="block font-medium text-sm text-gray-700">Servicio</label>
+                            <label for="service" class="block font-medium text-xl text-gray-700">Servicio</label>
                             <div class="relative">
                                 <button @click="open = !open" 
-                                    class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2 text-left focus:outline-none focus:ring-teal-500 focus:border-teal-500 flex justify-between items-center">
+                                    class="w-full bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2 text-left focus:outline-none focus:ring-teal-500 focus:border-teal-500 flex justify-between items-center mt-4 h-[50px] text-lg">
                                     <span x-text="service || 'Seleccionar una opción'"></span>
                                     <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -53,14 +53,14 @@
                                     x-transition:leave-end="opacity-0 translate-y-1"
                                     class="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto focus:outline-none">
                                     <li @click="service = ''; open = false" 
-                                        class="cursor-pointer select-none relative py-2 pl-3 pr-9 text-gray-700 hover:bg-teal-400 hover:text-white transition">
+                                        class="cursor-pointer select-none relative py-2 pl-3 pr-9 text-gray-700 hover:bg-teal-400 hover:text-white transition h-[50px] flex items-center text-lg">
                                         Seleccionar una opción
                                     </li>
                                     <template x-for="(options, key) in procedures" :key="key">
                                         <li @click="service = key; open = false" 
                                             :class="{'bg-teal-400 text-white': service === key, 'text-gray-700 hover:bg-teal-400 hover:text-white': service !== key}"
-                                            class="cursor-pointer select-none relative py-2 pl-3 pr-9 transition">
-                                            <span x-text="key"></span>
+                                            class="cursor-pointer select-none relative py-2 pl-3 pr-9 transition h-[50px] flex items-center"">
+                                            <span x-text="key" class="text-lg"></span>
                                         </li>
                                     </template>
                                 </ul>
@@ -69,13 +69,13 @@
 
                         <!-- Cirugías / Tratamientos -->
                         <div class="mb-4" x-show="service !== ''" x-transition>
-                            <label for="procedure" class="block font-medium text-sm text-gray-700">Seleccione una opción</label>
-                            <div class="grid grid-cols-2 gap-4">
-                                <template x-for="procedure in procedures[service]" :key="procedure">
+                            <label for="procedure" class="block font-medium text-xl text-gray-700">Seleccione una opción</label>
+                            <div class="grid grid-cols-2 gap-4 mt-4 ">
+                                <template x-for="procedure in procedures[service]" :key="procedure" >
                                     <label :class="['px-4 py-2 cursor-pointer transition-transform transform',
-                                                selectedProcedure === procedure ? 'bg-teal-500 text-white scale-105' : 'bg-white text-gray-700 hover:bg-teal-500 hover:text-white hover:scale-105']">
+                                                selectedProcedure === procedure ? 'bg-teal-500 text-white scale-105' : 'bg-white text-gray-700 hover:bg-teal-500 hover:text-white hover:scale-105']" class="border border-teal-500 w-[500px]">
                                         <input type="radio" name="servicio" :value="procedure" class="hidden" @change="selectedProcedure = procedure">
-                                        <span x-text="procedure"></span>
+                                        <span x-text="procedure" class="text-lg "></span>
                                     </label>
                                 </template>
                             </div>
@@ -83,19 +83,19 @@
 
                         <!-- Testimonio -->
                         <div class="mb-4">
-                            <label for="testimonial" class="block font-medium text-sm text-gray-700">Testimonio</label>
-                            <textarea id="testimonial" name="testimonio" class="border-gray-300 focus:border-teal-500 focus:ring-teal-500 rounded-md shadow-sm w-full h-40 resize-none" required></textarea>
+                            <label for="testimonial" class="block font-medium text-xl text-gray-700 ">Testimonio</label>
+                            <textarea id="testimonial" name="testimonio" class="border-gray-300 focus:border-teal-500 focus:ring-teal-500 rounded-md shadow-sm w-full h-40 resize-none mt-4 text-lg" required></textarea>
                         </div>
 
                         <!-- Foto -->
                         <div class="mb-4" x-data="{ fileName: 'Ningún archivo seleccionado' }">
-                            <label for="imagen" class="block font-medium text-sm text-gray-700">Foto de Perfil</label>
-                            <div class="flex items-center space-x-4">
+                            <label for="imagen" class="block font-medium text-xl text-gray-700">Foto de Perfil</label>
+                            <div class="flex items-center space-x-4  mt-4 ">
                                 <label for="imagen" 
-                                    class="bg-teal-500 text-white font-medium py-2 px-4 rounded cursor-pointer shadow-sm transition-transform transform hover:scale-105 hover:bg-teal-600">
+                                    class="bg-teal-500 text-white font-medium py-2 px-4 rounded cursor-pointer shadow-sm transition-transform transform hover:scale-105 hover:bg-teal-600 text-xl">
                                     Seleccionar Imagen
                                 </label>
-                                <span x-text="fileName" class="text-gray-600 text-sm"></span>
+                                <span x-text="fileName" class="text-gray-600 text-xl"></span>
                             </div>
                             <input 
                                 type="file" 
@@ -108,7 +108,7 @@
 
                         <div class="flex justify-end">
                             <button type="submit" 
-                                class="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded shadow-sm transition-transform transform hover:scale-105">
+                                class="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded shadow-sm transition-transform transform hover:scale-105 text-2xl">
                                 Subir
                             </button>
                         </div>

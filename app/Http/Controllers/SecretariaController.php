@@ -36,8 +36,8 @@ class SecretariaController extends Controller
         $request->validate([
             'nombres'=>'required',
             'apellidos'=>'required',
-            'dni'=>'required|unique:secretarias',
-            'celular'=>'required|unique:secretarias',
+            'dni' => 'required|digits:8|unique:secretarias',
+            'celular' => 'required|digits:9|unique:secretarias',
             'fecha_nacimiento'=>'required',
             'direccion'=> 'required',
             'email'=>'required|max:250|unique:users',

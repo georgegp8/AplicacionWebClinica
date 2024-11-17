@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        /* User::create([
+        User::create([
             'name'=>'Administrador',
             'email'=>'admin@tecsup.edu.pe',
             'password'=>Hash::make('Tecsup2024')
@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
             'name'=>'Paciente1',
             'email'=>'paciente1@tecsup.edu.pe',
             'password'=>Hash::make('Tecsup2024')
-        ]); */
+        ]);
 
         $this->call([PacienteSeeder::class,]);
     }

@@ -12,7 +12,8 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        //
+        $pacientes = Paciente::all();
+        return view('admin.pacientes.index',compact('pacientes'));
     }
 
     /**

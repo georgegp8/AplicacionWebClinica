@@ -6,4 +6,5 @@ call php artisan key:generate
 call npm install @vitejs/plugin-vue --save-dev
 call npm install vue-the-mask --save
 call npm install -D sass-embedded
+call php artisan storage:link
 

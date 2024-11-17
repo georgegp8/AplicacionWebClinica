@@ -7,7 +7,7 @@
                         'text' => $testimonio->testimonio,
                         'name' => $testimonio->nombre,
                         'profession' => $testimonio->servicio,
-                        'image' => asset('images/index_img/6frame/' . $testimonio->imagen )
+                        'image' => asset('storage/testimonios/' . $testimonio->imagen )
                     ];
                 })) }},
                 startCarousel() {

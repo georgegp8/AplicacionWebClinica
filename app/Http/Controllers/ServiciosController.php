@@ -27,4 +27,8 @@ class ServiciosController extends Controller
         $tratamientos = Tratamiento::all();
         return view('servicios.tratamientos', compact( 'tratamientos'));
     }
+    public function verTestimonios(){
+        $testimonios = Testimonio::all(); // Cambia $testimonio a $testimonios
+        return view('resultados.resultado', compact( 'testimonios'));
+    }
 }

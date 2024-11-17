@@ -2,7 +2,7 @@
 
 
 
- <div x-data="{ isMenuOpen: false, isServicesOpen: false }" 
+ <div x-data="{ isMenuOpen: false, isServicesOpen: false , isResultOpen:false }" 
      x-init="window.addEventListener('resize', () => {
         if (window.innerWidth > 1370) {
             isMenuOpen = false;
@@ -49,7 +49,28 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="">RESULTADOS</a></li>
+                    <li class="relative text-gray-700 hover:text-gray-500 text-lg" 
+                        @mouseenter="isResultOpen = true" 
+                        @mouseleave="isResultOpen = false">
+                        <a href="">RESULTADOS</a>
+
+                        <!-- Submenu -->
+                        <ul x-show="isResultOpen" 
+                            x-transition:enter="transition ease-out duration-200 transform"
+                            x-transition:enter-start="opacity-0 translate-y-2"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition ease-in duration-150 transform"
+                            x-transition:leave-start="opacity-100 translate-y-0"
+                            x-transition:leave-end="opacity-0 translate-y-2"
+                            class="absolute left-0 mt-2 w-40  bg-white  backdrop-blur-md  shadow-lg rounded-md py-2">
+                            <li class="px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-500">
+                                <a href="/resultados/cirugias">Cirugías</a>
+                            </li>
+                            <li class="px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-500">
+                                <a href="/resultados/tratamientos">Tratamientos</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/index/reserva">RESERVAS</a></li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/nosotros">NOSOTROS</a></li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="">SISTEMA</a></li>
@@ -106,9 +127,24 @@
                             </ul>
                         </li>
                     </div>
+                    
+                    <div x-data="{ isSubMenuROpen: false }">
+                        <li class="text-gray-700 hover:text-gray-500 text-lg w-full" 
+                            @mouseover="isSubMenuROpen = true" 
+                            @mouseleave="isSubMenuROpen = false">
+                            <a href="#">RESULTADOS</a>
 
+                            <!-- Submenú con animación personalizada -->
+                            <ul 
+                                :class="isSubMenuROpen ? 'show-animation' : 'hide-animation'"
+                                class="pl-4 overflow-hidden">
+                                
+                                <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/resultados/cirugias">Cirugías</a></li>
+                                <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/resultados">Tratamientos</a></li>
+                            </ul>
+                        </li>
+                    </div>
 
-                    <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="">RESULTADOS</a></li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="/index/reserva">RESERVAS</a></li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="/nosotros">NOSOTROS</a></li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="">SISTEMA</a></li>

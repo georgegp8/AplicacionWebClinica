@@ -23,10 +23,21 @@ Route::get('/footer', function () {
 
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\ReservasController;
+use App\Http\Controllers\ResultadoController;
+use App\Http\Controllers\TestimoniosController;
 
 Route::get('/', [ServiciosController::class, 'index'])->name('in_dex.index');
 Route::get('/servicios/cirugias', [ServiciosController::class, 'viewServiciesCirugias'])->name('servicios.cirugias');
 Route::get('/servicios/tratamientos', [ServiciosController::class, 'viewServiciesTratamiento'])->name('servicios.tratamientos');
+
+
+Route::post('/resultados/cirugias', [TestimoniosController::class, 'store'])->name('cirugias.store');
+Route::post('/resultados/tratamientos', [TestimoniosController::class, 'store'])->name('tratamientos.store');
+
+Route::get('/resultados/cirugias', [ResultadoController::class, 'resultadosYtestimonioC'])->name('resultados.cirugias');
+Route::get('/resultados/tratamientos', [ResultadoController::class, 'resultadosYtestimonioT'])->name('resultados.tratamientos');
+
+
 Route::get('/nosotros', function () {
     return view('nosotros.nosotros');
 });
@@ -42,3 +53,4 @@ Route::get('/reserva/cita', function () {
     return view('reservas.cita');
 });
 require __DIR__.'/auth.php';
+

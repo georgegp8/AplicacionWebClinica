@@ -70,32 +70,74 @@ class PacienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Paciente $paciente)
+    public function show($id)
     {
-        //
+        $paciente = Paciente::findOrFail($id);
+        return view('admin.pacientes.show',compact('paciente'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Paciente $paciente)
+    public function edit($id)
     {
-        //
+        $paciente = Paciente::findOrFail($id);
+        return view('admin.pacientes.edit',compact('paciente'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Paciente $paciente)
+    public function update(Request $request, $id)
     {
-        //
+        $paciente = Paciente::find($id);
+        $request->validate([
+            'nombres'=>'required',
+            'apellidos'=>'required',
+            'dni' => 'required|digits:8|unique:pacientes,dni,'.$paciente->id,
+            'ruc' => 'required|digits:11|unique:pacientes,ruc,'.$paciente->id,
+            'fecha_nacimiento'=>'required',
+            'genero'=>'required',
+            'celular' => 'required|digits:9',
+            'correo'=>'required|max:250|unique:pacientes,correo,'.$paciente->id,
+            'direccion'=> 'required',
+            'grupo_sanguineo'=>'required',
+            'alergias'=>'required',
+            'contacto_emergencia'=>'required',
+        ]);
+
+        $paciente->nombres = $request->nombres;
+        $paciente->apellidos = $request->apellidos;
+        $paciente->dni = $request->dni;
+        $paciente->ruc = $request->ruc;
+        $paciente->fecha_nacimiento = $request->fecha_nacimiento;
+        $paciente->genero = $request->genero;
+        $paciente->celular = $request->celular;
+        $paciente->correo = $request->correo;
+        $paciente->direccion = $request->direccion;
+        $paciente->grupo_sanguineo = $request->grupo_sanguineo;
+        $paciente->alergias = $request->alergias;
+        $paciente->contacto_emergencia = $request->contacto_emergencia;
+        $paciente->observaciones = $request->observaciones;
+        $paciente->save();
+
+        return redirect()->route('admin.pacientes.index')
+        ->with('mensaje','Se actualizó el paciente de la manera correcta')
+        ->with('icono','success');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Paciente $paciente)
+    public function confirmDelete($id){
+        $paciente = Paciente::findOrFail($id);
+        return view('admin.pacientes.delete',compact('paciente'));
+    }
+    public function destroy($id)
     {
-        //
+        Paciente::destroy($id);
+        return redirect()->route('admin.pacientes.index')
+        ->with('mensaje','Se eliminó el paciente de forma correcta')
+        ->with('icono','success');
     }
 }

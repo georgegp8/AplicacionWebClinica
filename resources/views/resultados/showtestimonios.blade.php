@@ -1,10 +1,10 @@
-<div class="w-full flex justify-center h-auto  py-10">
-            <div class="w-[1200px] h-auto  flex flex-wrap justify-evenly gap-y-5 ">
-                <div class="w-full flex justify-center items-center text-teal-500 text-5xl">
+<div class="w-full flex justify-center h-auto  py-10 ">
+            <div class=" h-auto  flex flex-wrap justify-evenly gap-y-5 ">
+                <div class="w-full flex justify-center items-center text-teal-500 text-5xl max-sm:text-4xl">
                     <h2>Testimonios</h2>
                 </div>
                 @foreach($testimonios as $testimonio)
-                    <div class="w-[500px]  p-10 shadow-lg  flex flex-col gap-y-5">
+                    <div class="w-[600px]  p-10 shadow-lg  flex flex-col gap-y-5 max-sm:w-[400px] max-md:w-[450px] max-xl:w-[500px]">
                         <p class=" italic">
                             {{$testimonio->testimonio}}
 

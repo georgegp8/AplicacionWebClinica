@@ -54,7 +54,7 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
         <div class=" w-full flex justify-center gap-x-10  flex-wrap py-10">
             
 
-            <div class="w-[1300px]  flex flex-col gap-10">
+            <div class="  flex flex-col gap-10  max-xl:w-full">
                 @yield('content')
             </div>
         </div>

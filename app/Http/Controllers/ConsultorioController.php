@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Consultario;
+use App\Models\Consultorio;
 use Illuminate\Http\Request;
 
-class ConsultarioController extends Controller
+class ConsultorioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class ConsultarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Consultario $consultario)
+    public function show(Consultorio $consultario)
     {
         //
     }
@@ -42,7 +42,7 @@ class ConsultarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Consultario $consultario)
+    public function edit(Consultorio $consultario)
     {
         //
     }
@@ -50,7 +50,7 @@ class ConsultarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Consultario $consultario)
+    public function update(Request $request, Consultorio $consultario)
     {
         //
     }
@@ -58,7 +58,7 @@ class ConsultarioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Consultario $consultario)
+    public function destroy(Consultorio $consultario)
     {
         //
     }

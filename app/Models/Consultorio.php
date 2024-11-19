@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Doctor extends Model
+class Consultorio extends Model
 {
     use HasFactory;
 
-    private $fillable = ['nombres','apellidos','telefono','licencia_medica','especialidad','user_id'];
-
-    public function consultorio(){
-        return $this->belongsTo(Consultorio::class);
+    private $fillable = ['nombre','ubicacion','capacidad','telefono','especialidad','estado'];
+    
+    public function doctores(){
+        return $this->hasMany(Doctor::class);
     }
 
     public function horarios(){

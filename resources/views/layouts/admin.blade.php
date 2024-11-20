@@ -202,7 +202,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           icon: "{{$icono}}",
           title: "{{$message}}",
           showConfirmButton: false,
-          timer: 4500
+          timer: 4000
         });
       </script>
 	@endif

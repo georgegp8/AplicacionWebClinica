@@ -47,5 +47,19 @@
         <a href="{{'admin/pacientes'}}" class="small-box-footer">Más información<i class="fas bi bi-file-person"></i></a>
       </div>
     </div>
+    {{--     Tarjeta para contar consultorios --}}
+    <div class="col-lg-3 col-6">
+      <div class="small-box bg-warning">
+        <div class="inner">
+          <h3>{{$total_consultorios}}</h3>
+
+          <p>Consultorios</p>
+        </div>
+        <div class="icon">
+          <i class="ion fas bi bi-building-fill-add"></i>
+        </div>
+        <a href="{{'admin/consultorios'}}" class="small-box-footer">Más información<i class="fas bi bi-file-person"></i></a>
+      </div>
+    </div>
 	</div>
 @endsection

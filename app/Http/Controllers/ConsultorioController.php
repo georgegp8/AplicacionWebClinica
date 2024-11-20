@@ -94,8 +94,20 @@ class ConsultorioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Consultorio $consultario)
+
+    public function confirmDelete($id)
     {
-        //
+        $consultorio = Consultorio::findOrFail($id);
+        return view('admin.consultorios.delete',compact('consultorio'));
+    }
+
+    public function destroy($id)
+    {
+        $consultorio = Consultorio::findOrFail($id);
+        $consultorio->delete();
+
+        return redirect()->route('admin.consultorios.index')
+        ->with('mensaje','Se eliminó el consultorio de forma correcta ')
+        ->with('icono','success');
     }
 }

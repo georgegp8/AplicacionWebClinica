@@ -9,7 +9,7 @@ class Doctor extends Model
 {
     use HasFactory;
 
-    private $fillable = ['nombres','apellidos','telefono','licencia_medica','especialidad','user_id'];
+    protected $fillable = ['nombres','apellidos','telefono','licencia_medica','especialidad','user_id'];
 
     public function consultorio(){
         return $this->belongsTo(Consultorio::class);

@@ -5,6 +5,7 @@
 	</div>
 	<hr>
 	<div class="row">
+
     {{--     Tarjeta para contar usuarios --}}
 		<div class="col-lg-3 col-6">
         <div class="small-box bg-info">
@@ -19,6 +20,7 @@
           <a href="{{'admin/usuarios'}}" class="small-box-footer">Más información<i class="fas bi bi-file-person"></i></a>
         </div>
     </div>
+
     {{--     Tarjeta para contar secretarias --}}
     <div class="col-lg-3 col-6">
       <div class="small-box bg-primary">
@@ -33,6 +35,7 @@
         <a href="{{'admin/secretarias'}}" class="small-box-footer">Más información<i class="fas bi bi-file-person"></i></a>
       </div>
     </div>
+
     {{--     Tarjeta para contar pacientes --}}
     <div class="col-lg-3 col-6">
       <div class="small-box bg-success">
@@ -47,6 +50,7 @@
         <a href="{{'admin/pacientes'}}" class="small-box-footer">Más información<i class="fas bi bi-file-person"></i></a>
       </div>
     </div>
+
     {{--     Tarjeta para contar consultorios --}}
     <div class="col-lg-3 col-6">
       <div class="small-box bg-warning">
@@ -59,6 +63,21 @@
           <i class="ion fas bi bi-building-fill-add"></i>
         </div>
         <a href="{{'admin/consultorios'}}" class="small-box-footer">Más información<i class="fas bi bi-file-person"></i></a>
+      </div>
+    </div>
+
+    {{--     Tarjeta para contar doctores --}}
+    <div class="col-lg-3 col-6">
+      <div class="small-box bg-danger">
+        <div class="inner">
+          <h3>{{$total_doctores}}</h3>
+
+          <p>Doctores</p>
+        </div>
+        <div class="icon">
+          <i class="ion fas bi bi-person-lines-fill"></i>
+        </div>
+        <a href="{{'admin/doctores'}}" class="small-box-footer">Más información<i class="fas bi bi-file-person"></i></a>
       </div>
     </div>
 	</div>

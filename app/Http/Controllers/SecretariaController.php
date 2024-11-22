@@ -109,7 +109,6 @@ class SecretariaController extends Controller
         $secretaria->celular = $request->celular;
         $secretaria->fecha_nacimiento = $request->fecha_nacimiento;
         $secretaria->direccion = $request->direccion;
-        $secretaria->direccion = $request->direccion;
         $secretaria->save();
 
         $usuario = User::find($secretaria->user->id);

@@ -26,7 +26,7 @@
 
     <!-- Contenido principal con lazy loading de imágenes de fondo -->
     <div x-show="content" x-cloak x-transition:enter="transition ease-in-out duration-500" 
-         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="content">
+         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="content overflow-hidden">
         
         <!-- Header y sección principal con imagen de fondo -->
         <div class="h-[500px] w-full bg-cover bg-center relative lazyload" 
@@ -35,28 +35,35 @@
             <div class="relative z-20">
                 @include('constantes.header')
             </div>
-            <div class="relative z-10 flex w-full h-[300px] justify-center items-center ">
-                <p class="text-white text-5xl">Cirugias</p>
+            <div class="relative z-10 flex w-full h-[300px] justify-center items-center" id="frame3">
+                <div class="hidden-element">
+                    <p class="text-white text-5xl">Cirugias</p>
+                </div>
             </div>
         </div>
 
         <!-- Sección de contenido con imágenes alternantes -->
         <div class="w-full flex flex-col space-y-4 my-4">
             @foreach ($cirugias as $index => $cirugia)
-                <div class="h-[400px] flex justify-between max-md:relative">
+                <div class="h-[400px] flex justify-between max-md:relative" >
                     @if ($index % 2 === 0)
-                        <div class="w-1/2 flex justify-center px-20 flex-col items-start gap-3  max-md:w-full max-md:relative max-md:z-20 max-md:items-center ">
-                            <h2 class="text-3xl max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center">{{ $cirugia->nombre }}</h2>
-                            <p class=" max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center max-md:w-[400px]">{{ $cirugia->descripcion_larga }}</p>
+                        <div class="w-1/2 flex justify-center px-20 flex-col items-start gap-3  max-md:w-full max-md:relative max-md:z-20 max-md:items-center " id="frame1">
+                            <div class="hidden-element">
+                                <h2 class="text-3xl max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center">{{ $cirugia->nombre }}</h2>
+                                <p class=" max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center max-md:w-[400px]">{{ $cirugia->descripcion_larga }}</p>
+                            </div>
                         </div>
                     @endif
-                    <div class="w-1/2 h-full bg-cover bg-center lazyload max-md:absolute max-md:w-full" 
-                         data-bg="url('{{ asset('images/servicios/cirugias/' . $cirugia->imagen) }}')">
-                    </div>
+                        <div class="w-1/2 h-full bg-cover bg-center lazyload max-md:absolute max-md:w-full" 
+                        data-bg="url('{{ asset('images/servicios/cirugias/' . $cirugia->imagen) }}')">
+                        </div>
+
                     @if ($index % 2 !== 0)
-                        <div class="w-1/2 flex justify-center px-20 flex-col items-end gap-3 max-md:w-full max-md:relative max-md:items-center">
-                            <h2 class="text-3xl max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center">{{ $cirugia->nombre }}</h2>
-                            <p class="text-end max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center max-md:w-[400px]">{{ $cirugia->descripcion_larga }}</p>
+                        <div class="w-1/2 flex justify-center px-20 flex-col items-end gap-3 max-md:w-full max-md:relative max-md:items-center" id="frame2">
+                            <div class="hidden-element">
+                                <h2 class="text-end text-3xl max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center">{{ $cirugia->nombre }}</h2>
+                                <p class="text-end max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center max-md:w-[400px]">{{ $cirugia->descripcion_larga }}</p>
+                            </div>
                         </div>
                     @endif
                 </div>
@@ -71,6 +78,19 @@
 <!-- Cargar librería LazyLoad optimizada -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async defer></script>
 <script>
+    document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.hidden-element');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible-element');
+                        observer.unobserve(entry.target); // Deja de observar el elemento después de la animación
+                    }
+                });
+            }, { threshold: 0.1 }); // Detectar al 10% visible
+
+            elements.forEach(element => observer.observe(element));
+        });
     document.addEventListener('lazybeforeunveil', function(e){
         const bg = e.target.getAttribute('data-bg');
         if(bg){

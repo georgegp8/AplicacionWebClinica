@@ -67,9 +67,10 @@
             </div>
 
             <div class="w-full flex justify-center p-5 ">
-                <div class="bg-teal-300 w-40 h-10 flex justify-center items-center hover:bg-teal-200 ease-in delay-100 duration-75 text-lg max-md:text-[17px] max-md:w-[150px] text-black rounded-2xl">
-                    <a href="" class="text-[14px]">Ver Todos</a>
-                </div>
+                <button class="bg-teal-400 hover:bg-teal-500 text-white font-medium  px-4 rounded shadow-sm transition-transform transform hover:scale-105 text-2xl max-md:text-xl">
+                    <a href="/resultados/cirugias" class="text-[14px] h-full w-full">Ver Todos</a>
+                </button>
+                
             </div>
         </div>
     </div>

@@ -9,19 +9,21 @@
     @if(isset($r_acido) && $r_acido->isNotEmpty())
         @foreach($r_acido as $resultado)
                 <div class="w-[600px]  max-sm:w-[400px] ">
-                    <div class="flex flex-col px-10 max-sm:p-0">
-                        <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
-                        <p class="w-full">
-                            {{$resultado->descripcion}}
-                        </p>
+                    <div class="flex flex-col px-10 max-sm:p-0" id="frame3">
+                        <div class="hidden-element">
+                            <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
+                            <p class="w-full">
+                                {{$resultado->descripcion}}
+                            </p>
+                        </div>
                     </div>
                     
-                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-[25px] pb-5 mt-5 max-sm:w-full max-sm:justify-center">
-                        <div class="flex flex-col items-center">
+                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-[25px] pb-5 mt-5 max-sm:w-full max-sm:justify-center" id="frame3">
+                        <div class="flex flex-col items-center hidden-element">
                             <img src=" {{ asset('images/resultados/tratamientos/acido/' . $resultado->antes) }}" class=" w-[270px] h-[230px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Antes</h2>
                         </div>
-                        <div class="flex flex-col items-center max-sm:mt-4">
+                        <div class="flex flex-col items-center max-sm:mt-4 hidden-element">
                             <img src=" {{ asset('images/resultados/tratamientos/acido/' . $resultado->despues) }}" class=" w-[270px] h-[230px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Despues</h2>
                         </div>
@@ -49,19 +51,21 @@
 
         @foreach($r_botox as $resultado)
                 <div class="w-[600px]  max-sm:w-[400px]">
-                    <div class="flex flex-col px-10 max-sm:p-0">
-                        <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
-                        <p class="w-full">
-                            {{$resultado->descripcion}}
-                        </p>
+                    <div class="flex flex-col px-10 max-sm:p-0" id="frame3">
+                        <div class="hidden-element">
+                            <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
+                            <p class="w-full">
+                                {{$resultado->descripcion}}
+                            </p>
+                        </div>
                     </div>
                     
-                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-10 pb-5 mt-5 max-sm:w-full max-sm:justify-center">
-                        <div class="flex flex-col items-center">
+                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-10 pb-5 mt-5 max-sm:w-full max-sm:justify-center" id="frame3">
+                        <div class="flex flex-col items-center hidden-element">
                             <img src=" {{ asset('images/resultados/tratamientos/botox/' . $resultado->antes) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Antes</h2>
                         </div>
-                        <div class="flex flex-col items-center max-sm:mt-4">
+                        <div class="flex flex-col items-center max-sm:mt-4 hidden-element">
                             <img src=" {{ asset('images/resultados/tratamientos/botox/' . $resultado->despues) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Despues</h2>
                         </div>
@@ -89,19 +93,21 @@
 
         @foreach($r_menton as $resultado)
                 <div class="w-[600px]  max-sm:w-[400px]">
-                    <div class="flex flex-col px-10 max-sm:p-0">
-                        <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
-                        <p class="w-full">
-                            {{$resultado->descripcion}}
-                        </p>
+                    <div class="flex flex-col px-10 max-sm:p-0" id="frame3">
+                        <div class="hidden-element">
+                            <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
+                            <p class="w-full">
+                                {{$resultado->descripcion}}
+                            </p>
+                        </div>
                     </div>
                     
-                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-10 pb-5 mt-5 max-sm:w-full max-sm:justify-center">
-                        <div class="flex flex-col items-center">
+                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-10 pb-5 mt-5 max-sm:w-full max-sm:justify-center" id="frame3">
+                        <div class="flex flex-col items-center hidden-element">
                             <img src=" {{ asset('images/resultados/tratamientos/menton/' . $resultado->antes) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Antes</h2>
                         </div>
-                        <div class="flex flex-col items-center max-sm:mt-4">
+                        <div class="flex flex-col items-center max-sm:mt-4 hidden-element">
                             <img src=" {{ asset('images/resultados/tratamientos/menton/' . $resultado->despues) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Despues</h2>
                         </div>
@@ -129,19 +135,21 @@
     @if(isset($r_laser) && $r_laser->isNotEmpty())
         @foreach($r_laser as $resultado)
                 <div class="w-[600px]  max-sm:w-[400px]">
-                    <div class="flex flex-col px-10 max-sm:p-0">
-                        <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
-                        <p class="w-full">
-                            {{$resultado->descripcion}}
-                        </p>
+                    <div class="flex flex-col px-10 max-sm:p-0" id="frame3">
+                        <div class="hidden-element">
+                            <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
+                            <p class="w-full">
+                                {{$resultado->descripcion}}
+                            </p>
+                        </div>
                     </div>
                     
-                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-10 pb-5 mt-5 max-sm:w-full max-sm:justify-center">
-                        <div class="flex flex-col items-center">
+                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-10 pb-5 mt-5 max-sm:w-full max-sm:justify-center" id="frame3">
+                        <div class="flex flex-col items-center hidden-element">
                             <img src=" {{ asset('images/resultados/tratamientos/laser/' . $resultado->antes) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Antes</h2>
                         </div>
-                        <div class="flex flex-col items-center max-sm:mt-4">
+                        <div class="flex flex-col items-center max-sm:mt-4 hidden-element">
                             <img src=" {{ asset('images/resultados/tratamientos/laser/' . $resultado->despues) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Despues</h2>
                         </div>

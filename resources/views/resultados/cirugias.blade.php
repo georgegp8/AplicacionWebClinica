@@ -8,20 +8,22 @@
     <div class="flex flex-wrap gap-4  p-10 justify-center">
     @if(isset($r_rino) && $r_rino->isNotEmpty())
         @foreach($r_rino as $resultado)
-                <div class="w-[600px] max-sm:w-[400px] ">
-                    <div class="flex flex-col px-10 max-sm:p-0">
-                        <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
-                        <p class="w-full">
-                            {{$resultado->descripcion}}
-                        </p>
+                <div class="w-[600px] max-sm:w-[400px] " >                        
+                    <div class="flex flex-col px-10 max-sm:p-0 " id="frame3">
+                        <div class="hidden-element">
+                            <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
+                            <p class="w-full">
+                                {{$resultado->descripcion}}
+                            </p>
+                        </div>
                     </div>
                     
-                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-[25px] pb-5 mt-5 max-sm:w-full max-sm:justify-center">
-                        <div class="flex flex-col items-center">
+                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-[25px] pb-5 mt-5 max-sm:w-full max-sm:justify-center" id="frame3">
+                        <div class="flex flex-col items-center hidden-element">
                             <img src=" {{ asset('images/resultados/cirugias/rino/' . $resultado->antes) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Antes</h2>
                         </div>
-                        <div class="flex flex-col items-center max-sm:mt-4r">
+                        <div class="flex flex-col items-center max-sm:mt-4 hidden-element">
                             <img src=" {{ asset('images/resultados/cirugias/rino/' . $resultado->despues) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Despues</h2>
                         </div>
@@ -48,19 +50,21 @@
     @if(isset($r_mamo) && $r_mamo->isNotEmpty())
         @foreach($r_mamo as $resultado)
                 <div class="w-[600px]  max-sm:w-[400px]">
-                    <div class="flex flex-col px-10  max-sm:p-0">
-                        <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
-                        <p class="w-full">
-                            {{$resultado->descripcion}}
-                        </p>
+                    <div class="flex flex-col px-10  max-sm:p-0" id="frame3">
+                        <div class="hidden-element">
+                            <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
+                            <p class="w-full">
+                                {{$resultado->descripcion}}
+                            </p>
+                        </div>
                     </div>
                     
-                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-[25px] pb-5 mt-5 max-sm:w-full max-sm:justify-center">
-                        <div class="flex flex-col items-center">
+                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-[25px] pb-5 mt-5 max-sm:w-full max-sm:justify-center" id="frame3">
+                        <div class="flex flex-col items-center hidden-element">
                             <img src=" {{ asset('images/resultados/cirugias/mamo/' . $resultado->antes) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Antes</h2>
                         </div>
-                        <div class="flex flex-col items-center max-sm:mt-4">
+                        <div class="flex flex-col items-center max-sm:mt-4 hidden-element">
                             <img src=" {{ asset('images/resultados/cirugias/mamo/' . $resultado->despues) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Despues</h2>
                         </div>
@@ -88,19 +92,21 @@
 
         @foreach($r_blefa as $resultado)
                 <div class="w-[600px]  max-sm:w-[400px]">
-                    <div class="flex flex-col px-10  max-sm:p-0">
-                        <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
-                        <p class="w-full">
-                            {{$resultado->descripcion}}
-                        </p>
+                    <div class="flex flex-col px-10  max-sm:p-0" id="frame3">
+                        <div class="hidden-element">
+                            <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
+                            <p class="w-full">
+                                {{$resultado->descripcion}}
+                            </p>
+                        </div>
                     </div>
                     
-                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-[25px] pb-5 mt-5 max-sm:w-full max-sm:justify-center">
-                        <div class="flex flex-col items-center">
+                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-[25px] pb-5 mt-5 max-sm:w-full max-sm:justify-center" id="frame3">
+                        <div class="flex flex-col items-center hidden-element">
                             <img src=" {{ asset('images/resultados/cirugias/blefa/' . $resultado->antes) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Antes</h2>
                         </div>
-                        <div class="flex flex-col items-center max-sm:mt-4">
+                        <div class="flex flex-col items-center max-sm:mt-4 hidden-element">
                             <img src=" {{ asset('images/resultados/cirugias/blefa/' . $resultado->despues) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Despues</h2>
                         </div>
@@ -128,20 +134,22 @@
     @if(isset($r_lift) && $r_lift->isNotEmpty())
 
         @foreach($r_lift as $resultado)
-                <div class="w-[600px] max-sm:w-[400px] ">
-                    <div class="flex flex-col px-10  max-sm:p-0">
-                        <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
-                        <p class="w-full">
-                            {{$resultado->descripcion}}
-                        </p>
+                <div class="w-[600px] max-sm:w-[400px] " >
+                    <div class="flex flex-col px-10  max-sm:p-0" id="frame3">
+                        <div class="hidden-element">
+                            <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
+                            <p class="w-full">
+                                {{$resultado->descripcion}}
+                            </p>
+                        </div>
                     </div>
                     
-                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-[25px] pb-5 mt-5 max-sm:w-full max-sm:justify-center">
-                        <div class="flex flex-col items-center">
+                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-[25px] pb-5 mt-5 max-sm:w-full max-sm:justify-center" id="frame3">
+                        <div class="flex flex-col items-center hidden-element">
                             <img src=" {{ asset('images/resultados/cirugias/lift/' . $resultado->antes) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Antes</h2>
                         </div>
-                        <div class="flex flex-col items-center max-sm:mt-4">
+                        <div class="flex flex-col items-center max-sm:mt-4 hidden-element">
                             <img src=" {{ asset('images/resultados/cirugias/lift/' . $resultado->despues) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Despues</h2>
                         </div>
@@ -170,19 +178,21 @@
 
         @foreach($r_lipo as $resultado)
                 <div class="w-[600px] max-sm:w-[400px] ">
-                    <div class="flex flex-col px-10  max-sm:p-0">
-                        <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
-                        <p class="w-full">
-                            {{$resultado->descripcion}}
-                        </p>
+                    <div class="flex flex-col px-10  max-sm:p-0" id="frame3">
+                        <div class="hidden-element">
+                            <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
+                            <p class="w-full">
+                                {{$resultado->descripcion}}
+                            </p>
+                        </div>
                     </div>
                     
-                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-[25px] pb-5 mt-5 max-sm:w-full max-sm:justify-center">
-                        <div class="flex flex-col items-center">
+                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-[25px] pb-5 mt-5 max-sm:w-full max-sm:justify-center" id="frame3">
+                        <div class="flex flex-col items-center hidden-element">
                             <img src=" {{ asset('images/resultados/cirugias/lipo/' . $resultado->antes) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Antes</h2>
                         </div>
-                        <div class="flex flex-col items-center max-sm:mt-4">
+                        <div class="flex flex-col items-center max-sm:mt-4 hidden-element">
                             <img src=" {{ asset('images/resultados/cirugias/lipo/' . $resultado->despues) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Despues</h2>
                         </div>
@@ -210,19 +220,21 @@
 
         @foreach($r_lipoder as $resultado)
                 <div class="w-[600px] max-sm:w-[400px] ">
-                    <div class="flex flex-col px-10  max-sm:p-0">
-                        <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
-                        <p class="w-full">
-                            {{$resultado->descripcion}}
-                        </p>
+                    <div class="flex flex-col px-10  max-sm:p-0" id="frame3">
+                        <div class="hidden-element">
+                            <h3 class="text-2xl text-teal-500">Caso {{$resultado->caso}} </h3>
+                            <p class="w-full">
+                                {{$resultado->descripcion}}
+                            </p>
+                        </div>
                     </div>
                     
-                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-[25px] pb-5 mt-5 max-sm:w-full max-sm:justify-center">
-                        <div class="flex flex-col items-center">
+                    <div class="flex flex-wrap w-full justify-between text-teal-600 font-medium px-[25px] pb-5 mt-5 max-sm:w-full max-sm:justify-center" id="frame3">
+                        <div class="flex flex-col items-center hidden-element">
                             <img src=" {{ asset('images/resultados/cirugias/lipodermo/' . $resultado->antes) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Antes</h2>
                         </div>
-                        <div class="flex flex-col items-center max-sm:mt-4">
+                        <div class="flex flex-col items-center max-sm:mt-4 hidden-element">
                             <img src=" {{ asset('images/resultados/cirugias/lipodermo/' . $resultado->despues) }}" class=" w-[250px] h-[250px] object-cover" loading="lazy" alt="">
                             <h2 class="text-xl">Despues</h2>
                         </div>

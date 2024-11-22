@@ -41,10 +41,9 @@ Route::get('/resultados/tratamientos', [ResultadoController::class, 'resultadosY
 Route::get('/nosotros', function () {
     return view('nosotros.nosotros');
 });
-Route::resource('/index/reserva', ReservasController::class);
 
 Route::get('/map', function () {
-    return view('map');
+    return view('prueba');
 });
 Route::get('/reserva/pago', function () {
     return view('reservas.pago');

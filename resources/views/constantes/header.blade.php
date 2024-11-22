@@ -7,10 +7,10 @@
         if (window.innerWidth > 1370) {
             isMenuOpen = false;
         }
-     })" class=" max-xl:h-[140px] h-[20%]">
+     })" class=" max-xl:h-[140px] h-[20%] " >
 
-    <nav class="flex flex-wrap h-[140px] justify-center items-end max-xl:h-[140px]">
-        <div class="border-l-4 border-teal-800 bg-white h-[80px] w-10/12 flex items-center max-sm:w-11/12  backdrop-blur-md">
+    <nav class="flex flex-wrap h-[140px] justify-center items-end max-xl:h-[140px] " id="frame3" >
+        <div class="border-l-4 border-teal-800 bg-white h-[80px] w-10/12 flex items-center max-sm:w-11/12  backdrop-blur-md hidden-element">
             <ul class="flex justify-around items-center w-full max-xl:justify-between max-xl:px-4 max-md:justify-between">
                 <li>
                     <div class="w-60 h-12 flex items-center justify-center max-sm:w-[180px] max-sm:justify-start">
@@ -77,9 +77,10 @@
                 </div>
 
                 <div class="max-xl:flex max-xl:items-center max-xl:gap-x-4 max-md:gap-x-2">
-                    <li class="max-xl:hidden bg-teal-300 w-40 h-12 flex justify-center items-center hover:bg-teal-200 delay-200 duration-75 text-gray-700 hover:text-gray-500 text-lg">
-                        <a href="" class="">INICIAR SESION</a>
+                    <li class="max-xl:hidden bg-teal-300 w-40 h-12 flex justify-center items-center hover:bg-teal-200  text-gray-700 hover:text-gray-500 text-lg transition-transform transform hover:scale-105">
+                        <a href="" class="w-full h-full text-center content-center">INICIAR SESION</a>
                     </li>
+                    
                     <li class="cursor-pointer hidden max-xl:flex max-xl:items-center flex-wrap">
                         <button class="h-10 " @click="isMenuOpen = !isMenuOpen" >
                         <svg x-show="!isMenuOpen" class="h-10 w-10  fill-teal-800 max-md:h-8" viewBox="0 0 12 10"  xmlns="http://www.w3.org/2000/svg">

@@ -30,7 +30,7 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
          x-transition:enter="transition ease-in-out duration-500" 
          x-transition:enter-start="opacity-0" 
          x-transition:enter-end="opacity-100" 
-         class="content">
+         class="content overflow-hidden">
         
         <!-- Contenido -->
         <div class="h-[500px] w-full bg-cover bg-center relative lazyload" 
@@ -45,10 +45,10 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
             </div>
 
             <!-- Contenido centrado en primer plano -->
-            <div class="relative z-10 flex w-full h-[300px] justify-center items-center ">
-                <p class="text-white text-5xl ">
-                    Tratamientos
-                </p>
+            <div class="relative z-10 flex w-full h-[300px] justify-center items-center " id="frame3">
+                <div class="hidden-element">
+                    <p class="text-white text-5xl">Tratamientos</p>
+                </div>
             </div>
         </div>
 
@@ -56,18 +56,22 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
             @foreach ($tratamientos as $index => $tratamiento)
                 <div class="h-[400px] flex justify-between max-md:relative">
                     @if ($index % 2 === 0)
-                        <div class="w-1/2 flex justify-center px-20 flex-col items-start gap-3  max-md:w-full max-md:relative max-md:z-20 max-md:items-center ">
-                            <h2 class="text-3xl max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center">{{ $tratamiento->nombre }}</h2>
-                            <p class=" max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center max-md:w-[400px]">{{ $tratamiento->descripcion_larga }}</p>
+                        <div class="w-1/2 flex justify-center px-20 flex-col items-start gap-3  max-md:w-full max-md:relative max-md:z-20 max-md:items-center " id="frame1">
+                            <div class="hidden-element">
+                                <h2 class="text-3xl max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center">{{ $tratamiento->nombre }}</h2>
+                                <p class=" max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center max-md:w-[400px]">{{ $tratamiento->descripcion_larga }}</p>
+                            </div>
                         </div>
                     @endif
                     <div class="w-1/2 h-full bg-cover bg-center lazyload max-md:absolute max-md:w-full" 
                         data-bg="url('{{ asset('images/servicios/tratamientos/'. $tratamiento->imagen) }}')">
                     </div>
                     @if ($index % 2 !== 0)
-                        <div class="w-1/2 flex justify-center px-20 flex-col items-end gap-3 max-md:w-full max-md:relative max-md:items-center">
-                            <h2 class="text-3xl max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center">{{ $tratamiento->nombre }}</h2>
-                            <p class="text-end max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center max-md:w-[400px]">{{ $tratamiento->descripcion_larga }}</p>
+                        <div class="w-1/2 flex justify-center px-20 flex-col items-end gap-3 max-md:w-full max-md:relative max-md:items-center" id="frame2" >
+                            <div class="hidden-element">
+                                <h2 class=" text-end text-3xl max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center">{{ $tratamiento->nombre }}</h2>
+                                <p class="text-end max-md:backdrop-blur-xl max-md:bg-teal-500/60 max-md:bg-opacity-40 max-md:text-white max-md:p-3 max-md:text-center max-md:w-[400px]">{{ $tratamiento->descripcion_larga }}</p>
+                            </div>
                         </div>
                     @endif
                 </div>
@@ -80,6 +84,19 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
 <!-- Cargar librería LazyLoad optimizada -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async defer></script> -->
 <script>
+    document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.hidden-element');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible-element');
+                        observer.unobserve(entry.target); // Deja de observar el elemento después de la animación
+                    }
+                });
+            }, { threshold: 0.1 }); // Detectar al 10% visible
+
+            elements.forEach(element => observer.observe(element));
+        });
     document.addEventListener('lazybeforeunveil', function(e){
         const bg = e.target.getAttribute('data-bg');
         if(bg){

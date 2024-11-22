@@ -4,7 +4,7 @@
                     <h2>Testimonios</h2>
                 </div>
                 @foreach($testimonios as $testimonio)
-                    <div class="w-[600px]  p-10 shadow-lg  flex flex-col gap-y-5 max-sm:w-[400px] max-md:w-[450px] max-xl:w-[500px]">
+                    <div class="w-[600px]  p-10 shadow-lg  flex flex-col gap-y-5 max-sm:w-[400px] max-md:w-[450px] max-xl:w-[500px] transition-transform transform hover:scale-105">
                         <p class=" italic">
                             {{$testimonio->testimonio}}
 

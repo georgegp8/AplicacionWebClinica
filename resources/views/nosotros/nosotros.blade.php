@@ -1,5 +1,5 @@
 @include('constantes.head')
-<body>
+<body class=" scroll-smooth">
 
 
 
@@ -205,6 +205,19 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
     
     
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.hidden-element');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible-element');
+                        observer.unobserve(entry.target); // Deja de observar el elemento después de la animación
+                    }
+                });
+            }, { threshold: 0.1 }); // Detectar al 10% visible
+
+            elements.forEach(element => observer.observe(element));
+        });
         document.addEventListener('lazybeforeunveil', function(e){
         const bg = e.target.getAttribute('data-bg');
         if(bg){

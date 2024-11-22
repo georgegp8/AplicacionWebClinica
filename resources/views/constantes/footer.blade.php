@@ -1,4 +1,5 @@
         <!-- Todo el footer -->
+
         <div class="
         h-64 
         bg-teal-500 bg-cover 

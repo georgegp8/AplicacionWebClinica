@@ -1,8 +1,8 @@
 @include('constantes.head')
-<body>
+<body class=" scroll-smooth">
 
 <div x-data="{ loading: true, content: false }" 
-x-init="setTimeout(() => { loading = false; content = true; }, 1000); 
+x-init="setTimeout(() => { loading = false; content = true; }, 2500); 
               $nextTick(() => {
                   gsap.to('svg path', {
                       strokeDashoffset: 0,
@@ -13,7 +13,7 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
               })"> 
     <div  
         x-show="loading"  
-        class="loader fixed inset-0 flex justify-center items-center bg-teal-700/80 z-50"  
+        class="loader fixed inset-0 flex justify-center items-center bg-teal-700/80 z-50 "  
         x-transition:leave="transition ease-in-out duration-500" 
         x-transition:leave-start="opacity-100" 
         x-transition:leave-end="opacity-0"> 
@@ -29,7 +29,7 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
          x-transition:enter="transition ease-in-out duration-500" 
          x-transition:enter-start="opacity-0" 
          x-transition:enter-end="opacity-100" 
-         class="content">
+         class="content ">
         
          <!-- primer frame -->
          @include('in_dex.1frame')
@@ -75,6 +75,23 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
 
 
     <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.hidden-element');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible-element');
+                        observer.unobserve(entry.target); // Deja de observar el elemento después de la animación
+                    }
+                });
+            }, { threshold: 0.1 }); // Detectar al 10% visible
+
+            elements.forEach(element => observer.observe(element));
+        });
+
+
+
       document.addEventListener('lazybeforeunveil', function(e){
         const bg = e.target.getAttribute('data-bg');
         if(bg){

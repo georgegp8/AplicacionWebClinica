@@ -155,7 +155,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
         </li>
-
+        
         {{--         Navegación Consultorios       --}} 
         <li class="nav-item">
           <a href="#" class="nav-link active">
@@ -180,7 +180,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
         </li>
-        
+
         {{--         Navegación Doctores       --}} 
         <li class="nav-item">
           <a href="#" class="nav-link active">
@@ -201,6 +201,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <a href="{{url('admin/doctores')}}" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Listado de doctores</p>
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        {{--         Navegación Horarios       --}} 
+        <li class="nav-item">
+          <a href="#" class="nav-link active">
+            <i class="nav-icon fas bi bi-calendar2-week"></i>
+            <p>
+              Horarios
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('admin/horarios/create')}}" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Creación de horarios</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('admin/horarios')}}" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Listado de horarios</p>
                 </a>
               </li>
             </ul>
@@ -228,7 +253,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           icon: "{{$icono}}",
           title: "{{$message}}",
           showConfirmButton: false,
-          timer: 4000
+          timer: 3500
         });
       </script>
 	@endif

@@ -57,7 +57,7 @@
 
                 <div class="max-xl:flex max-xl:items-center max-xl:gap-x-4 max-md:gap-x-2">
                     <li class="max-xl:hidden bg-teal-300 w-40 h-12 flex justify-center items-center hover:bg-teal-200 delay-200 duration-75 text-gray-700 hover:text-gray-500 text-lg">
-                        <a href="" class="">INICIAR SESION</a>
+                        <a href="{{url('login')}}" class="">INICIAR SESION</a>
                     </li>
                     <li class="cursor-pointer hidden max-xl:flex max-xl:items-center flex-wrap">
                         <button class="h-10 " @click="isMenuOpen = !isMenuOpen" >

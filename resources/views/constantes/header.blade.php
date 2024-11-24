@@ -2,7 +2,7 @@
 
 
 
- <div x-data="{ isMenuOpen: false, isServicesOpen: false , isResultOpen:false }" 
+ <div x-data="{ isMenuOpen: false, isServicesOpen: false , isResultOpen:false  }" 
      x-init="window.addEventListener('resize', () => {
         if (window.innerWidth > 1370) {
             isMenuOpen = false;
@@ -108,45 +108,39 @@
             class="relative z-40"
         >
             <ul class="max-xl:w-11/12 flex justify-end max-sm:w-[95.9%]" x-data="{ isSubMenuOpen: false }">
-                <div class="w-[255px] h-[300px] content-around flex pl-4 flex-wrap bg-white max-sm:w-[200px] backdrop-blur-md">
+                <div class="w-[255px] h-[300px] content-around flex pl-4 flex-wrap bg-white max-sm:w-[200px] backdrop-blur-md"  x-data="{ isSubMenuOpen: false, isSubMenuROpen: false }" >
                     <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="/">INICIO</a></li>
 
-                    <!-- Al cambiar el evento click por hover -->
-                    <div x-data="{ isSubMenuOpen: false }">
-                        <li class="text-gray-700 hover:text-gray-500 text-lg w-full" 
-                            @mouseover="isSubMenuOpen = true" 
-                            @mouseleave="isSubMenuOpen = false">
-                            <a href="#">SERVICIOS</a>
+    <!-- Submenú Servicios -->
+    <li class="text-gray-700 hover:text-gray-500 text-lg w-full" 
+        @click="isSubMenuOpen = !isSubMenuOpen; isSubMenuROpen = false">
+        <a href="#">SERVICIOS</a>
 
-                            <!-- Submenú con animación personalizada -->
-                            <ul 
-                                :class="isSubMenuOpen ? 'show-animation' : 'hide-animation'"
-                                class="pl-4 overflow-hidden">
-                                
-                                <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/servicios/cirugias">Cirugías</a></li>
-                                <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/servicios/tratamientos">Tratamientos</a></li>
-                            </ul>
-                        </li>
-                    </div>
-                    
-                    <div x-data="{ isSubMenuROpen: false }">
-                        <li class="text-gray-700 hover:text-gray-500 text-lg w-full" 
-                            @mouseover="isSubMenuROpen = true" 
-                            @mouseleave="isSubMenuROpen = false">
-                            <a href="#">RESULTADOS</a>
+        <!-- Submenú con animación personalizada -->
+        <ul 
+            :class="isSubMenuOpen ? 'show-animation' : 'hide-animation'"
+            class="pl-4 overflow-hidden">
+            <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/servicios/cirugias">Cirugías</a></li>
+            <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/servicios/tratamientos">Tratamientos</a></li>
+        </ul>
+    </li>
 
-                            <!-- Submenú con animación personalizada -->
-                            <ul 
-                                :class="isSubMenuROpen ? 'show-animation' : 'hide-animation'"
-                                class="pl-4 overflow-hidden">
-                                
-                                <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/resultados/cirugias">Cirugías</a></li>
-                                <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/resultados">Tratamientos</a></li>
-                            </ul>
-                        </li>
-                    </div>
+    <!-- Submenú Resultados -->
+    <li class="text-gray-700 hover:text-gray-500 text-lg w-full" 
+        @click="isSubMenuROpen = !isSubMenuROpen; isSubMenuOpen = false">
+        <a href="#">RESULTADOS</a>
 
-                    <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="/index/reserva">RESERVAS</a></li>
+        <!-- Submenú con animación personalizada -->
+        <ul 
+            :class="isSubMenuROpen ? 'show-animation' : 'hide-animation'"
+            class="pl-4 overflow-hidden">
+            <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/resultados/cirugias">Cirugías</a></li>
+            <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/resultados">Tratamientos</a></li>
+        </ul>
+    </li>
+
+
+                    <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="/reserva/cita">RESERVAS</a></li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="/nosotros">NOSOTROS</a></li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="">SISTEMA</a></li>
 

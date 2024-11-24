@@ -45,11 +45,16 @@ Route::get('/nosotros', function () {
 Route::get('/map', function () {
     return view('prueba');
 });
-Route::get('/reserva/pago', function () {
+Route::post('/reserva/pago', function () {
     return view('reservas.pago');
 });
-Route::get('/reserva/cita', function () {
-    return view('reservas.cita');
-});
+
+
+use App\Http\Controllers\CitasController;
+
+Route::get('/reserva/cita', [CitasController::class, 'index'])->name('reserva.cita'); // Vista del formulario
+Route::post('/reserva/cita', [CitasController::class, 'store'])->name('reserva.cita'); // Envío del formulario
+
+
 require __DIR__.'/auth.php';
 

@@ -58,8 +58,7 @@ Route::post('/reserva/cita', [CitasController::class, 'store'])->name('reserva.c
 
 require __DIR__.'/auth.php';
 
-<<<<<<< HEAD
-=======
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -175,4 +174,3 @@ Route::delete('/admin/horarios/{id}', [App\Http\Controllers\HorarioController::c
 Route::get('/admin/horarios/consultorios/{id}', [App\Http\Controllers\HorarioController::class, 'cargar_datos_consultorio'])->name('admin.horarios.cargar_datos_consultorio')
 ->middleware('auth');
 
->>>>>>> backend

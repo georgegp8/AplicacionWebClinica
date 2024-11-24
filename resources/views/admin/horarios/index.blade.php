@@ -27,8 +27,8 @@
 						<td style="text-align: center"><b>Especialidad</b></td>
 						<td style="text-align: center"><b>Consultorio</b></td>
 						<td style="text-align: center"><b>Día de atención</b></td>
-						<td style="text-align: center"><b>Hora de inicio</b></td>
-						<td style="text-align: center"><b>Hora de fin</b></td>
+						<td style="text-align: center"><b>Hora inicio</b></td>
+						<td style="text-align: center"><b>Hora fin</b></td>
 						<td style="text-align: center"><b>Acciones</b></td>
 					  </tr>
 					</thead>
@@ -109,6 +109,60 @@
               </div>
             </div>
           </div>
+
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+				<div class="card card-outline card-primary">
+					<div class="card-header">
+						<h3 class="card-title">Calendario de atención de doctores</h3>
+					</div>
+					<!-- /.card-header -->
+					<div class="card-body">
+						<div class="row">
+							<div class="form-group">
+								<label for="especialidad">Consultorios</label>
+								<select name="consultorio_id" id="consultorio_select" class="form-control">
+									@foreach ($consultorios as $consultorio )
+										<option value="{{$consultorio->id}}">
+											{{$consultorio->nombre." - ".$consultorio->ubicacion}}
+										</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+
+						{{-- Cargar el horario según el consultorio --}}
+						<script>
+							$('#consultorio_select').on('change',function name(params) {
+								var consultorio_id = $('#consultorio_select').val();
+								//alert(consultorio_id);
+								var url = "{{route('admin.horarios.cargar_datos_consultorio',':id')}}";
+								url = url.replace(':id',consultorio_id);
+
+								if (consultorio_id) {
+									$.ajax({
+										url:url,
+										type: 'GET',
+										success: function (data) {
+											$('#consultorio_info').html(data);
+										},
+										error: function () {
+											alert('Error al obtener los datos del consultorio');
+										}
+									});
+								}else{
+									$('#consultorio_info').html('');
+								}
+							});
+						</script>
+						<hr>
+						<div id="consultorio_info">
+							
+						</div>
+					</div>
+				</div>
+		</div>
 	</div>
 @endsection
 

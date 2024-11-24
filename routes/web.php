@@ -151,3 +151,4 @@ Route::delete('/admin/horarios/{id}', [App\Http\Controllers\HorarioController::c
 // ajax
 Route::get('/admin/horarios/consultorios/{id}', [App\Http\Controllers\HorarioController::class, 'cargar_datos_consultorio'])->name('admin.horarios.cargar_datos_consultorio')
 ->middleware('auth');
+

@@ -115,14 +115,18 @@
 		<div class="col-md-12">
 				<div class="card card-outline card-primary">
 					<div class="card-header">
-						<h3 class="card-title">Calendario de atención de doctores</h3>
-					</div>
-					<!-- /.card-header -->
-					<div class="card-body">
 						<div class="row">
-							<div class="form-group">
-								<label for="especialidad">Consultorios</label>
+							<div class="col-md-4">
+								<h3 class="card-title">Calendario de atención de doctores</h3>
+							</div>
+							<div class="col-md-4">
+								<div style="float: right">
+									<label for="especialidad">Consultorios</label>	
+								</div>				
+							</div>
+							<div class="col-md-4">
 								<select name="consultorio_id" id="consultorio_select" class="form-control">
+									<option value="">Seleccionar consultorio</option>
 									@foreach ($consultorios as $consultorio )
 										<option value="{{$consultorio->id}}">
 											{{$consultorio->nombre." - ".$consultorio->ubicacion}}
@@ -131,6 +135,9 @@
 								</select>
 							</div>
 						</div>
+					</div>
+					<!-- /.card-header -->
+					<div class="card-body">
 
 						{{-- Cargar el horario según el consultorio --}}
 						<script>
@@ -157,8 +164,9 @@
 							});
 						</script>
 						<hr>
+						{{-- BLoque donde se imprimira la respuesta del script --}}
 						<div id="consultorio_info">
-							
+
 						</div>
 					</div>
 				</div>

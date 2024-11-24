@@ -7,8 +7,13 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
+<<<<<<< HEAD
                 'resources/css/app.css',
                 'resources/js/app.js', // Asegúrate de que app.js esté presente
+=======
+                'resources/sass/app.scss',
+                'resources/js/app.js',
+>>>>>>> backend
             ],
             refresh: true,
         }),

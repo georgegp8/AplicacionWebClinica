@@ -77,8 +77,8 @@
                 </div>
 
                 <div class="max-xl:flex max-xl:items-center max-xl:gap-x-4 max-md:gap-x-2">
-                    <li class="max-xl:hidden bg-teal-300 w-40 h-12 flex justify-center items-center hover:bg-teal-200  text-gray-700 hover:text-gray-500 text-lg transition-transform transform hover:scale-105">
-                        <a href="" class="w-full h-full text-center content-center">INICIAR SESION</a>
+                    <li class="max-xl:hidden bg-teal-300 w-40 h-12 flex justify-center items-center hover:bg-teal-200 delay-200 duration-75 text-gray-700 hover:text-gray-500 text-lg">
+                        <a href="{{url('login')}}" class="">INICIAR SESION</a>
                     </li>
                     
                     <li class="cursor-pointer hidden max-xl:flex max-xl:items-center flex-wrap">

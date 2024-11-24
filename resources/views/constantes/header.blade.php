@@ -71,7 +71,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/index/reserva">RESERVAS</a></li>
+                    <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/reserva/cita">RESERVAS</a></li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/nosotros">NOSOTROS</a></li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="">SISTEMA</a></li>
                 </div>

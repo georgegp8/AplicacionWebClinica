@@ -68,14 +68,12 @@
         </div>
     </form>
     <br>
-      <!-- /.social-auth-links -->
-
-      <p class="mb-1">
-        <a href="forgot-password.html">Olvide mi constraseña</a>
-      </p>
-      <p class="mb-0">
-        <a href="register.html" class="text-center">¿No tienes cuenta?</a>
-      </p>
+        <p class="mb-1 d-flex justify-content-between">
+            <a href="{{ url('register') }}" class="text-center"><b>¿No tienes cuenta?</b></a>
+        </p>
+        <p class="mb-0">
+            <a href="{{ url('/') }}" class="text-center"><b>Volver</b></a>
+        </p>
     </div>
     <!-- /.card-body -->
   </div>

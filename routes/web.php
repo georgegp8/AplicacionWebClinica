@@ -10,10 +10,10 @@ use App\Http\Controllers\TestimoniosController;
 use App\Http\Controllers\CitasController;
 
 // Dashboard
-Route::get('/dashboard', function () {
+/* Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
+ */
 // Perfil de usuario (Rutas protegidas)
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

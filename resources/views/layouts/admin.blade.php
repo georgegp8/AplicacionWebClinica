@@ -79,7 +79,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          @can('admin.usuarios.index')
+
+          @can('admin.usuarios.index'){{-- Restringir vista--}}
             {{--         Navegación Usuarios       --}} 
             <li class="nav-item">
               <a href="#" class="nav-link active">
@@ -106,7 +107,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
           @endcan
 
-          @can('admin.secretarias.index')
+          @can('admin.secretarias.index') {{-- Restringir vista--}}
             {{--         Navegación Secretarias       --}} 
             <li class="nav-item">
               <a href="#" class="nav-link active">
@@ -133,7 +134,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
           @endcan
 
-          @can('admin.pacientes.index')
+          @can('admin.pacientes.index') {{-- Restringir vista--}}
             {{--         Navegación Pacientes       --}} 
             <li class="nav-item">
               <a href="#" class="nav-link active">
@@ -160,7 +161,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
           @endcan
 
-          @can('admin.consultorios.index')
+          @can('admin.consultorios.index') {{-- Restringir vista--}}
             {{--         Navegación Consultorios       --}} 
             <li class="nav-item">
               <a href="#" class="nav-link active">
@@ -187,7 +188,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
           @endcan
 
-          @can('admin.doctores.index')
+          @can('admin.doctores.index') {{-- Restringir vista--}}
             {{--         Navegación Doctores       --}} 
             <li class="nav-item">
               <a href="#" class="nav-link active">
@@ -214,7 +215,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
           @endcan
 
-          @can('admin.horarios.index')
+          @can('admin.horarios.index') {{-- Restringir vista--}}
             {{--         Navegación Horarios       --}} 
             <li class="nav-item">
               <a href="#" class="nav-link active">

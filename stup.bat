@@ -8,8 +8,9 @@ call npm install vue-the-mask --save
 call npm install -D sass-embedded
 call php artisan storage:link
 call php artisan ui bootstrap --auth
+call composer update --with-all-dependencies
 call composer require spatie/laravel-permission
 call php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
 call php artisan optimize:clear
-call php artisan migrate
+call php artisan migrate:fresh --seed
 call npm run dev

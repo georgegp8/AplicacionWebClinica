@@ -1,10 +1,7 @@
 @extends('reservas.reservas')
 
     @section('content')
-    <div id="app"></div>
-
-
+    <div id="pago"></div>
 
     @vite('resources/js/app.js')  
     @endsection
-

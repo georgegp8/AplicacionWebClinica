@@ -18,4 +18,4 @@ import VueTheMask from 'vue-the-mask';
 app.use(VueTheMask);
 
 // Montar la aplicación Vue en el contenedor con id 'app'
-app.mount('#app');
+app.mount('#pago');

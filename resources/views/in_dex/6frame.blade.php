@@ -29,7 +29,7 @@
             }"
             x-init="startCarousel"
             class="flex flex-col  px-10 text-center mx-auto transition-all duration-500 ease-in-out  w-[80%] h-[90%]  
-            items-center justify-center max-md:justify-start max-sm:h-auto">
+            items-center justify-center max-md:justify-start max-sm:h-auto  max-md:px-0">
 
             <!-- Título -->
             <h2 class="text-3xl font-bold text-teal-700  ">Testimonios</h2>
@@ -42,13 +42,13 @@
                 x-transition:enter="transition ease-out duration-500 transform opacity-0 translate-y-8"
                 x-transition:enter-start="opacity-0 transform translate-y-8"
                 x-transition:enter-end="opacity-100 transform translate-y-0"
-                class="w-full   h-auto max-md:mt-3">
+                class="w-full   h-auto max-md:mt-3 ">
 
                 <!-- Texto del Testimonio -->
-                <p class="text-lg text-gray-700 italic h-40 max-md:h-auto content-center px-10 max-md:px-0" x-text="testimonials[currentIndex].text"></p>
+                <p class="text-lg text-gray-700 italic h-40 max-md:h-auto content-center px-10 max-md:px-0 " x-text="testimonials[currentIndex].text"></p>
                 
                 <!-- Imagen y Nombre -->
-                <div class="flex flex-col items-center space-y-4  max-xl:mt-4">
+                <div class="flex flex-col items-center space-y-4  max-xl:mt-4 ">
                     <img :src="testimonials[currentIndex].image" loading="lazy" alt="" class="w-40 h-40 rounded-full object-cover  bg-center">
                     <p class="font-bold text-xl text-gray-600 leading-none" x-text="testimonials[currentIndex].name"></p>
                     <p class="text-teal-700 tracking-widest leading-none" x-text="testimonials[currentIndex].profession"></p>

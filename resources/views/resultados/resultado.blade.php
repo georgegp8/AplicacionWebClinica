@@ -15,7 +15,7 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
               })"> 
     <div  
         x-show="loading"  
-        class="loader fixed inset-0 flex justify-center items-center bg-teal-700/80 z-50"  
+        class="loader fixed inset-0 flex justify-center items-center bg-teal-700 z-50"  
         x-transition:leave="transition ease-in-out duration-500" 
         x-transition:leave-start="opacity-100" 
         x-transition:leave-end="opacity-0"> 

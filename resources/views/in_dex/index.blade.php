@@ -12,7 +12,7 @@
             stagger: 0.3
         });
     })">
-        <div x-show="loading" class="loader fixed inset-0 flex justify-center items-center bg-teal-700/80 z-50 "
+        <div x-show="loading" class="loader fixed inset-0 flex justify-center items-center bg-teal-700 z-50 "
             x-transition:leave="transition ease-in-out duration-500" x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0">
             <svg class="h-[160px] w-[210px] stroke-[0.4px] stroke-white fill-none" viewBox="0 0 51 50"

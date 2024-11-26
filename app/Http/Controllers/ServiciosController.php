@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cirugia;
+use App\Models\Horario;
 use App\Models\Tratamiento;
 use App\Models\Mensaje_tec;
 use App\Models\Testimonio;
@@ -15,7 +16,7 @@ class ServiciosController extends Controller
     $cirugias = Cirugia::all();
     $tratamientos = Tratamiento::all();
     $mensajes = Mensaje_tec::all();
-    $testimonios = Testimonio::all(); // Cambia $testimonio a $testimonios
+    $testimonios = Testimonio::all();
     
     return view('in_dex.index', compact('cirugias', 'tratamientos', 'mensajes', 'testimonios'));
 }
@@ -28,7 +29,8 @@ class ServiciosController extends Controller
         return view('servicios.tratamientos', compact( 'tratamientos'));
     }
     public function verTestimonios(){
-        $testimonios = Testimonio::all(); // Cambia $testimonio a $testimonios
+        $testimonios = Testimonio::all();
         return view('resultados.resultado', compact( 'testimonios'));
     }
+
 }

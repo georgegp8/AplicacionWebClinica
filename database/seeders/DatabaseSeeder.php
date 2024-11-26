@@ -2,12 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\Consultorio;
+use App\Models\Doctor;
 use App\Models\Secretaria;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Middleware\RoleMiddleware;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,6 +25,7 @@ class DatabaseSeeder extends Seeder
             'email'=>'admin@tecsup.edu.pe',
             'password'=>Hash::make('Tecsup2024')
         ])->assignRole('admin');
+
 
         User::create([
             'name'=>'Secretaria',
@@ -40,11 +43,81 @@ class DatabaseSeeder extends Seeder
             'user_id'=>'2',
         ]);
 
+
         User::create([
             'name'=>'Doctor1',
             'email'=>'doctor1@tecsup.edu.pe',
             'password'=>Hash::make('Tecsup2024')
         ])->assignRole('doctor');
+
+        Doctor::create([
+            'nombres'=>'Doctor1',
+            'apellidos'=>'Swift',
+            'telefono' => '900111951',
+            'licencia_medica' => '02225556',
+            'especialidad'=>'Rinoplastia',
+            'user_id'=>'3',
+        ]);
+        
+
+        User::create([
+            'name'=>'Doctor2',
+            'email'=>'doctor2@tecsup.edu.pe',
+            'password'=>Hash::make('Tecsup2024')
+        ])->assignRole('doctor');
+
+        Doctor::create([
+            'nombres'=>'Doctor2',
+            'apellidos'=>'Barrientos',
+            'telefono' => '900111999',
+            'licencia_medica' => '01115556',
+            'especialidad'=>'Blefaroplastia',
+            'user_id'=>'4',
+        ]);
+
+
+        User::create([
+            'name'=>'Doctor3',
+            'email'=>'doctor3@tecsup.edu.pe',
+            'password'=>Hash::make('Tecsup2024')
+        ])->assignRole('doctor');
+
+        Doctor::create([
+            'nombres'=>'Doctor3',
+            'apellidos'=>'Valdez',
+            'telefono' => '900111088',
+            'licencia_medica' => '01112226',
+            'especialidad'=>'Liposuccion',
+            'user_id'=>'5',
+        ]);
+
+
+        Consultorio::create([
+            'nombre' => 'CitasTEC-A', 
+            'ubicacion' => 'Piso 1',
+            'capacidad' => '20',
+            'telefono' => '955304200',
+            'especialidad' => 'Rinoplastia', 
+            'estado' => 'ACTIVO',
+        ]);
+
+        Consultorio::create([
+            'nombre' => 'CitasTEC-B', 
+            'ubicacion' => 'Piso 2',
+            'capacidad' => '30',
+            'telefono' => '955304211',
+            'especialidad' => 'Blefaroplastia', 
+            'estado' => 'ACTIVO',
+        ]);
+
+        Consultorio::create([
+            'nombre' => 'CitasTEC-C', 
+            'ubicacion' => 'Piso 3',
+            'capacidad' => '15',
+            'telefono' => '955304222',
+            'especialidad' => 'Liposuccion', 
+            'estado' => 'ACTIVO',
+        ]);
 
         User::create([
             'name'=>'Paciente1',

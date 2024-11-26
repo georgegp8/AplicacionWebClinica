@@ -73,7 +73,7 @@
                     </li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/reserva/cita">RESERVAS</a></li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/nosotros">NOSOTROS</a></li>
-                    <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="">SISTEMA</a></li>
+                    <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/web">HORARIOS</a></li>
                 </div>
 
                 <div class="max-xl:flex max-xl:items-center max-xl:gap-x-4 max-md:gap-x-2">

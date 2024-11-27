@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin'; //Si hay problemas Cambiar a admin para redireccionar al sistema
 
     /**
      * Create a new controller instance.
@@ -67,6 +67,6 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
+        ])->assignRole('usuario');
     }
 }

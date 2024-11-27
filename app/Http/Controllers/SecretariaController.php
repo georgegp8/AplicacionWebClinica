@@ -61,6 +61,8 @@ class SecretariaController extends Controller
         $secretaria->direccion = $request->direccion;
         $secretaria->save();
 
+        $usuario->assignRole('secretaria');
+
         return redirect()->route('admin.secretarias.index')
         ->with('mensaje','Se registro a la secretaria de forma correcta ')
         ->with('icono','success');

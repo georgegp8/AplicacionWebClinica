@@ -4,7 +4,7 @@
 <hr class="border-t border-teal-500 mb-4">
 
 <table class="w-full text-sm border-collapse border border-teal-500">
-	<thead>
+    <thead>
         <tr class="bg-teal-100 text-teal-700">
             <th class="border border-teal-500 px-4 py-2 text-center font-bold">Hora</th>
             <th class="border border-teal-500 px-4 py-2 text-center font-bold">Lunes</th>
@@ -18,11 +18,8 @@
     </thead>
     <tbody>
         @php
-            $horas = ['08:00:00 - 09:00:00','09:00:00 - 10:00:00','10:00:00 - 11:00:00',
-                      '11:00:00 - 12:00:00','12:00:00 - 13:00:00','13:00:00 - 14:00:00',
-                      '14:00:00 - 15:00:00','15:00:00 - 16:00:00','16:00:00 - 17:00:00',
-                      '17:00:00 - 18:00:00','18:00:00 - 19:00:00','19:00:00 - 20:00:00'];
-            $diasSemana = ['LUNES','MARTES','MIÉRCOLES','JUEVES','VIERNES','SÁBADO','DOMINGO'];
+            $horas = ['08:00:00 - 09:00:00', '09:00:00 - 10:00:00', '10:00:00 - 11:00:00', '11:00:00 - 12:00:00', '12:00:00 - 13:00:00', '13:00:00 - 14:00:00', '14:00:00 - 15:00:00', '15:00:00 - 16:00:00', '16:00:00 - 17:00:00', '17:00:00 - 18:00:00', '18:00:00 - 19:00:00', '19:00:00 - 20:00:00'];
+            $diasSemana = ['LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES', 'SÁBADO', 'DOMINGO'];
         @endphp    
         @foreach ($horas as $hora)
             @php
@@ -43,7 +40,7 @@
                             if (strtoupper($horario->dia) == $dia &&
                                 $hora_inicio >= $horario->hora_inicio &&
                                 $hora_fin <= $horario->hora_final) {
-                                $nombre_doctor = $horario->doctor->nombres . " " . $horario->doctor->apellidos;
+                                $nombre_doctor = $horario->doctor->nombres . ' ' . $horario->doctor->apellidos;
                                 break;
                             }
                         }

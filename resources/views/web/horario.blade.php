@@ -83,14 +83,12 @@
     <script>
         $('#consultorio_select').on('change', function () {
             var consultorio_id = $(this).val();
-            var url = "{{ route('cargar_datos_consultorio', ':id') }}";
-            url = url.replace(':id', consultorio_id);
             
             //alert(url);
 
             if (consultorio_id) {
                 $.ajax({
-                    url: url,
+                    url: "{{ url('/consultorios/') }}" + '/' +consultorio_id,
                     type: 'GET',
                     success: function (data) {
                         $('#consultorio_info').html(data);

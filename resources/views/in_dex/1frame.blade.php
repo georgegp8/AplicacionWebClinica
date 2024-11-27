@@ -92,7 +92,7 @@ max-xl:h-[1000px] max-sm:h-auto"
 
                     <button
                         class="w-40 h-10 bg-teal-300 hover:bg-teal-400 text-black font-medium  px-4  shadow-sm transition-transform transform hover:scale-105 text-2xl max-md:text-xl ">
-                        <a href="/reserva/cita" class="text-[14px] h-full w-full">Solicitar una cita</a>
+                        <a href="/admin" class="text-[14px] h-full w-full">Solicitar una cita</a>
                     </button>
                 </div>
             </div>

@@ -12,7 +12,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-        
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ url('plugins/fontawesome-free/css/all.min.css') }}">
 
@@ -35,7 +35,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     {{--     FullCalendar --}}
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
-    <script src="{{url('fullcalendar/es.global.js')}}"></script>
+    <script src="{{ url('fullcalendar/es.global.js') }}"></script>
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">

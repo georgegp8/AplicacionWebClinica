@@ -21,6 +21,7 @@ class AdminController extends Controller
         $total_horarios = Horario::count();
 
         $consultorios = Consultorio::all();
+        $doctores = Doctor::all();
 
         return view('admin.index',compact(
             'total_usuarios',
@@ -29,7 +30,8 @@ class AdminController extends Controller
             'total_consultorios',
             'total_doctores',
             'total_horarios',
-            'consultorios'
+            'consultorios',
+            'doctores'
         ));
     }
 }

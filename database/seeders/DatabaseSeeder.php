@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Consultorio;
 use App\Models\Doctor;
+use App\Models\Horario;
+use App\Models\Paciente;
 use App\Models\Secretaria;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -130,5 +132,18 @@ class DatabaseSeeder extends Seeder
             'email'=>'usuario1@tecsup.edu.pe',
             'password'=>Hash::make('Tecsup2024')
         ])->assignRole('usuario');    
+
+        $this->call([PacienteSeeder::class,]);
+
+
+        //Creación de horarios
+        Horario::create([
+            'dia'=>'LUNES',
+            'hora_inicio'=>'08:00:00',
+            'hora_final'=>'14:00:00',
+            'doctor_id'=>'1',
+            'consultorio_id'=>'1',
+
+        ]);
     }
 }

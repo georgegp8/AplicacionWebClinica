@@ -36,14 +36,7 @@ Route::get('/servicios/tratamientos', [ServiciosController::class, 'viewServicie
 
 // Página principal - Horarios
 Route::get('/web', [App\Http\Controllers\WebController::class, 'index'])->name('web.horario');
-//ajax
-Route::get('/consultorios/{id}', [App\Http\Controllers\WebController::class, 'cargar_datos_consultorio'])->name('cargar_datos_consultorio');
 
-// Administración - Reservas
-Route::get('/cargar_reserva_doctores/{id}', [App\Http\Controllers\WebController::class,'cargar_reserva_doctores'])->name('cargar_reserva_doctores');
-Route::get('/admin/ver_reservas/{id}', [App\Http\Controllers\AdminController::class,'ver_reservas'])->name('ver_reservas');
-Route::post('/admin/eventos/create', [App\Http\Controllers\EventController::class, 'store'])->name('admin.eventos.create');
-Route::delete('/admin/eventos/destroy/{id}', [App\Http\Controllers\EventController::class, 'destroy'])->name('admin.eventos.destroy');
 
 // Resultados y Testimonios
 Route::post('/resultados/cirugias', [TestimoniosController::class, 'store'])->name('cirugias.store');
@@ -193,3 +186,14 @@ Route::delete('/admin/horarios/{id}', [App\Http\Controllers\HorarioController::c
 // ajax
 Route::get('/admin/horarios/consultorios/{id}', [App\Http\Controllers\HorarioController::class, 'cargar_datos_consultorio'])->name('admin.horarios.cargar_datos_consultorio')
 ->middleware('auth', 'can:admin.horarios.cargar_datos_consultorio');
+
+// Administración - Reservas - usuarios
+///ajax
+Route::get('/consultorios/{id}', [App\Http\Controllers\WebController::class, 'cargar_datos_consultorio'])->name('cargar_datos_consultorio')
+->middleware('auth', 'can:cargar_datos_consultorio');
+Route::get('/cargar_reserva_doctores/{id}', [App\Http\Controllers\WebController::class,'cargar_reserva_doctores'])->name('cargar_reserva_doctores')
+->middleware('auth', 'can:cargar_reserva_doctores');
+Route::get('/admin/ver_reservas/{id}', [App\Http\Controllers\AdminController::class,'ver_reservas'])->name('ver_reservas')->middleware('auth', 'can:ver_reservas');
+Route::post('/admin/eventos/create', [App\Http\Controllers\EventController::class, 'store'])->name('admin.eventos.create')->middleware('auth', 'can:admin.eventos.create');
+Route::delete('/admin/eventos/destroy/{id}', [App\Http\Controllers\EventController::class, 'destroy'])->name('admin.eventos.destroy')
+->middleware('auth', 'can:admin.eventos.destroy');

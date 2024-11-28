@@ -103,6 +103,7 @@
         @endcan
 
         @can('admin.horarios.index')
+            {{-- Restringir acceso --}}
             {{--     Tarjeta para contar horarios --}}
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-secondary">
@@ -121,253 +122,260 @@
         @endcan
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card card-outline card-primary">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h3 class="card-title">Calendario de atención de doctores</h3>
-                        </div>
-                        <div class="col-md-4 text-right">
-                            <label for="especialidad" class="mt-2">Consultorios</label>
-                        </div>
-                        <div class="col-md-4">
-                            <select name="consultorio_id" id="consultorio_select" class="form-control">
-                                <option value="">Seleccione un consultorio...</option>
-                                @foreach ($consultorios as $consultorio)
-                                    <option value="{{ $consultorio->id }}">
-                                        {{ $consultorio->nombre . ' - ' . $consultorio->ubicacion }}
-                                    </option>
-                                @endforeach
+    @can('cargar_datos_consultorio')
+        {{-- Restringir acceso --}}
+        {{--     Calendario de atención de clientes --}}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-outline card-primary">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h3 class="card-title">Calendario de atención de doctores</h3>
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <label for="especialidad" class="mt-2">Consultorios</label>
+                            </div>
+                            <div class="col-md-4">
+                                <select name="consultorio_id" id="consultorio_select" class="form-control">
+                                    <option value="">Seleccione un consultorio...</option>
+                                    @foreach ($consultorios as $consultorio)
+                                        <option value="{{ $consultorio->id }}">
+                                            {{ $consultorio->nombre . ' - ' . $consultorio->ubicacion }}
+                                        </option>
+                                    @endforeach
 
-                                {{-- Script para cargar la tabla dinámicamente --}}
+                                    {{-- Script para cargar la tabla dinámicamente --}}
+                                    <script>
+                                        $('#consultorio_select').on('change', function() {
+                                            var consultorio_id = $('#consultorio_select').val();
+
+                                            if (consultorio_id) {
+                                                $.ajax({
+                                                    url: "{{ url('/consultorios/') }}" + '/' + consultorio_id,
+                                                    type: 'GET',
+                                                    success: function(data) {
+                                                        $('#consultorio_info').html(data);
+                                                    },
+                                                    error: function() {
+                                                        alert('Error al obtener los datos del consultorio');
+                                                    }
+                                                });
+                                            } else {
+                                                $('#consultorio_info').html('');
+                                            }
+                                        });
+                                    </script>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        {{-- Contenedor para la tabla --}}
+                        <div class="table-responsive w-full">
+                            {{-- Carga dinámica de la tabla del consultorio --}}
+                            <div id="consultorio_info">
+                                <!-- Aquí se cargará la tabla del consultorio -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{--     Calendario de reserva de citas médicas --}}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-outline card-warning">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h3 class="card-title">Calendario de reserva de citas médicas</h3>
+                            </div>
+                            <div class="col-md-4">
+                                <div style="float: right">
+                                    <label for="">Doctores</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <select name="doctor_id" id="doctor_select" class="form-control">
+                                    <option value="">Seleccione un doctor...</option>
+                                    @foreach ($doctores as $doctore)
+                                        <option value="{{ $doctore->id }}">
+                                            {{ $doctore->nombres . ' ' . $doctore->apellidos . ' - ' . $doctore->especialidad }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
+                                {{-- Script para cargar la tabla dinámicamente - doctores --}}
                                 <script>
-                                    $('#consultorio_select').on('change', function() {
-                                        var consultorio_id = $('#consultorio_select').val();
+                                    $('#doctor_select').on('change', function() {
+                                        var doctor_id = $('#doctor_select').val();
+                                        //alert(doctor_id);
 
-                                        if (consultorio_id) {
+                                        var calendarEl = document.getElementById('calendar');
+                                        var calendar = new FullCalendar.Calendar(calendarEl, {
+                                            initialView: 'dayGridMonth',
+                                            locale: 'es',
+                                            events: [],
+                                        });
+
+                                        if (doctor_id) {
                                             $.ajax({
-                                                url: "{{ url('/consultorios/') }}" + '/' + consultorio_id,
+                                                url: "{{ url('/cargar_reserva_doctores/') }}" + '/' + doctor_id,
                                                 type: 'GET',
+                                                dataType: 'json',
                                                 success: function(data) {
-                                                    $('#consultorio_info').html(data);
+                                                    calendar.addEventSource(data);
                                                 },
                                                 error: function() {
-                                                    alert('Error al obtener los datos del consultorio');
+                                                    alert('Error al obtener los datos del doctor');
                                                 }
                                             });
                                         } else {
-                                            $('#consultorio_info').html('');
+                                            $('#doctor_info').html('');
                                         }
+
+                                        calendar.render();
                                     });
                                 </script>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    {{-- Contenedor para la tabla --}}
-                    <div class="table-responsive w-full">
-                        {{-- Carga dinámica de la tabla del consultorio --}}
-                        <div id="consultorio_info">
-                            <!-- Aquí se cargará la tabla del consultorio -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card card-outline card-warning">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h3 class="card-title">Calendario de reserva de citas médicas</h3>
-                        </div>
-                        <div class="col-md-4">
-                            <div style="float: right">
-                                <label for="">Doctores</label>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <select name="doctor_id" id="doctor_select" class="form-control">
-                                <option value="">Seleccione un doctor...</option>
-                                @foreach ($doctores as $doctore)
-                                    <option value="{{ $doctore->id }}">
-                                        {{ $doctore->nombres . ' ' . $doctore->apellidos . ' - ' . $doctore->especialidad }}
-                                    </option>
-                                @endforeach
-                            </select>
-
-                            {{-- Script para cargar la tabla dinámicamente - doctores --}}
-                            <script>
-                                $('#doctor_select').on('change', function() {
-                                    var doctor_id = $('#doctor_select').val();
-                                    //alert(doctor_id);
-
-                                    var calendarEl = document.getElementById('calendar');
-                                    var calendar = new FullCalendar.Calendar(calendarEl, {
-                                        initialView: 'dayGridMonth',
-                                        locale: 'es',
-                                        events: [],
-                                    });
-
-                                    if (doctor_id) {
-                                        $.ajax({
-                                            url: "{{ url('/cargar_reserva_doctores/') }}" + '/' + doctor_id,
-                                            type: 'GET',
-                                            dataType: 'json',
-                                            success: function(data) {
-                                                calendar.addEventSource(data);
-                                            },
-                                            error: function() {
-                                                alert('Error al obtener los datos del doctor');
-                                            }
-                                        });
-                                    } else {
-                                        $('#doctor_info').html('');
-                                    }
-
-                                    calendar.render();
-                                });
-                            </script>
-                        </div>
                     </div>
-                </div>
 
-                <div class="card-body">
-                    <div class="row">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#exampleModal">
-                            Registrar cita médica
-                        </button>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#exampleModal">
+                                Registrar cita médica
+                            </button>
 
-                        <a href="{{ url('/admin/ver_reservas', Auth::user()->id) }}" class="btn btn-success"><i
-                                class="bi bi-calendar2-check"></i> Ver las reservas</a>
+                            <a href="{{ url('/admin/ver_reservas', Auth::user()->id) }}" class="btn btn-success"><i
+                                    class="bi bi-calendar2-check"></i> Ver las reservas</a>
 
-                        <!-- Modal -->
-                        <form action="{{ url('/admin/eventos/create') }}" method="post">
-                            @csrf
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Reserva de cita médica</h5>
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="">Doctor</label>
-                                                        <select name="doctor_id" id="" class="form-control">
-                                                            @foreach ($doctores as $doctore)
-                                                                <option value="{{ $doctore->id }}">
-                                                                    {{ $doctore->nombres . ' ' . $doctore->apellidos . ' - ' . $doctore->especialidad }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
+                            <!-- Modal -->
+                            <form action="{{ url('/admin/eventos/create') }}" method="post">
+                                @csrf
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Reserva de cita médica</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="">Doctor</label>
+                                                            <select name="doctor_id" id="" class="form-control">
+                                                                @foreach ($doctores as $doctore)
+                                                                    <option value="{{ $doctore->id }}">
+                                                                        {{ $doctore->nombres . ' ' . $doctore->apellidos . ' - ' . $doctore->especialidad }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="">Fecha de reserva</label>
-                                                        <input type="date" name="fecha_reserva"
-                                                            value="<?php echo date('Y-m-d'); ?>" id="fecha_reserva"
-                                                            class="form-control">
-                                                        <script>
-                                                            document.addEventListener('DOMContentLoaded', function() {
-                                                                const fechaReservaInput = document.getElementById('fecha_reserva');
-
-                                                                // Escuchar el evento de cambio en el campo de fecha de reserva
-                                                                fechaReservaInput.addEventListener('change',
-                                                                    function() {
-
-                                                                        let selectedDate = this.value; // Obtener la fecha seleccionada
-
-                                                                        // Obtener la fecha actual en formato Iso (yyyy-mm-dd) 
-                                                                        let today = new Date().toISOString().slice(0, 10);
-
-                                                                        // Verificar si la fecha seleccionada es anterior a la fecha actual 
-                                                                        if (selectedDate < today) {
-                                                                            // si es así, establecer la fecha seleccionada en null 
-                                                                            this.value = null;
-                                                                            alert('No se puede reservar en una fecha pasada.');
-                                                                        }
-                                                                    });
-                                                            });
-                                                        </script>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="">Hora de reserva</label>
-                                                        <input type="time" name="hora_reserva" id="hora_reserva"
-                                                            class="form-control">
-                                                        @error('hora_reserva')
-                                                            <small style="color:red">{{ $message }}</small>
-                                                        @enderror
-
-                                                        @if ($message = Session::get('hora_reserva'))
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="">Fecha de reserva</label>
+                                                            <input type="date" name="fecha_reserva"
+                                                                value="<?php echo date('Y-m-d'); ?>" id="fecha_reserva"
+                                                                class="form-control">
                                                             <script>
                                                                 document.addEventListener('DOMContentLoaded', function() {
-                                                                    $('#exampleModal').modal('show');
+                                                                    const fechaReservaInput = document.getElementById('fecha_reserva');
+
+                                                                    // Escuchar el evento de cambio en el campo de fecha de reserva
+                                                                    fechaReservaInput.addEventListener('change',
+                                                                        function() {
+
+                                                                            let selectedDate = this.value; // Obtener la fecha seleccionada
+
+                                                                            // Obtener la fecha actual en formato Iso (yyyy-mm-dd) 
+                                                                            let today = new Date().toISOString().slice(0, 10);
+
+                                                                            // Verificar si la fecha seleccionada es anterior a la fecha actual 
+                                                                            if (selectedDate < today) {
+                                                                                // si es así, establecer la fecha seleccionada en null 
+                                                                                this.value = null;
+                                                                                alert('No se puede reservar en una fecha pasada.');
+                                                                            }
+                                                                        });
                                                                 });
                                                             </script>
-                                                            <small style="color:red">{{ $message }}</small>
-                                                        @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="">Hora de reserva</label>
+                                                            <input type="time" name="hora_reserva" id="hora_reserva"
+                                                                class="form-control">
+                                                            @error('hora_reserva')
+                                                                <small style="color:red">{{ $message }}</small>
+                                                            @enderror
 
-                                                        <script>
-                                                            document.addEventListener('DOMContentLoaded', function() {
-                                                                const horaReservaInput = document.getElementById("hora_reserva");
+                                                            @if ($message = Session::get('hora_reserva'))
+                                                                <script>
+                                                                    document.addEventListener('DOMContentLoaded', function() {
+                                                                        $('#exampleModal').modal('show');
+                                                                    });
+                                                                </script>
+                                                                <small style="color:red">{{ $message }}</small>
+                                                            @endif
 
-                                                                horaReservaInput.addEventListener('change', function() {
-                                                                    let selectedTime = this.value; // Obtener el valor de la hora seleccionada
+                                                            <script>
+                                                                document.addEventListener('DOMContentLoaded', function() {
+                                                                    const horaReservaInput = document.getElementById("hora_reserva");
 
-                                                                    // Asegurar que solo se capture la parte de la hora
-                                                                    if (selectedTime) {
-                                                                        selectedTime = selectedTime.split(':'); // Dividir la cadena en horas y minutos
-                                                                        selectedTime = selectedTime[0] + ':00'; // Conservar solo la hora, ignorar los minutos
-                                                                        this.value = selectedTime; // Establecer la hora modificada en el campo de entrada
-                                                                    }
+                                                                    horaReservaInput.addEventListener('change', function() {
+                                                                        let selectedTime = this.value; // Obtener el valor de la hora seleccionada
 
-                                                                    // Verificar si la hora seleccionada está fuera del rango permitido
-                                                                    if (selectedTime < '08:00' || selectedTime > '20:00') {
-                                                                        // Si es así, establecer la hora seleccionada en null
-                                                                        this.value = null;
-                                                                        alert('Por favor, seleccione una hora entre las 08:00 y las 20:00.');
-                                                                    }
+                                                                        // Asegurar que solo se capture la parte de la hora
+                                                                        if (selectedTime) {
+                                                                            selectedTime = selectedTime.split(':'); // Dividir la cadena en horas y minutos
+                                                                            selectedTime = selectedTime[0] + ':00'; // Conservar solo la hora, ignorar los minutos
+                                                                            this.value = selectedTime; // Establecer la hora modificada en el campo de entrada
+                                                                        }
+
+                                                                        // Verificar si la hora seleccionada está fuera del rango permitido
+                                                                        if (selectedTime < '08:00' || selectedTime > '20:00') {
+                                                                            // Si es así, establecer la hora seleccionada en null
+                                                                            this.value = null;
+                                                                            alert('Por favor, seleccione una hora entre las 08:00 y las 20:00.');
+                                                                        }
+                                                                    });
                                                                 });
-                                                            });
-                                                        </script>
+                                                            </script>
 
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-primary">Registrar</button>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-primary">Registrar</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
+                            </form>
+                        </div>
 
-                    <div id='calendar'></div>
+                        <div id='calendar'></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endcan
+
+
+
+
 @endsection

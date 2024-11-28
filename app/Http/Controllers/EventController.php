@@ -139,7 +139,7 @@ class EventController extends Controller
     {
         Event::destroy($id);
         return redirect()->back()->with([
-            'mensaje' => 'Se elimino la reserva de la manera correcta',
+            'mensaje' => 'Se eliminó la reserva de forma correcta',
             'icono' => 'success',
         ]);
     }

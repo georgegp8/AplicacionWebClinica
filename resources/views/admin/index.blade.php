@@ -122,7 +122,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card card-outline card-primary">
                 <div class="card-header">
                     <div class="row">
@@ -169,7 +169,7 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     {{-- Contenedor para la tabla --}}
-                    <div class="table-responsive overflow-auto">
+                    <div class="table-responsive w-full">
                         {{-- Carga dinámica de la tabla del consultorio --}}
                         <div id="consultorio_info">
                             <!-- Aquí se cargará la tabla del consultorio -->
@@ -221,7 +221,7 @@
                                         $.ajax({
                                             url: "{{ url('/cargar_reserva_doctores/') }}" + '/' + doctor_id,
                                             type: 'GET',
-                                            dataType:'json',
+                                            dataType: 'json',
                                             success: function(data) {
                                                 calendar.addEventSource(data);
                                             },
@@ -243,9 +243,12 @@
                 <div class="card-body">
                     <div class="row">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#exampleModal">
                             Registrar cita médica
                         </button>
+
+                        <a href="{{ url('/admin/ver_reservas', Auth::user()->id) }}" class="btn btn-success"><i
+                                class="bi bi-calendar2-check"></i> Ver las reservas</a>
 
                         <!-- Modal -->
                         <form action="{{ url('/admin/eventos/create') }}" method="post">

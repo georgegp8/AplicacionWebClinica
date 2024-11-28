@@ -37,4 +37,9 @@ class AdminController extends Controller
             'eventos'
         ));
     }
+
+    public function ver_reservas($id){
+        $eventos = Event::where('user_id',$id)->get();
+        return view('admin.ver_reservas',compact('eventos'));
+    }
 }

@@ -120,11 +120,32 @@
                 </div>
             </div>
         @endcan
+
+        @can('admin.horarios.index')
+        {{-- Restringir acceso --}}
+        {{--     Tarjeta para contar reservas--}}
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{$total_eventos }}</h3>
+
+                    <p>Reservas</p>
+                </div>
+                <div class="icon">
+                    <i class="ion fas bi bi-calendar2-check"></i>
+                </div>
+                <div class="small-box-footer"><i
+                    class="fas bi bi bi-calendar2-check"></i></div>
+{{--                 <a href="" class="small-box-footer"><i
+                        class="fas bi bi bi-calendar2-check"></i></a> --}}
+            </div>
+        </div>
+    @endcan
     </div>
 
     @can('cargar_datos_consultorio')
         {{-- Restringir acceso --}}
-        {{--     Calendario de atención de clientes --}}
+        {{--     Calendario de atención de doctores --}}
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-outline card-primary">
@@ -374,8 +395,103 @@
             </div>
         </div>
     @endcan
-
-
-
-
+    
+    {{-- Verificar el usuario esta autenficado y es doctor --}}
+    @if (Auth::check() && Auth::user()->doctor)
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-outline card-primary">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h3 class="card-title">Calendario de reservas</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        {{-- <h1>{{Auth::user()->doctor->id}}</h1> --}}
+                        <table id="example1" class="table table-striped table-bordered table-hover table-sm">
+                            <thead style="background-color: #36ac3f; color:#ffffff">
+                                <tr>
+                                    <td style="text-align: center"><b>Nro</b></td>
+                                    <td style="text-align: center"><b>Usuario</b></td>
+                                    <td style="text-align: center"><b>Fechade de reserva</b></td>
+                                    <td style="text-align: center"><b>Hora de reserva</b></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $contador = 1; ?>
+                                @foreach ($eventos as $evento)
+                                    @if (Auth::user()->doctor->id == $evento->doctor_id)
+                                        <tr>
+                                            <td style="text-align: center">{{ $contador++ }}</td>
+                                            <td>{{ $evento->user->name }}</td>
+                                            <td style="text-align: center">
+                                                {{ \Carbon\Carbon::parse($evento->start)->format('Y-m-d') }}</td>
+                                            <td style="text-align: center">
+                                                {{ \Carbon\Carbon::parse($evento->start)->format('H:i') }}</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <script>
+                            $(function() {
+                                $("#example1").DataTable({
+                                    "pageLength": 5,
+                                    "language": {
+                                        "emptyTable": "No hay información",
+                                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Reservas",
+                                        "infoEmpty": "Mostrando 0 a 0 de 0 Reservas",
+                                        "infoFiltered": "(Filtrado de _MAX_ total Reservas)",
+                                        "infoPostFix": "",
+                                        "thousands": ",",
+                                        "lengthMenu": "Mostrar _MENU_ Reservas",
+                                        "loadingRecords": "Cargando...",
+                                        "processing": "Procesando...",
+                                        "search": "Buscador:",
+                                        "zeroRecords": "Sin resultados encontrados",
+                                        "paginate": {
+                                            "first": "Primero",
+                                            "last": "Ultimo",
+                                            "next": "Siguiente",
+                                            "previous": "Anterior"
+                                        }
+                                    },
+                                    "responsive": true,
+                                    "lengthChange": true,
+                                    "autoWidth": false,
+                                    buttons: [{
+                                            extend: 'collection',
+                                            text: 'Reportes',
+                                            orientation: 'landscape',
+                                            buttons: [{
+                                                text: 'Copiar',
+                                                extend: 'copy',
+                                            }, {
+                                                extend: 'pdf'
+                                            }, {
+                                                extend: 'csv'
+                                            }, {
+                                                extend: 'excel'
+                                            }, {
+                                                text: 'Imprimir',
+                                                extend: 'print'
+                                            }]
+                                        },
+                                        {
+                                            extend: 'colvis',
+                                            text: 'Visor de columnas',
+                                            collectionLayout: 'fixed three-column'
+                                        }
+                                    ],
+                                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 @endsection

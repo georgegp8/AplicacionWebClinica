@@ -20,6 +20,7 @@ class AdminController extends Controller
         $total_consultorios = Consultorio::count();
         $total_doctores = Doctor::count();
         $total_horarios = Horario::count();
+        $total_eventos = Event::count();
 
         $consultorios = Consultorio::all();
         $doctores = Doctor::all();
@@ -34,7 +35,8 @@ class AdminController extends Controller
             'total_horarios',
             'consultorios',
             'doctores',
-            'eventos'
+            'eventos',
+            'total_eventos'
         ));
     }
 

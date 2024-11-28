@@ -76,7 +76,25 @@ Route::get('/home', function () {
 // Admin Dashboard
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index')->middleware('auth');
 
-// Administración de Usuarios
+// Rutas para el admin - configuraciones
+Route::get('/admin/configuraciones', [App\Http\Controllers\ConfiguracioneController::class, 'index'])->name('admin.configuraciones.index')
+    ->middleware('auth', 'can:admin.configuraciones.index');
+Route::get('/admin/configuraciones/create', [App\Http\Controllers\ConfiguracioneController::class, 'create'])->name('admin.configuraciones.create')
+    ->middleware('auth', 'can:admin.configuraciones.create');
+Route::post('/admin/configuraciones/create', [App\Http\Controllers\ConfiguracioneController::class, 'store'])->name('admin.configuraciones.store')
+    ->middleware('auth', 'can:admin.configuraciones.store');
+Route::get('/admin/configuraciones/{id}', [App\Http\Controllers\ConfiguracioneController::class, 'show'])->name('admin.configuraciones.show')
+    ->middleware('auth', 'can:admin.configuraciones.show');
+Route::get('/admin/configuraciones/{id}/edit', [App\Http\Controllers\ConfiguracioneController::class, 'edit'])->name('admin.configuraciones.edit')
+    ->middleware('auth', 'can:admin.configuraciones.edit');
+Route::put('/admin/configuraciones/{id}', [App\Http\Controllers\ConfiguracioneController::class, 'update'])->name('admin.configuraciones.update')
+    ->middleware('auth', 'can:admin.configuraciones.update');
+Route::get('/admin/configuraciones/{id}/confirm-delete', [App\Http\Controllers\ConfiguracioneController::class, 'confirmDelete'])->name('admin.configuraciones.confirmDelete')
+->middleware('auth', 'can:admin.configuraciones.confirmDelete');
+Route::delete('/admin/configuraciones/{id}', [App\Http\Controllers\ConfiguracioneController::class, 'destroy'])->name('admin.configuraciones.destroy')
+->middleware('auth', 'admin.configuraciones.destroy');
+
+// Rutas para el admin - usuarios
 Route::get('/admin/usuarios', [App\Http\Controllers\UsuarioController::class, 'index'])->name('admin.usuarios.index')
     ->middleware('auth', 'can:admin.usuarios.index');
 Route::get('/admin/usuarios/create', [App\Http\Controllers\UsuarioController::class, 'create'])->name('admin.usuarios.create')
@@ -94,7 +112,7 @@ Route::get('/admin/usuarios/{id}/confirm-delete', [App\Http\Controllers\UsuarioC
 Route::delete('/admin/usuarios/{id}', [App\Http\Controllers\UsuarioController::class, 'destroy'])->name('admin.usuarios.destroy')
     ->middleware('auth', 'can:admin.usuarios.destroy');
 
-// Administración de Secretarias
+// Rutas para el admin - secretarias
 Route::get('/admin/secretarias', [App\Http\Controllers\SecretariaController::class, 'index'])->name('admin.secretarias.index')
     ->middleware('auth', 'can:admin.secretarias.index');
 Route::get('/admin/secretarias/create', [App\Http\Controllers\SecretariaController::class, 'create'])->name('admin.secretarias.create')
@@ -112,7 +130,7 @@ Route::get('/admin/secretarias/{id}/confirm-delete', [App\Http\Controllers\Secre
 Route::delete('/admin/secretarias/{id}', [App\Http\Controllers\SecretariaController::class, 'destroy'])->name('admin.secretarias.destroy')
     ->middleware('auth', 'can:admin.secretarias.destroy');
 
-// Administración de Pacientes
+// Rutas para el admin - pacientes
 Route::get('/admin/pacientes', [App\Http\Controllers\PacienteController::class, 'index'])->name('admin.pacientes.index')
     ->middleware('auth', 'can:admin.pacientes.index');
 Route::get('/admin/pacientes/create', [App\Http\Controllers\PacienteController::class, 'create'])->name('admin.pacientes.create')
@@ -130,7 +148,7 @@ Route::get('/admin/pacientes/{id}/confirm-delete', [App\Http\Controllers\Pacient
 Route::delete('/admin/pacientes/{id}', [App\Http\Controllers\PacienteController::class, 'destroy'])->name('admin.pacientes.destroy')
     ->middleware('auth', 'can:admin.pacientes.destroy');
 
-// Administración de Consultorios
+// Rutas para el admin - consultorios
 Route::get('/admin/consultorios', [App\Http\Controllers\ConsultorioController::class, 'index'])->name('admin.consultorios.index')
     ->middleware('auth', 'can:admin.consultorios.index');
 Route::get('/admin/consultorios/create', [App\Http\Controllers\ConsultorioController::class, 'create'])->name('admin.consultorios.create')
@@ -148,7 +166,7 @@ Route::get('/admin/consultorios/{id}/confirm-delete', [App\Http\Controllers\Cons
 Route::delete('/admin/consultorios/{id}', [App\Http\Controllers\ConsultorioController::class, 'destroy'])->name('admin.consultorios.destroy')
     ->middleware('auth', 'can:admin.consultorios.destroy');
 
-// Administración de Doctores
+// Rutas para el admin - doctores
 Route::get('/admin/doctores', [App\Http\Controllers\DoctorController::class, 'index'])->name('admin.doctores.index')
     ->middleware('auth', 'can:admin.doctores.index');
 Route::get('/admin/doctores/create', [App\Http\Controllers\DoctorController::class, 'create'])->name('admin.doctores.create')
@@ -166,7 +184,7 @@ Route::get('/admin/doctores/{id}/confirm-delete', [App\Http\Controllers\DoctorCo
 Route::delete('/admin/doctores/{id}', [App\Http\Controllers\DoctorController::class, 'destroy'])->name('admin.doctores.destroy')
     ->middleware('auth', 'can:admin.doctores.destroy');
 
-// Administración de Horarios
+// Rutas para el admin - horarios
 Route::get('/admin/horarios', [App\Http\Controllers\HorarioController::class, 'index'])->name('admin.horarios.index')
     ->middleware('auth', 'can:admin.horarios.index');
 Route::get('/admin/horarios/create', [App\Http\Controllers\HorarioController::class, 'create'])->name('admin.horarios.create')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Consultorio;
 use App\Models\Doctor;
+use App\Models\Event;
 use App\Models\Horario;
 use App\Models\Paciente;
 use App\Models\Secretaria;
@@ -22,6 +23,7 @@ class AdminController extends Controller
 
         $consultorios = Consultorio::all();
         $doctores = Doctor::all();
+        $eventos = Event::all();
 
         return view('admin.index',compact(
             'total_usuarios',
@@ -31,7 +33,8 @@ class AdminController extends Controller
             'total_doctores',
             'total_horarios',
             'consultorios',
-            'doctores'
+            'doctores',
+            'eventos'
         ));
     }
 }

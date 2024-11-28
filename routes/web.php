@@ -38,6 +38,8 @@ Route::get('/servicios/tratamientos', [ServiciosController::class, 'viewServicie
 Route::get('/web', [App\Http\Controllers\WebController::class, 'index'])->name('web.horario');
 //ajax
 Route::get('/consultorios/{id}', [App\Http\Controllers\WebController::class, 'cargar_datos_consultorio'])->name('cargar_datos_consultorio');
+Route::get('/cargar_reserva_doctores/{id}', [App\Http\Controllers\WebController::class,'cargar_reserva_doctores'])->name('cargar_reserva_doctores');
+Route::post('/admin/eventos/create', [App\Http\Controllers\EventController::class, 'store'])->name('admin.eventos.create');
 
 // Resultados y Testimonios
 Route::post('/resultados/cirugias', [TestimoniosController::class, 'store'])->name('cirugias.store');

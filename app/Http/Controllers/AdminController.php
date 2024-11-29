@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Configuracione;
 use App\Models\Consultorio;
 use App\Models\Doctor;
 use App\Models\Event;
@@ -21,6 +22,7 @@ class AdminController extends Controller
         $total_doctores = Doctor::count();
         $total_horarios = Horario::count();
         $total_eventos = Event::count();
+        $total_configuraciones = Configuracione::count();
 
         $consultorios = Consultorio::all();
         $doctores = Doctor::all();
@@ -36,7 +38,9 @@ class AdminController extends Controller
             'consultorios',
             'doctores',
             'eventos',
-            'total_eventos'
+            'total_eventos',
+            'total_configuraciones'
+
         ));
     }
 

@@ -92,7 +92,7 @@ Route::put('/admin/configuraciones/{id}', [App\Http\Controllers\ConfiguracioneCo
 Route::get('/admin/configuraciones/{id}/confirm-delete', [App\Http\Controllers\ConfiguracioneController::class, 'confirmDelete'])->name('admin.configuraciones.confirmDelete')
 ->middleware('auth', 'can:admin.configuraciones.confirmDelete');
 Route::delete('/admin/configuraciones/{id}', [App\Http\Controllers\ConfiguracioneController::class, 'destroy'])->name('admin.configuraciones.destroy')
-->middleware('auth', 'admin.configuraciones.destroy');
+->middleware('auth', 'can:admin.configuraciones.destroy');
 
 // Rutas para el admin - usuarios
 Route::get('/admin/usuarios', [App\Http\Controllers\UsuarioController::class, 'index'])->name('admin.usuarios.index')

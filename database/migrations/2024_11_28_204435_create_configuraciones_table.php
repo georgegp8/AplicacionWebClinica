@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('nombre');
-            $table->string('dirección');
+            $table->string('direccion');
             $table->string('telefono');
             $table->string('correo');
             $table->text('logo');

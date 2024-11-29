@@ -20,7 +20,7 @@
                     <div class="icon">
                         <i class="ion fas bi bi-file-person"></i>
                     </div>
-                    <a href="{{ 'admin/usuarios' }}" class="small-box-footer">Más información<i
+                    <a href="{{url('/admin/usuarios')}}" class="small-box-footer">Más información<i
                             class="fas bi bi-file-person"></i></a>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                     <div class="icon">
                         <i class="ion fas bi bi-person-circle"></i>
                     </div>
-                    <a href="{{ 'admin/secretarias' }}" class="small-box-footer">Más información<i
+                    <a href="{{url('/admin/secretarias')}}" class="small-box-footer">Más información<i
                             class="fas bi bi-file-person"></i></a>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                     <div class="icon">
                         <i class="ion fas bi bi-person-fill-check"></i>
                     </div>
-                    <a href="{{ 'admin/pacientes' }}" class="small-box-footer">Más información<i
+                    <a href="{{url('/admin/pacientes')}}" class="small-box-footer">Más información<i
                             class="fas bi bi-file-person"></i></a>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                     <div class="icon">
                         <i class="ion fas bi bi-building-fill-add"></i>
                     </div>
-                    <a href="{{ 'admin/consultorios' }}" class="small-box-footer">Más información<i
+                    <a href="{{url('/admin/consultorios')}}" class="small-box-footer">Más información<i
                             class="fas bi bi-file-person"></i></a>
                 </div>
             </div>
@@ -96,7 +96,7 @@
                     <div class="icon">
                         <i class="ion fas bi bi-person-lines-fill"></i>
                     </div>
-                    <a href="{{ 'admin/doctores' }}" class="small-box-footer">Más información<i
+                    <a href="{{url('/admin/doctores')}}" class="small-box-footer">Más información<i
                             class="fas bi bi-file-person"></i></a>
                 </div>
             </div>
@@ -115,32 +115,49 @@
                     <div class="icon">
                         <i class="ion fas bi bi-calendar2-week"></i>
                     </div>
-                    <a href="{{ 'admin/horarios' }}" class="small-box-footer">Más información<i
+                    <a href="{{url('/admin/horarios')}}" class="small-box-footer">Más información<i
                             class="fas bi bi-file-person"></i></a>
                 </div>
             </div>
         @endcan
 
         @can('admin.horarios.index')
-        {{-- Restringir acceso --}}
-        {{--     Tarjeta para contar reservas--}}
-        <div class="col-lg-3 col-6">
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h3>{{$total_eventos }}</h3>
+            {{-- Restringir acceso --}}
+            {{--     Tarjeta para contar reservas --}}
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>{{ $total_eventos }}</h3>
 
-                    <p>Reservas</p>
-                </div>
-                <div class="icon">
-                    <i class="ion fas bi bi-calendar2-check"></i>
-                </div>
-                <div class="small-box-footer"><i
-                    class="fas bi bi bi-calendar2-check"></i></div>
-{{--                 <a href="" class="small-box-footer"><i
+                        <p>Reservas</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion fas bi bi-calendar2-check"></i>
+                    </div>
+                    <div class="small-box-footer"><i class="fas bi bi bi-calendar2-check"></i></div>
+                    {{--                 <a href="" class="small-box-footer"><i
                         class="fas bi bi bi-calendar2-check"></i></a> --}}
+                </div>
             </div>
-        </div>
-    @endcan
+        @endcan
+
+        @can('admin.horarios.index')
+            {{-- Restringir acceso --}}
+            {{--     Tarjeta para contar configuraciones --}}
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-primary">
+                    <div class="inner">
+                        <h3>{{ $total_configuraciones }}</h3>
+
+                        <p>Reservas</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion fas bi bi bi-gear"></i>
+                    </div>
+                    <a href="{{url('/admin/configuraciones')}}" class="small-box-footer">Mas información<i class="fas bi bi bi-gear"></i></a>
+                </div>
+            </div>
+        @endcan
     </div>
 
     @can('cargar_datos_consultorio')
@@ -267,7 +284,8 @@
                     <div class="card-body">
                         <div class="row">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#exampleModal">
+                            <button type="button" class="btn btn-primary mr-2" data-toggle="modal"
+                                data-target="#exampleModal">
                                 Registrar cita médica
                             </button>
 
@@ -395,7 +413,7 @@
             </div>
         </div>
     @endcan
-    
+
     {{-- Verificar el usuario esta autenficado y es doctor --}}
     @if (Auth::check() && Auth::user()->doctor)
         <div class="row">

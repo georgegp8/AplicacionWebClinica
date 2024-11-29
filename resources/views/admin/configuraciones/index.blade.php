@@ -37,16 +37,17 @@
 						<tr>
 							<td style="text-align: center">{{$contador++}}</td>
 							<td>{{$configuracione->nombre}}</td>
-							<td>{{$configuracione->ubicacion}}</td>
-							<td>{{$configuracione->capacidad}}</td>
+							<td>{{$configuracione->direccion}}</td>
 							<td>{{$configuracione->telefono}}</td>
-							<td>{{$configuracione->especialidad}}</td>
-							<td>{{$configuracione->estado}}</td>
+							<td>{{$configuracione->correo}}</td>
+							<td style="text-align: center">
+								<img src="{{ url('storage/'.$configuracione->logo) }}" alt="logo" style="width: 100px; display: block; margin: auto;">
+							</td>
 							<td style="text-align: center">
 								<div class="btn-group" role="group" aria-label="Basic example">
-									<a href="{{url('admin/consultorios/'.$configuracione->id)}}" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
-									<a href="{{url('admin/consultorios/'.$configuracione->id.'/edit')}}" type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil"></i></a>
-									<a href="{{url('admin/consultorios/'.$configuracione->id.'/confirm-delete')}}" type="button" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
+									<a href="{{url('admin/configuraciones/'.$configuracione->id)}}" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
+									<a href="{{url('admin/configuraciones/'.$configuracione->id.'/edit')}}" type="button" class="btn btn-warning btn-sm"><i class="bi bi-pencil"></i></a>
+									<a href="{{url('admin/configuraciones/'.$configuracione->id.'/confirm-delete')}}" type="button" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
 								</div>
 							</td>
 						</tr>

@@ -8,7 +8,7 @@ use App\Models\Event;
 use App\Models\Horario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Validation\ValidationException;
 
 class EventController extends Controller
@@ -145,14 +145,14 @@ class EventController extends Controller
     }
 
     public function reportes(){
-/*         return view('admin.reservas.reportes'); */
+        return view('admin.reservas.reportes');
     }
 
     public function pdf(){
-/*         $configuracion = Configuracione::latest()->first();
+        $configuracion = Configuracione::latest()->first();
         $eventos = Event::all();
 
-        $pdf = \PDF::loadView('admin.reservas.pdf', compact('configuracion','eventos'));
+        $pdf = Pdf::loadView('admin.reservas.pdf', compact('configuracion','eventos'));
 
         // Incluir la numeración de páginas y el pie de página
         $pdf->output();
@@ -163,11 +163,11 @@ class EventController extends Controller
         $canvas->page_text(450, 800, "Fecha: " . \Carbon\Carbon::now()->format('d/m/Y')." - ".\Carbon\Carbon::now()->format('H:i:s'), null, 10, array(0,0,0));
 
 
-        return $pdf->stream(); */
+        return $pdf->stream('reporte_citas.pdf');
     }
 
     public function pdf_fechas(Request $request){
-/*         //$datos = request()->all();
+        //$datos = request()->all();
         //return response()->json($datos);
 
         $configuracion = Configuracione::latest()->first();
@@ -177,7 +177,7 @@ class EventController extends Controller
 
         $eventos = Event::whereBetween('start',[$fecha_inicio, $fecha_fin])->get();
 
-        $pdf = \PDF::loadView('admin.reservas.pdf_fechas', compact('configuracion','eventos','fecha_inicio','fecha_fin'));
+        $pdf = Pdf::loadView('admin.reservas.pdf_fechas', compact('configuracion','eventos','fecha_inicio','fecha_fin'));
 
         // Incluir la numeración de páginas y el pie de página
         $pdf->output();
@@ -188,6 +188,6 @@ class EventController extends Controller
         $canvas->page_text(450, 800, "Fecha: " . \Carbon\Carbon::now()->format('d/m/Y')." - ".\Carbon\Carbon::now()->format('H:i:s'), null, 10, array(0,0,0));
 
 
-        return $pdf->stream(); */
+        return $pdf->stream();
     }
 }

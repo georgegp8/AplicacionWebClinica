@@ -207,7 +207,7 @@ Route::delete('/admin/horarios/{id}', [App\Http\Controllers\HorarioController::c
 Route::get('/admin/horarios/consultorios/{id}', [App\Http\Controllers\HorarioController::class, 'cargar_datos_consultorio'])->name('admin.horarios.cargar_datos_consultorio')
 ->middleware('auth', 'can:admin.horarios.cargar_datos_consultorio');
 
-// Administración - Reservas - usuarios
+// Rutas para el usuario
 ///ajax
 Route::get('/consultorios/{id}', [App\Http\Controllers\WebController::class, 'cargar_datos_consultorio'])->name('cargar_datos_consultorio')
 ->middleware('auth', 'can:cargar_datos_consultorio');
@@ -217,3 +217,8 @@ Route::get('/admin/ver_reservas/{id}', [App\Http\Controllers\AdminController::cl
 Route::post('/admin/eventos/create', [App\Http\Controllers\EventController::class, 'store'])->name('admin.eventos.create')->middleware('auth', 'can:admin.eventos.create');
 Route::delete('/admin/eventos/destroy/{id}', [App\Http\Controllers\EventController::class, 'destroy'])->name('admin.eventos.destroy')
 ->middleware('auth', 'can:admin.eventos.destroy');
+
+//Rutas para las reservas
+Route::get('admin/reservas/reportes', [App\Http\Controllers\EventController::class, 'reportes'])->name('admin.reservas.reportes')->middleware('auth', 'can:admin.reservas.reportes');
+Route::get('admin/reservas/pdf', [App\Http\Controllers\EventController::class, 'pdf'])->name('admin.reservas.pdf')->middleware('auth', 'can:admin.reservas.pdf');
+Route::get('admin/reservas/pdf_fechas', [App\Http\Controllers\EventController::class, 'pdf_fechas'])->name('admin.reservas.pdf_fechas')->middleware('auth', 'can:admin.reservas.pdf_fechas');

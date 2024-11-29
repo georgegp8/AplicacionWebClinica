@@ -105,5 +105,11 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'ver_reservas'])->syncRoles([$admin, $usuario]);
         Permission::create(['name' => 'admin.eventos.create'])->syncRoles([$admin, $usuario]);
         Permission::create(['name' => 'admin.eventos.destroy'])->syncRoles([$admin, $usuario]);
+
+        //Rutas para las reservas
+        Permission::create(['name' => 'admin.reservas.reportes'])->syncRoles([$admin]);
+        Permission::create(['name' => 'admin.reservas.pdf'])->syncRoles([$admin]);
+        Permission::create(['name' => 'admin.reservas.pdf_fechas'])->syncRoles([$admin]);
+        
     }
 }

@@ -12,7 +12,9 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-					<a href="{{url('/admin/doctores/pdf')}}" class="btn btn-success"><i class="bi bi-printer"></i> Listado del personal médico</a>
+					<a href="{{url('/admin/doctores/pdf')}}" class="btn btn-success">
+                        <i class="bi bi-printer"></i> Listado del personal médico
+                    </a>
                 </div>
                 <!-- /.card-body -->
             </div>

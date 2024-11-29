@@ -47,14 +47,14 @@ class DatabaseSeeder extends Seeder
 
 
         User::create([
-            'name'=>'Doctor1',
+            'name'=>'Luis',
             'email'=>'doctor1@tecsup.edu.pe',
             'password'=>Hash::make('Tecsup2024')
         ])->assignRole('doctor');
 
         Doctor::create([
-            'nombres'=>'Doctor1',
-            'apellidos'=>'Swift',
+            'nombres'=>'Luis',
+            'apellidos'=>'Martinez',
             'telefono' => '900111951',
             'licencia_medica' => '02225556',
             'especialidad'=>'Rinoplastia',
@@ -63,13 +63,13 @@ class DatabaseSeeder extends Seeder
         
 
         User::create([
-            'name'=>'Doctor2',
+            'name'=>'Javier',
             'email'=>'doctor2@tecsup.edu.pe',
             'password'=>Hash::make('Tecsup2024')
         ])->assignRole('doctor');
 
         Doctor::create([
-            'nombres'=>'Doctor2',
+            'nombres'=>'Javier',
             'apellidos'=>'Barrientos',
             'telefono' => '900111999',
             'licencia_medica' => '01115556',
@@ -79,13 +79,13 @@ class DatabaseSeeder extends Seeder
 
 
         User::create([
-            'name'=>'Doctor3',
+            'name'=>'Fernando',
             'email'=>'doctor3@tecsup.edu.pe',
             'password'=>Hash::make('Tecsup2024')
         ])->assignRole('doctor');
 
         Doctor::create([
-            'nombres'=>'Doctor3',
+            'nombres'=>'Fernando',
             'apellidos'=>'Valdez',
             'telefono' => '900111088',
             'licencia_medica' => '01112226',

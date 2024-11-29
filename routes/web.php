@@ -173,6 +173,8 @@ Route::get('/admin/doctores/create', [App\Http\Controllers\DoctorController::cla
     ->middleware('auth', 'can:admin.doctores.create');
 Route::post('/admin/doctores/create', [App\Http\Controllers\DoctorController::class, 'store'])->name('admin.doctores.store')
     ->middleware('auth', 'can:admin.doctores.store');
+Route::get('/admin/doctores/reportes', [App\Http\Controllers\DoctorController::class, 'reportes'])->name('admin.doctores.reportes')->middleware('auth', 'can:admin.doctores.reportes');
+Route::get('/admin/doctores/pdf', [App\Http\Controllers\DoctorController::class, 'pdf'])->name('admin.doctores.pdf')->middleware('auth', 'can:admin.doctores.pdf');
 Route::get('/admin/doctores/{id}', [App\Http\Controllers\DoctorController::class, 'show'])->name('admin.doctores.show')
     ->middleware('auth', 'can:admin.doctores.show');
 Route::get('/admin/doctores/{id}/edit', [App\Http\Controllers\DoctorController::class, 'edit'])->name('admin.doctores.edit')
@@ -181,8 +183,8 @@ Route::put('/admin/doctores/{id}', [App\Http\Controllers\DoctorController::class
     ->middleware('auth', 'can:admin.doctores.update');
 Route::get('/admin/doctores/{id}/confirm-delete', [App\Http\Controllers\DoctorController::class, 'confirmDelete'])->name('admin.doctores.confirmDelete')
     ->middleware('auth', 'can:admin.doctores.confirmDelete');
-Route::delete('/admin/doctores/{id}', [App\Http\Controllers\DoctorController::class, 'destroy'])->name('admin.doctores.destroy')
-    ->middleware('auth', 'can:admin.doctores.destroy');
+Route::delete('/admin/doctores/{id}', [App\Http\Controllers\DoctorController::class, 'destroy'])->name('admin.doctores.destroy')->middleware('auth', 'can:admin.doctores.destroy');
+
 
 // Rutas para el admin - horarios
 Route::get('/admin/horarios', [App\Http\Controllers\HorarioController::class, 'index'])->name('admin.horarios.index')

@@ -25,7 +25,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            font-size: 10pt;
+            font-size: 12pt;
         }
 
         /* Estilos para la tabla de datos del personal médico */

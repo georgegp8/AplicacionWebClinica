@@ -8,6 +8,7 @@ use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class DoctorController extends Controller
 {
@@ -17,7 +18,7 @@ class DoctorController extends Controller
     public function index()
     {
         $doctores = Doctor::with('user')->get();
-        return view('admin.doctores.index',compact('doctores'));
+        return view('admin.doctores.index', compact('doctores'));
     }
 
     /**
@@ -36,13 +37,13 @@ class DoctorController extends Controller
         //$datos = request()->all();
         //return response()->json($datos);
         $request->validate([
-            'nombres'=>'required|string|max:255',
-            'apellidos'=>'required|string|max:255',
+            'nombres' => 'required|string|max:255',
+            'apellidos' => 'required|string|max:255',
             'telefono' => 'required|digits:9',
             'licencia_medica' => 'required|digits:8',
-            'especialidad'=>'required|string|max:40',
-            'email'=>'required|max:250|unique:users',
-            'password'=>'required|max:250|confirmed',
+            'especialidad' => 'required|string|max:40',
+            'email' => 'required|max:250|unique:users',
+            'password' => 'required|max:250|confirmed',
         ]);
 
         $usuario = new User();
@@ -63,8 +64,8 @@ class DoctorController extends Controller
         $usuario->assignRole('doctor');
 
         return redirect()->route('admin.doctores.index')
-        ->with('mensaje','Se registro el doctor de forma correcta ')
-        ->with('icono','success');
+            ->with('mensaje', 'Se registro el doctor de forma correcta ')
+            ->with('icono', 'success');
     }
 
     /**
@@ -73,7 +74,7 @@ class DoctorController extends Controller
     public function show($id)
     {
         $doctor = Doctor::findOrFail($id);
-        return view('admin.doctores.show',compact('doctor'));
+        return view('admin.doctores.show', compact('doctor'));
     }
 
     /**
@@ -82,7 +83,7 @@ class DoctorController extends Controller
     public function edit($id)
     {
         $doctor = Doctor::findOrFail($id);
-        return view('admin.doctores.edit',compact('doctor'));
+        return view('admin.doctores.edit', compact('doctor'));
     }
 
     /**
@@ -93,13 +94,13 @@ class DoctorController extends Controller
         $doctor = Doctor::find($id);
 
         $request->validate([
-            'nombres'=>'required|string|max:255',
-            'apellidos'=>'required|string|max:255',
+            'nombres' => 'required|string|max:255',
+            'apellidos' => 'required|string|max:255',
             'telefono' => 'required|digits:9',
             'licencia_medica' => 'required|digits:8',
-            'especialidad'=>'required|string|max:40',
-            'email'=>'required|max:250|unique:users,email,'.$doctor->user->id,
-            'password'=>'required|max:250|confirmed',
+            'especialidad' => 'required|string|max:40',
+            'email' => 'required|max:250|unique:users,email,' . $doctor->user->id,
+            'password' => 'required|max:250|confirmed',
         ]);
 
 
@@ -119,22 +120,23 @@ class DoctorController extends Controller
         $usuario->save();
 
         return redirect()->route('admin.doctores.index')
-        ->with('mensaje','Se actualizó el doctor de forma correcta ')
-        ->with('icono','success');
+            ->with('mensaje', 'Se actualizó el doctor de forma correcta ')
+            ->with('icono', 'success');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function confirmDelete($id){
+    public function confirmDelete($id)
+    {
         $doctor = Doctor::findOrFail($id);
-        return view('admin.doctores.delete',compact('doctor'));
+        return view('admin.doctores.delete', compact('doctor'));
     }
 
     public function destroy($id)
     {
         $doctor = Doctor::find($id);
-        
+
         //Eliminar al usuario asociado
         $user = $doctor->user;
         $user->delete();
@@ -143,11 +145,12 @@ class DoctorController extends Controller
         $doctor->delete();
 
         return redirect()->route('admin.doctores.index')
-        ->with('mensaje','Se eliminó al doctor de forma correcta ')
-        ->with('icono','success');
+            ->with('mensaje', 'Se eliminó al doctor de forma correcta ')
+            ->with('icono', 'success');
     }
 
-    public function reportes(){
+    public function reportes()
+    {
         return view('admin.doctores.reportes');
     }
 
@@ -162,6 +165,14 @@ class DoctorController extends Controller
 
         // Cargar la vista y generar el PDF
         $pdf = Pdf::loadView('admin.doctores.pdf', compact('configuracion', 'doctores'));
+
+        // Incluir la numeración de páginas y el pie de página
+        $pdf->output();
+        $dompdf = $pdf->getDomPDF();
+        $canvas = $dompdf->getCanvas();
+        $canvas->page_text(20, 800, "Impreso por: ".Auth::user()->email, null, 10, array(0, 0, 0));
+        $canvas->page_text(270, 800, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 10, array(0, 0, 0));
+        $canvas->page_text(450, 800, "Fecha: " . \Carbon\Carbon::now()->format(format: 'd/m/Y')." - ".\Carbon\Carbon::now()->format(format: 'H:i:s'), null, 10, array(0, 0, 0));
 
         // Retornar el PDF generado en el navegador
         return $pdf->stream('listado_doctores.pdf');

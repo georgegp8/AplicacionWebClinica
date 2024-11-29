@@ -284,6 +284,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </li>
                         @endcan
 
+                        @can('admin.usuarios.index')
+                        {{-- Restringir vista --}}
+                        {{--         Navegación Reservas       --}}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas bi bi-calendar2-check"></i>
+                                <p>
+                                    Reservas
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ url('admin/reservas/reportes') }}" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Reportes</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    @endcan
+
                         {{--         Navegación Cierre de sesión      --}}
                         <li class="nav-item">
                             <a href="{{ route('logout') }}" class="nav-link" style="background-color: #a9200e"

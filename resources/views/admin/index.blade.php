@@ -149,7 +149,7 @@
                     <div class="inner">
                         <h3>{{ $total_configuraciones }}</h3>
 
-                        <p>Reservas</p>
+                        <p>Configuraciones</p>
                     </div>
                     <div class="icon">
                         <i class="ion fas bi bi bi-gear"></i>

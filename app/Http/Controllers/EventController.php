@@ -9,7 +9,11 @@ use App\Models\Horario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Structures\ArbolEventos;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
+
+
 
 class EventController extends Controller
 {
@@ -38,52 +42,52 @@ class EventController extends Controller
         //return response()->json($datos);
 
         $request->validate([
-            'fecha_reserva'=>'required|date',
-            'hora_reserva'=>'required|date_format:H:i',
+            'fecha_reserva' => 'required|date',
+            'hora_reserva' => 'required|date_format:H:i',
         ]);
 
         $doctor = Doctor::find($request->doctor_id);
         $fecha_reserva = $request->fecha_reserva;
-        $hora_reserva = $request->hora_reserva.':00';
+        $hora_reserva = $request->hora_reserva . ':00';
 
-        $dia = date('l',strtotime($fecha_reserva));
+        $dia = date('l', strtotime($fecha_reserva));
         $dia_de_reserva = $this->traducir_dia($dia);
 
         //valida si existe el horario del doctor
-        $horarios = Horario::where('doctor_id',$doctor->id)
-                    ->where('dia',$dia_de_reserva)
-                    ->where('hora_inicio','<=',$hora_reserva)
-                    ->where('hora_final','>',$hora_reserva)
-                    ->exists();
+        $horarios = Horario::where('doctor_id', $doctor->id)
+            ->where('dia', $dia_de_reserva)
+            ->where('hora_inicio', '<=', $hora_reserva)
+            ->where('hora_final', '>', $hora_reserva)
+            ->exists();
 
-        if(!$horarios){
+        if (!$horarios) {
             return redirect()->back()->with([
                 'mensaje' => 'El doctor no esta disponible en ese horario.',
                 'icono' => 'error',
-                'hora_reserva'=> 'El doctor no esta disponible en ese horario.',
+                'hora_reserva' => 'El doctor no esta disponible en ese horario.',
             ]);
         }
 
-        $fecha_hora_reserva = $fecha_reserva." ".$hora_reserva;
+        $fecha_hora_reserva = $fecha_reserva . " " . $hora_reserva;
 
         /// valida si existen eventos duplicado
-        $eventos_duplicados = Event::where('doctor_id',$doctor->id)
-                              ->where('start', $fecha_hora_reserva)
-                              ->exists();
+        $eventos_duplicados = Event::where('doctor_id', $doctor->id)
+            ->where('start', $fecha_hora_reserva)
+            ->exists();
 
-        if($eventos_duplicados){
+        if ($eventos_duplicados) {
             return redirect()->back()->with([
                 'mensaje' => 'Ya existe una reserva con el mismo doctor en esa fecha y hora.',
                 'icono' => 'error',
-                'hora_reserva'=> 'Ya existe una reserva con el mismo doctor en esa fecha y hora.',
+                'hora_reserva' => 'Ya existe una reserva con el mismo doctor en esa fecha y hora.',
             ]);
         }
 
 
         $evento = new Event();
-        $evento->title = $request->hora_reserva." ".$doctor->especialidad;
-        $evento->start = $request->fecha_reserva." ".$hora_reserva;
-        $evento->end = $request->fecha_reserva." ".$hora_reserva;
+        $evento->title = $request->hora_reserva . " " . $doctor->especialidad;
+        $evento->start = $request->fecha_reserva . " " . $hora_reserva;
+        $evento->end = $request->fecha_reserva . " " . $hora_reserva;
         $evento->color = '#e82216';
         $evento->user_id = Auth::user()->id;
         $evento->doctor_id  = $request->doctor_id;
@@ -91,13 +95,13 @@ class EventController extends Controller
         $evento->save();
 
         return redirect()->route('admin.index')
-            ->with('mensaje','Se registro la reserva de la cita medica la manera correcta')
-            ->with('icono','success');
-
+            ->with('mensaje', 'Se registro la reserva de la cita medica la manera correcta')
+            ->with('icono', 'success');
     }
 
-    private function traducir_dia($dia){
-        $dias=[
+    private function traducir_dia($dia)
+    {
+        $dias = [
             'Monday' => 'LUNES',
             'Tuesday' => 'MARTES',
             'Wednesday' => 'MIERCOLES',
@@ -106,7 +110,7 @@ class EventController extends Controller
             'Saturday' => 'SABADO',
             'Sunday' => 'DOMINGO',
         ];
-        return $dias[$dia]??$dias;
+        return $dias[$dia] ?? $dias;
     }
     /**
      * Display the specified resource.
@@ -144,29 +148,32 @@ class EventController extends Controller
         ]);
     }
 
-    public function reportes(){
+    public function reportes()
+    {
         return view('admin.reservas.reportes');
     }
 
-    public function pdf(){
+    public function pdf()
+    {
         $configuracion = Configuracione::latest()->first();
         $eventos = Event::all();
 
-        $pdf = Pdf::loadView('admin.reservas.pdf', compact('configuracion','eventos'));
+        $pdf = Pdf::loadView('admin.reservas.pdf', compact('configuracion', 'eventos'));
 
         // Incluir la numeración de páginas y el pie de página
         $pdf->output();
         $dompdf = $pdf->getDomPDF();
         $canvas = $dompdf->getCanvas();
-        $canvas->page_text(20, 800, "Impreso por: ".Auth::user()->email, null, 10, array(0,0,0));
-        $canvas->page_text(270, 800, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 10, array(0,0,0));
-        $canvas->page_text(450, 800, "Fecha: " . \Carbon\Carbon::now()->format('d/m/Y')." - ".\Carbon\Carbon::now()->format('H:i:s'), null, 10, array(0,0,0));
+        $canvas->page_text(20, 800, "Impreso por: " . Auth::user()->email, null, 10, array(0, 0, 0));
+        $canvas->page_text(270, 800, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 10, array(0, 0, 0));
+        $canvas->page_text(450, 800, "Fecha: " . \Carbon\Carbon::now()->format('d/m/Y') . " - " . \Carbon\Carbon::now()->format('H:i:s'), null, 10, array(0, 0, 0));
 
 
         return $pdf->stream('reporte_citas.pdf');
     }
 
-    public function pdf_fechas(Request $request){
+    public function pdf_fechas(Request $request)
+    {
         //$datos = request()->all();
         //return response()->json($datos);
 
@@ -175,19 +182,36 @@ class EventController extends Controller
         $fecha_inicio = $request->input('fecha_inicio');
         $fecha_fin = $request->input('fecha_fin');
 
-        $eventos = Event::whereBetween('start',[$fecha_inicio, $fecha_fin])->get();
+        $eventos = Event::whereBetween('start', [$fecha_inicio, $fecha_fin])->get();
 
-        $pdf = Pdf::loadView('admin.reservas.pdf_fechas', compact('configuracion','eventos','fecha_inicio','fecha_fin'));
+        $pdf = Pdf::loadView('admin.reservas.pdf_fechas', compact('configuracion', 'eventos', 'fecha_inicio', 'fecha_fin'));
 
         // Incluir la numeración de páginas y el pie de página
         $pdf->output();
         $dompdf = $pdf->getDomPDF();
         $canvas = $dompdf->getCanvas();
-        $canvas->page_text(20, 800, "Impreso por: ".Auth::user()->email, null, 10, array(0,0,0));
-        $canvas->page_text(270, 800, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 10, array(0,0,0));
-        $canvas->page_text(450, 800, "Fecha: " . \Carbon\Carbon::now()->format('d/m/Y')." - ".\Carbon\Carbon::now()->format('H:i:s'), null, 10, array(0,0,0));
+        $canvas->page_text(20, 800, "Impreso por: " . Auth::user()->email, null, 10, array(0, 0, 0));
+        $canvas->page_text(270, 800, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 10, array(0, 0, 0));
+        $canvas->page_text(450, 800, "Fecha: " . \Carbon\Carbon::now()->format('d/m/Y') . " - " . \Carbon\Carbon::now()->format('H:i:s'), null, 10, array(0, 0, 0));
 
 
         return $pdf->stream();
+    }
+
+    public function notificarEventosProximos()
+    {
+        $eventos = Event::all();
+        $arbol = new ArbolEventos();
+
+        foreach ($eventos as $evento) {
+            $arbol->insertar($evento);
+        }
+
+        $eventosCercanos = $arbol->obtenerCercanos(1); // Buscar eventos dentro de 1 día
+
+        foreach ($eventosCercanos as $evento) {
+            Mail::to($evento->user->email)->send(new \App\Mail\NotificacionEvento($evento));
+            echo "Notificación enviada para el evento ID: {$evento->id}\n";
+        }
     }
 }

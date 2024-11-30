@@ -20,4 +20,5 @@ class Event extends Model
     public function consultorio(){
         return $this->belongsTo(Consultorio::class);
     }
+    
 }

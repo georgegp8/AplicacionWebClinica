@@ -8,6 +8,10 @@ use App\Http\Controllers\ReservasController;
 use App\Http\Controllers\ResultadoController;
 use App\Http\Controllers\TestimoniosController;
 use App\Http\Controllers\CitasController;
+use App\Mail\NotificacionEvento;
+use Illuminate\Support\Facades\Mail;
+use App\Models\Event;
+use App\Structures\ArbolEventos;
 
 /* // Página principal
 Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('index'); */

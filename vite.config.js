@@ -11,6 +11,6 @@ export default defineConfig({
             ],
             refresh: true,
         }),
-        vue(), // Agregar el soporte para Vue
+        vue() // Asegúrate de que el plugin de Vue esté aquí
     ],
 });

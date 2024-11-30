@@ -1,7 +1,6 @@
 @include('constantes.head')
 
 <body>
-
     <div x-data="{ loading: true, content: false }" x-init="setTimeout(() => { loading = false;
         content = true; }, 1000);
     $nextTick(() => {
@@ -12,7 +11,7 @@
             stagger: 0.3
         });
     })">
-        <div x-show="loading" class="loader fixed inset-0 flex justify-center items-center bg-teal-700 z-50"
+        <div x-show="loading" class="loader fixed inset-0 flex justify-center items-center bg-teal-700/80 z-50"
             x-transition:leave="transition ease-in-out duration-500" x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0">
             <svg class="h-[160px] w-[210px] stroke-[0.4px] stroke-white fill-none" viewBox="0 0 51 50"
@@ -34,21 +33,43 @@
                 data-bg="url('{{ asset('images/reservas/1frame/back.webp') }}')">
                 <div class="w-full h-full bg-gradient-to-r from-teal-100 via-transparent to-teal-800">
                     @include('constantes.header')
-                    <div
-                        class="w-full h-[100px] flex justify-center items-center text-white gap-x-10 max-sm:h-[70px] max-sm:items-end">
-                        <a href="/reserva/cita" class="text-5xl leading-none  max-sm:text-4xl">RESERVAS</a>
-                        <a href="/reserva/pago" class="text-5xl leading-none  max-sm:text-4xl">PAGOS</a>
-                    </div>
-                    <div class="flex justify-center items-center  p-10">
+
+                    <div class="flex justify-center items-center  p-10 ">
+
                         @yield('content')
+
                     </div>
 
                 </div>
             </div>
 
             @include('constantes.footer')
-            @vite('resources/js/app.js')
 
+
+            <div x-show="content" x-cloak x-transition:enter="transition ease-in-out duration-500"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="content">
+
+                <!-- contenido -->
+                <div class=" w-full bg-cover bg-center relative lazyload"
+                    data-bg="url('{{ asset('images/reservas/1frame/back.webp') }}')">
+                    <div class="w-full h-full bg-gradient-to-r from-teal-100 via-transparent to-teal-800">
+                        @include('constantes.header')
+                        <div
+                            class="w-full h-[100px] flex justify-center items-center text-white gap-x-10 max-sm:h-[70px] max-sm:items-end">
+                            <a href="/reserva/cita" class="text-5xl leading-none  max-sm:text-4xl">RESERVAS</a>
+                            <a href="/reserva/pago" class="text-5xl leading-none  max-sm:text-4xl">PAGOS</a>
+                        </div>
+                        <div class="flex justify-center items-center  p-10">
+                            @yield('content')
+                        </div>
+
+                    </div>
+                </div>
+
+                @include('constantes.footer')
+                @vite('resources/js/app.js')
+
+            </div>
         </div>
     </div>
     <!-- Cargar librería LazyLoad optimizada -->
@@ -61,7 +82,7 @@
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible-element');
                         observer.unobserve(entry
-                        .target); // Deja de observar el elemento después de la animación
+                            .target); // Deja de observar el elemento después de la animación
                     }
                 });
             }, {

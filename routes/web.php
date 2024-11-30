@@ -12,11 +12,10 @@ use App\Mail\NotificacionEvento;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Event;
 use App\Structures\ArbolEventos;
+use App\Http\Controllers\PagoController;
 
 /* // Página principal
 Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('index'); */
-
-
 
 // Perfil de usuario (Rutas protegidas)
 Route::middleware('auth')->group(function () {
@@ -59,16 +58,17 @@ Route::get('/map', function () {
 });
 
 // Pagos
-Route::get('/reserva/pago', function () {
+Route::get('/reservas/pago', function () {
     return view('reservas.pago');
 })->name('reserva.pago');
-Route::post('/reserva/pago', function () {
-    return response()->json(['message' => 'Pago procesado correctamente']);
-});
+Route::post('/citas/{codigoPago}/pagar', [PagoController::class, 'actualizarEstadoPago']);
 
 // Citas
 Route::get('/reserva/cita', [CitasController::class, 'index'])->name('reserva.cita');
 Route::post('/reserva/cita', [CitasController::class, 'store'])->name('reserva.cita');
+
+Route::get('/reserva/pago', [PagoController::class, 'index'])->name('reserva.pago');
+Route::post('/reserva/pago', [PagoController::class, 'store'])->name('reserva.pago');
 
 // Autenticación (Laravel Auth)
 Auth::routes();
@@ -94,9 +94,9 @@ Route::get('/admin/configuraciones/{id}/edit', [App\Http\Controllers\Configuraci
 Route::put('/admin/configuraciones/{id}', [App\Http\Controllers\ConfiguracioneController::class, 'update'])->name('admin.configuraciones.update')
     ->middleware('auth', 'can:admin.configuraciones.update');
 Route::get('/admin/configuraciones/{id}/confirm-delete', [App\Http\Controllers\ConfiguracioneController::class, 'confirmDelete'])->name('admin.configuraciones.confirmDelete')
-->middleware('auth', 'can:admin.configuraciones.confirmDelete');
+    ->middleware('auth', 'can:admin.configuraciones.confirmDelete');
 Route::delete('/admin/configuraciones/{id}', [App\Http\Controllers\ConfiguracioneController::class, 'destroy'])->name('admin.configuraciones.destroy')
-->middleware('auth', 'can:admin.configuraciones.destroy');
+    ->middleware('auth', 'can:admin.configuraciones.destroy');
 
 // Rutas para el admin - usuarios
 Route::get('/admin/usuarios', [App\Http\Controllers\UsuarioController::class, 'index'])->name('admin.usuarios.index')
@@ -209,17 +209,17 @@ Route::delete('/admin/horarios/{id}', [App\Http\Controllers\HorarioController::c
     ->middleware('auth', 'can:admin.horarios.destroy');
 // ajax
 Route::get('/admin/horarios/consultorios/{id}', [App\Http\Controllers\HorarioController::class, 'cargar_datos_consultorio'])->name('admin.horarios.cargar_datos_consultorio')
-->middleware('auth', 'can:admin.horarios.cargar_datos_consultorio');
+    ->middleware('auth', 'can:admin.horarios.cargar_datos_consultorio');
 
 // Rutas para el usuario
 ///ajax
 Route::get('/consultorios/{id}', [App\Http\Controllers\WebController::class, 'cargar_datos_consultorio'])->name('cargar_datos_consultorio');
-Route::get('/cargar_reserva_doctores/{id}', [App\Http\Controllers\WebController::class,'cargar_reserva_doctores'])->name('cargar_reserva_doctores')
-->middleware('auth', 'can:cargar_reserva_doctores');
-Route::get('/admin/ver_reservas/{id}', [App\Http\Controllers\AdminController::class,'ver_reservas'])->name('ver_reservas')->middleware('auth', 'can:ver_reservas');
+Route::get('/cargar_reserva_doctores/{id}', [App\Http\Controllers\WebController::class, 'cargar_reserva_doctores'])->name('cargar_reserva_doctores')
+    ->middleware('auth', 'can:cargar_reserva_doctores');
+Route::get('/admin/ver_reservas/{id}', [App\Http\Controllers\AdminController::class, 'ver_reservas'])->name('ver_reservas')->middleware('auth', 'can:ver_reservas');
 Route::post('/admin/eventos/create', [App\Http\Controllers\EventController::class, 'store'])->name('admin.eventos.create')->middleware('auth', 'can:admin.eventos.create');
 Route::delete('/admin/eventos/destroy/{id}', [App\Http\Controllers\EventController::class, 'destroy'])->name('admin.eventos.destroy')
-->middleware('auth', 'can:admin.eventos.destroy');
+    ->middleware('auth', 'can:admin.eventos.destroy');
 
 //Rutas para las reservas
 Route::get('admin/reservas/reportes', [App\Http\Controllers\EventController::class, 'reportes'])->name('admin.reservas.reportes')->middleware('auth', 'can:admin.reservas.reportes');

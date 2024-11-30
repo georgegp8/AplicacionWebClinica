@@ -1,4 +1,4 @@
-<div x-data="{ isMenuOpen: false, isServicesOpen: false, isResultOpen: false }" x-init="window.addEventListener('resize', () => {
+<div x-data="{ isMenuOpen: false, isServicesOpen: false, isResultOpen: false, isReservasOpen: false, isSubMenuOpen: false, isSubMenuROpen: false, isSubMenuREOpen: false }" x-init="window.addEventListener('resize', () => {
     if (window.innerWidth > 1370) {
         isMenuOpen = false;
     }
@@ -31,7 +31,7 @@
                     <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/">INICIO</a></li>
                     <li class="relative text-gray-700 hover:text-gray-500 text-lg" @mouseenter="isServicesOpen = true"
                         @mouseleave="isServicesOpen = false">
-                        <a href="">SERVICIOS</a>
+                        <a href="{{ route('servicios.cirugias') }}">SERVICIOS</a>
 
                         <!-- Submenu -->
                         <ul x-show="isServicesOpen" x-transition:enter="transition ease-out duration-200 transform"
@@ -51,7 +51,7 @@
                     </li>
                     <li class="relative text-gray-700 hover:text-gray-500 text-lg" @mouseenter="isResultOpen = true"
                         @mouseleave="isResultOpen = false">
-                        <a href="">RESULTADOS</a>
+                        <a href="{{ route('resultados.cirugias') }}">RESULTADOS</a>
 
                         <!-- Submenu -->
                         <ul x-show="isResultOpen" x-transition:enter="transition ease-out duration-200 transform"
@@ -69,7 +69,26 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/reserva/cita">RESERVAS</a></li>
+                    <li class="relative text-gray-700 hover:text-gray-500 text-lg" @mouseenter="isReservasOpen = true"
+                        @mouseleave="isReservasOpen = false">
+                        <a href="{{ route('reserva.cita') }}">RESERVAS</a>
+
+                        <!-- Submenu -->
+                        <ul x-show="isReservasOpen" x-transition:enter="transition ease-out duration-200 transform"
+                            x-transition:enter-start="opacity-0 translate-y-2"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition ease-in duration-150 transform"
+                            x-transition:leave-start="opacity-100 translate-y-0"
+                            x-transition:leave-end="opacity-0 translate-y-2"
+                            class="absolute left-0 mt-2 w-40  bg-white  backdrop-blur-md  shadow-lg rounded-md py-2">
+                            <li class="px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-500">
+                                <a href="/reserva/cita">Solicitar Citas</a>
+                            </li>
+                            <li class="px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-500">
+                                <a href="/reserva/pago">Pago</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/nosotros">NOSOTROS</a></li>
                     <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/web">HORARIOS</a></li>
                 </div>
@@ -81,7 +100,8 @@
                     </li>
 
                     <li class="cursor-pointer hidden max-xl:flex max-xl:items-center flex-wrap">
-                        <button class="h-10 " @click="isMenuOpen = !isMenuOpen">
+                        <button class="h-10 "
+                            @click="isMenuOpen = !isMenuOpen ; isSubMenuOpen = false; isSubMenuROpen = false ; isSubMenuREOpen = false">
                             <svg x-show="!isMenuOpen" class="h-10 w-10  fill-teal-800 max-md:h-8" viewBox="0 0 12 10"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -100,24 +120,26 @@
         </div>
     </nav>
 
-    <div x-show="isMenuOpen" x-transition:enter="transition ease-out duration-300"
+    <div x-show="isMenuOpen" x-init="$watch('isMenuOpen', value => { if (!value) { isSubMenuOpen = false;
+            isSubMenuROpen = false;
+            isSubMenuREOpen = false; } })" x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
         x-transition:leave="transition ease-in duration-0" x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 -translate-y-4" class="relative z-40">
-        <ul class="max-xl:w-11/12 flex justify-end max-sm:w-[95.9%]" x-data="{ isSubMenuOpen: false }">
-            <div class="w-[255px] h-[300px] content-around flex pl-4 flex-wrap bg-white max-sm:w-[200px] backdrop-blur-md"
-                x-data="{ isSubMenuOpen: false, isSubMenuROpen: false }">
+        <ul class="max-xl:w-11/12 flex justify-end max-sm:w-[95.9%]">
+            <div class="w-[255px] py-2 gap-y-3 h-auto content-around flex pl-4 flex-wrap bg-white max-sm:w-[200px] backdrop-blur-md"
+                x-data="{}">
                 <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="/">INICIO</a></li>
 
                 <!-- Submenú Servicios -->
                 <li class="text-gray-700 hover:text-gray-500 text-lg w-full"
-                    @click="isSubMenuOpen = !isSubMenuOpen; isSubMenuROpen = false">
-                    <a href="#">SERVICIOS</a>
+                    @click="isSubMenuOpen = !isSubMenuOpen; isSubMenuROpen = false; isSubMenuREOpen = false">
+                    <h2 class="cursor-pointer">SERVICIOS</h2>
 
-                    <!-- Submenú con animación personalizada -->
-                    <ul :class="isSubMenuOpen ? 'show-animation' : 'hide-animation'" class="pl-4 overflow-hidden">
-                        <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/servicios/cirugias">Cirugías</a>
-                        </li>
+                    <ul :class="isSubMenuOpen ? 'menu-expanded menu-transition' : 'menu-collapsed menu-transition_leave'"
+                        class="pl-4">
+                        <li class="text-gray-700 hover:text-gray-500 text-lg"><a
+                                href="/servicios/cirugias">Cirugías</a></li>
                         <li class="text-gray-700 hover:text-gray-500 text-lg"><a
                                 href="/servicios/tratamientos">Tratamientos</a></li>
                     </ul>
@@ -125,26 +147,38 @@
 
                 <!-- Submenú Resultados -->
                 <li class="text-gray-700 hover:text-gray-500 text-lg w-full"
-                    @click="isSubMenuROpen = !isSubMenuROpen; isSubMenuOpen = false">
-                    <a href="#">RESULTADOS</a>
+                    @click="isSubMenuROpen = !isSubMenuROpen; isSubMenuOpen = false; isSubMenuREOpen = false">
+                    <h2 class="cursor-pointer">RESULTADOS</h2>
 
-                    <!-- Submenú con animación personalizada -->
-                    <ul :class="isSubMenuROpen ? 'show-animation' : 'hide-animation'" class="pl-4 overflow-hidden">
+                    <ul :class="isSubMenuROpen ? 'menu-expanded menu-transition' : 'menu-collapsed menu-transition_leave'"
+                        class="pl-4">
                         <li class="text-gray-700 hover:text-gray-500 text-lg"><a
                                 href="/resultados/cirugias">Cirugías</a></li>
-                        <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/resultados">Tratamientos</a>
-                        </li>
+                        <li class="text-gray-700 hover:text-gray-500 text-lg"><a
+                                href="/resultados/tratamientos">Tratamientos</a></li>
+                    </ul>
+                </li>
+
+                <!-- Submenú Reservas -->
+                <li class="text-gray-700 hover:text-gray-500 text-lg w-full"
+                    @click="isSubMenuREOpen = !isSubMenuREOpen; isSubMenuOpen = false; isSubMenuROpen = false">
+                    <h2 class="cursor-pointer">RESERVAS</h2>
+
+                    <ul :class="isSubMenuREOpen ? 'menu-expanded menu-transition' : 'menu-collapsed menu-transition_leave'"
+                        class="pl-4">
+                        <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/reservas/cita">Solicitar
+                                Cita</a></li>
+                        <li class="text-gray-700 hover:text-gray-500 text-lg"><a href="/reservas/pago">Pago</a></li>
                     </ul>
                 </li>
 
 
-                <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="/reserva/cita">RESERVAS</a></li>
                 <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="/nosotros">NOSOTROS</a></li>
                 <li class="text-gray-700 hover:text-gray-500 text-lg w-full"><a href="">SISTEMA</a></li>
 
                 <li
                     class="bg-teal-300 w-40 h-10 flex justify-center items-center hover:bg-teal-200 ease-in delay-100 duration-75 text-gray-700 hover:text-gray-500 text-lg max-md:text-[17px] max-md:w-[150px]">
-                    <a href="" class="">INICIAR SESIÓN</a>
+                    <a href="{{ url('login') }}" class="">INICIAR SESIÓN</a>
                 </li>
             </div>
         </ul>

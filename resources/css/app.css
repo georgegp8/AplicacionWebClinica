@@ -4,6 +4,44 @@
 
 
 @layer components {
+
+    .procedure-selected {
+        transform: scale(1.05); /* Escala al 105% */
+        background-color: #14b8a6; /* Teal-500 */
+        color: white; /* Texto blanco */
+        transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    }
+    
+    .procedure-unselected {
+        transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    }
+/* Transición personalizada */
+.menu-transition {
+    transition: all 1s ease-in-out;
+    overflow: hidden; /* Necesario para ocultar contenido durante la transición */
+    max-height: 0; /* Altura inicial (colapsada) */
+}
+.menu-transition_leave {
+    transition: all .5s ease-in-out;
+    overflow: hidden; /* Necesario para ocultar contenido durante la transición */
+    max-height: 0; /* Altura inicial (colapsada) */
+}
+
+.menu-expanded {
+    max-height: 500px; /* Altura máxima durante la expansión (ajustar según contenido) */
+}
+
+.menu-collapsed {
+    max-height: 0; /* Altura final al colapsar */
+}
+
+
+
+
+
+
+
+
     /* Efecto de máquina de escribir */
     @keyframes typing {
         0% ,20% { width: 0; 
@@ -108,28 +146,6 @@
         border-right: 3px solid white; /* Cursor al final del texto */
         animation:  typing 100s infinite;
     }
-    @keyframes showAnimation {
-        from {
-            opacity: 0;
-            max-height: 0;
-        }
-        to {
-            opacity: 1;
-            max-height: 150px; /* Ajusta la altura máxima según el contenido */
-        }
-    }
-    
-    /* Keyframe para ocultar el submenú */
-    @keyframes hideAnimation {
-        from {
-            opacity: 1;
-            max-height: 150px; /* Misma altura que en el showAnimation */
-        }
-        to {
-            opacity: 0;
-            max-height: 0;
-        }
-    }
     
     /* Clases para aplicar las animaciones */
     .show-animation {
@@ -148,5 +164,6 @@
 
     /* Estilos para el loader */
 
+    
 
 }

@@ -1,8 +1,10 @@
 @include('constantes.head')
 
 <body>
-    <div x-data="{ loading: true, content: false }" x-init="setTimeout(() => { loading = false;
-        content = true; }, 1000);
+    <div x-data="{ loading: true, content: false }" x-init="setTimeout(() => {
+        loading = false;
+        content = true;
+    }, 1000);
     $nextTick(() => {
         gsap.to('svg path', {
             strokeDashoffset: 0,
@@ -44,33 +46,9 @@
             </div>
 
             @include('constantes.footer')
-
-
-            <div x-show="content" x-cloak x-transition:enter="transition ease-in-out duration-500"
-                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="content">
-
-                <!-- contenido -->
-                <div class=" w-full bg-cover bg-center relative lazyload"
-                    data-bg="url('{{ asset('images/reservas/1frame/back.webp') }}')">
-                    <div class="w-full h-full bg-gradient-to-r from-teal-100 via-transparent to-teal-800">
-                        @include('constantes.header')
-                        <div
-                            class="w-full h-[100px] flex justify-center items-center text-white gap-x-10 max-sm:h-[70px] max-sm:items-end">
-                            <a href="/reserva/cita" class="text-5xl leading-none  max-sm:text-4xl">RESERVAS</a>
-                            <a href="/reserva/pago" class="text-5xl leading-none  max-sm:text-4xl">PAGOS</a>
-                        </div>
-                        <div class="flex justify-center items-center  p-10">
-                            @yield('content')
-                        </div>
-
-                    </div>
-                </div>
-
-                @include('constantes.footer')
-                @vite('resources/js/app.js')
-
-            </div>
+            @vite('resources/js/app.js')
         </div>
+    </div>
     </div>
     <!-- Cargar librería LazyLoad optimizada -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async defer></script>

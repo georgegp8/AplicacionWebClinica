@@ -5,7 +5,16 @@
 
 @layer components {
 
-
+    .procedure-selected {
+        transform: scale(1.05); /* Escala al 105% */
+        background-color: #14b8a6; /* Teal-500 */
+        color: white; /* Texto blanco */
+        transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    }
+    
+    .procedure-unselected {
+        transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    }
 /* Transición personalizada */
 .menu-transition {
     transition: all 1s ease-in-out;

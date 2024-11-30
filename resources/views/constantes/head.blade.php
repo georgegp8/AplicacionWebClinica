@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>CitasTEC</title>
 
     <!-- Fuentes cargadas de manera asíncrona -->
@@ -25,6 +26,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async defer></script>
     <script src="https://unpkg.com/imask"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=ATW1irH9PTZzCRiBE8k8sjrZY9s3bEPRSqr8rli1OQq3llRrIoIsAt-9yWQKfAhimEoOwpBKz3LT7zqJ&components=buttons&currency=USD&disable-funding=credit,card"></script>
+
 
 
     <!-- Estilos adicionales -->

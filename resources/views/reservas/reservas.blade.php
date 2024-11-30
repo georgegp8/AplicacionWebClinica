@@ -37,15 +37,16 @@ x-init="setTimeout(() => { loading = false; content = true; }, 1000);
             <div class="w-full h-full bg-gradient-to-r from-teal-100 via-transparent to-teal-800">
                 @include('constantes.header')
             
-                <div class="flex justify-center items-center  p-10">
+                <div class="flex justify-center items-center  p-10 ">
+                
                     @yield('content')
+
                 </div>
                 
             </div>
         </div>
         
         @include('constantes.footer')
-        @vite('resources/js/app.js')  
 
     </div>
 </div>

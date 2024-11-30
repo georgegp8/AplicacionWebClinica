@@ -8,6 +8,7 @@ use App\Http\Controllers\ReservasController;
 use App\Http\Controllers\ResultadoController;
 use App\Http\Controllers\TestimoniosController;
 use App\Http\Controllers\CitasController;
+use App\Http\Controllers\PagoController;
 
 // Dashboard
 Route::get('/dashboard', function () {
@@ -51,16 +52,17 @@ Route::get('/map', function () {
 });
 
 // Pagos
-Route::get('/reserva/pago', function () {
+Route::get('/reservas/pago', function () {
     return view('reservas.pago');
 })->name('reserva.pago');
-Route::post('/reserva/pago', function () {
-    return response()->json(['message' => 'Pago procesado correctamente']);
-});
+Route::post('/citas/{codigoPago}/pagar', [PagoController::class, 'actualizarEstadoPago']);
 
 // Citas
 Route::get('/reserva/cita', [CitasController::class, 'index'])->name('reserva.cita');
 Route::post('/reserva/cita', [CitasController::class, 'store'])->name('reserva.cita');
+
+Route::get('/reserva/pago', [PagoController::class, 'index'])->name('reserva.pago');
+Route::post('/reserva/pago', [PagoController::class, 'store'])->name('reserva.pago');
 
 // Autenticación (Laravel Auth)
 Auth::routes();
@@ -177,3 +179,6 @@ Route::delete('/admin/horarios/{id}', [App\Http\Controllers\HorarioController::c
 // ajax
 Route::get('/admin/horarios/consultorios/{id}', [App\Http\Controllers\HorarioController::class, 'cargar_datos_consultorio'])->name('admin.horarios.cargar_datos_consultorio')
 ->middleware('auth');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

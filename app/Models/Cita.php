@@ -14,12 +14,9 @@ class Cita extends Model
 
     // Campos que se pueden asignar masivamente
     protected $fillable = [
-        'nombres',
-        'apellidos',
-        'email',
-        'telefono',
-        'dni',
-        'procedimiento',
-        'comentarios',
+        'nombres', 'apellidos', 'email', 'telefono', 'dni', 
+        'procedimiento', 'comentarios', 'codigo_pago', 'costo', 
+        'terminos', 'estado',
     ];
+    
 }

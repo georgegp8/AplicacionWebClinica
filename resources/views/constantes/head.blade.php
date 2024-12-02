@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>CitasTEC</title>
-
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon/logo1.svg') }}">
     <!-- Fuentes cargadas de manera asíncrona -->
     
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">

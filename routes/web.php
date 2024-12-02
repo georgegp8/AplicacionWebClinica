@@ -14,8 +14,7 @@ use App\Models\Event;
 use App\Structures\ArbolEventos;
 use App\Http\Controllers\PagoController;
 
-/* // Página principal
-Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('index'); */
+
 
 // Perfil de usuario (Rutas protegidas)
 Route::middleware('auth')->group(function () {
